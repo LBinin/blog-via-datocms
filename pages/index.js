@@ -35,7 +35,7 @@ export async function getStaticProps({ preview }) {
           author {
             name
             picture {
-              responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100, sat: -100}) {
+              responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100}) {
                 ...responsiveImageFragment
               }
             }

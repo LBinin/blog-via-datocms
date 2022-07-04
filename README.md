@@ -35,7 +35,7 @@ Then click **Read-only API token** and copy the token.
 Next, copy the `.env.example` file in this directory to `.env` (which will be ignored by Git):
 
 ```bash
-cp .env.example .env
+cp .env .env
 ```
 
 Then set each variable on `.env`:

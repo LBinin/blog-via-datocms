@@ -2,7 +2,7 @@ import { StructuredText, Image } from "react-datocms";
 
 export default function PostBody({ content }) {
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto px-5">
       <div className="prose prose-lg prose-blue">
         <StructuredText
           data={content}

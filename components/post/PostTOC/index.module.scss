@@ -1,0 +1,26 @@
+.toc {
+  @apply bg-amber-300;
+
+  li > ul {
+    @apply pl-2;
+    //font-size: 0.8em;
+  }
+  //:global(o)
+
+  .toc-list {
+    @apply bg-amber-600;
+
+    &.active {
+      color: red;
+    }
+
+    .toc-list-item {
+      @apply bg-amber-700;
+
+      &.active {
+        color: red;
+      }
+      //background: red;
+    }
+  }
+}

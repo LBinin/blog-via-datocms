@@ -2,6 +2,8 @@ import Container from "./container";
 import cn from "classnames";
 
 export default function Alert({ preview }) {
+  const previewSecret = process.env.NEXT_EXAMPLE_CMS_DATOCMS_PREVIEW_SECRET
+
   return (
     <div
       className={cn("border-b", {
@@ -26,7 +28,7 @@ export default function Alert({ preview }) {
             <>
               This is page is showing published content.{" "}
               <a
-                href="/api/preview"
+                href={`/api/preview?secret=${previewSecret}`}
                 className="underline hover:text-cyan duration-200 transition-colors"
               >
                 Click here
