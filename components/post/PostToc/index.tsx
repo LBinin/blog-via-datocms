@@ -117,7 +117,11 @@ const PostTOC: React.FC<{
         const level = headingNodes.find(node => getNodeValue(node.children) === currItemValue)?.level
 
         // return null
-        return <div className={classnames(styles.itemValueNode, { [`h${level}`]: level !== undefined })} key={_idx}><StructuredText data={child as any} /></div>
+        return (
+          <div key={_idx} className={classnames(styles.itemValueNode, { [`h${level}`]: level !== undefined })}>
+            <StructuredText data={child as any} />
+          </div>
+        )
       })
 
       // 当前 <li> 是否需要 active
@@ -133,7 +137,7 @@ const PostTOC: React.FC<{
     })
 
     return {
-      list: <ul className={classnames(styles.tocList)}>{listChildren}</ul>,
+      list: <ul>{listChildren}</ul>,
       isActive: listActive,
     }
   }
@@ -141,7 +145,7 @@ const PostTOC: React.FC<{
   console.log({ tree, table })
 
   return (
-    <div className={`fixed top-[100px] right-[10px] ${styles.toc} ${activeHeading === null ? styles.overview : ''}`}>
+    <div className={classnames(styles.toc, '', { [styles.overview]: activeHeading === null })}>
       {/*{table && <StructuredText data={table.map as any} />}*/}
       {table.map && renderList(table.map).list}
     </div>
