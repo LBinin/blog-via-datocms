@@ -1,83 +1,84 @@
 .toc {
-    display: none;
+  display: none;
 
-    @media (min-width: 1280px) {
-      display: block;
-    }
+  @media (min-width: 1280px) {
+    display: block;
+  }
 
-    position: fixed;
-    left: 50%;
-    top: 45%;
-    transform: translate(26rem, -50%);
-    width: 220px;
+  position: fixed;
+  left: 50%;
+  top: 45%;
+  transform: translate(26rem, -50%);
+  width: 220px;
 
-    &.overview,
-    &:hover {
-      .toc-list-item {
-        color: #94a3b8 !important;
-      }
-    }
-
+  &.overview,
+  &:hover {
     .toc-list-item {
-      color: transparent;
-      transition: color 0.15s;
-
-      .item-value-node {
-        display: flex;
-        align-items: center;
-        font-size: 12px;
-        padding: 3px 0;
-        transition: all 0.15s;
-
-        &:before {
-          background-color: #e2e8f0;
-
-          content: "";
-          display: block;
-          flex-shrink: 0;
-          height: 4px;
-          border-radius: 4px;
-        }
-      }
-
-      &.active > .item-value-node {
-        color: #94a3b8;
-
-        &:before {
-          background-color: #94a3b8;
-        }
-      }
-
-      .item-value-node:hover {
-        &:before {
-          background-color: #94a3b8;
-        }
-        color: #475569 !important;
-      }
-    }
-
-    // 控制第一级标题样式（第一级可能是 H1 也可能是 H2...）
-    & > ul > li > .item-value-node {
-      font-weight: 600;
-
-      &:before {
-        width: 16px;
-        margin-right: 10px;
-      }
-    }
-
-    // 第二级及之后的样式
-    & > ul > li li .item-value-node {
-      font-weight: 400;
-
-      &:before {
-        width: 10px;
-        margin-right: 24px;
-      }
-    }
-
-    // 第二级之后的间距
-    & > ul > li ul {
-      //padding-left: 5px;
+      color: #94a3b8 !important;
     }
   }
+
+  .toc-list-item {
+    color: transparent;
+    transition: color 0.15s;
+
+    .item-value-node {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      padding: 3px 0;
+      transition: all 0.15s;
+
+      &:before {
+        background-color: #e2e8f0;
+
+        content: "";
+        display: block;
+        flex-shrink: 0;
+        height: 4px;
+        border-radius: 4px;
+      }
+    }
+
+    &.active > .item-value-node {
+      color: #94a3b8;
+
+      &:before {
+        background-color: #94a3b8;
+      }
+    }
+
+    .item-value-node:hover {
+      &:before {
+        background-color: #94a3b8;
+      }
+
+      color: #475569 !important;
+    }
+  }
+
+  // 控制第一级标题样式（第一级可能是 H1 也可能是 H2...）
+  & > ul > li > .item-value-node {
+    font-weight: 600;
+
+    &:before {
+      width: 16px;
+      margin-right: 10px;
+    }
+  }
+
+  // 第二级及之后的样式
+  & > ul > li li .item-value-node {
+    font-weight: 400;
+
+    &:before {
+      width: 10px;
+      margin-right: 24px;
+    }
+  }
+
+  // 第二级之后的间距
+  & > ul > li ul {
+    //padding-left: 5px;
+  }
+}

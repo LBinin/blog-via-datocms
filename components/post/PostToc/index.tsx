@@ -142,7 +142,7 @@ const PostToc: React.FC<{
     }
   }
 
-  console.log({ tree, table })
+  console.log({ tree, table, styles })
 
   return (
     <div className={classnames(styles.toc, { [styles.overview]: activeHeading === null })}>
