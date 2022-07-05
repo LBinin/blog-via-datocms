@@ -145,7 +145,7 @@ const PostToc: React.FC<{
   console.log({ tree, table })
 
   return (
-    <div className={classnames(styles.toc, '', { [styles.overview]: activeHeading === null })}>
+    <div className={classnames(styles.toc, { [styles.overview]: activeHeading === null })}>
       {/*{table && <StructuredText data={table.map as any} />}*/}
       {table.map && renderList(table.map).list}
     </div>

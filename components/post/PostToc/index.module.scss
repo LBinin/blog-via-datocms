@@ -1,9 +1,8 @@
-@tailwind components;
-
 .toc {
-    @apply hidden;
-    @screen xl {
-      @apply block;
+    display: none;
+
+    @media (min-width: 1280px) {
+      display: block;
     }
 
     position: fixed;
@@ -15,12 +14,13 @@
     &.overview,
     &:hover {
       .toc-list-item {
-        @apply text-slate-400 #{!important};
+        color: #94a3b8 !important;
       }
     }
 
     .toc-list-item {
-      @apply text-transparent transition-colors;
+      color: transparent;
+      transition: color 0.15s;
 
       .item-value-node {
         display: flex;
@@ -30,7 +30,7 @@
         transition: all 0.15s;
 
         &:before {
-          @apply bg-slate-200;
+          background-color: #e2e8f0;
 
           content: "";
           display: block;
@@ -41,19 +41,18 @@
       }
 
       &.active > .item-value-node {
-        @apply text-slate-400;
+        color: #94a3b8;
 
         &:before {
-          @apply bg-slate-400;
+          background-color: #94a3b8;
         }
+      }
 
-        &:hover {
-          &:before {
-            @apply bg-slate-400;
-          }
-
-          @apply text-slate-600;
+      .item-value-node:hover {
+        &:before {
+          background-color: #94a3b8;
         }
+        color: #475569 !important;
       }
     }
 
