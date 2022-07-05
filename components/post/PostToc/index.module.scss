@@ -1,26 +1,24 @@
 .toc {
-  display: none;
-
-  @media (min-width: 1280px) {
-    display: block;
+  @apply hidden;
+  @screen xl {
+    @apply block;
   }
 
   position: fixed;
-  left: 50%;
-  top: 45%;
-  transform: translate(26rem, -50%);
+  left: 2rem;
+  top: 50%;
+  transform: translate(0, -50%);
   width: 220px;
 
   &.overview,
   &:hover {
     .toc-list-item {
-      color: #94a3b8 !important;
+      @apply text-slate-400 #{!important};
     }
   }
 
   .toc-list-item {
-    color: transparent;
-    transition: color 0.15s;
+    @apply text-transparent transition-colors;
 
     .item-value-node {
       display: flex;
@@ -30,7 +28,7 @@
       transition: all 0.15s;
 
       &:before {
-        background-color: #e2e8f0;
+        @apply bg-slate-200;
 
         content: "";
         display: block;
@@ -41,19 +39,19 @@
     }
 
     &.active > .item-value-node {
-      color: #94a3b8;
+      @apply text-slate-400;
 
       &:before {
-        background-color: #94a3b8;
+        @apply bg-slate-400;
       }
     }
 
     .item-value-node:hover {
       &:before {
-        background-color: #94a3b8;
+        @apply bg-slate-400;
       }
 
-      color: #475569 !important;
+      @apply text-slate-600;
     }
   }
 
