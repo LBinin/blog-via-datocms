@@ -1,82 +1,86 @@
-.toc {
-  @apply hidden;
-  @screen xl {
-    @apply block;
-  }
+@tailwind components;
 
-  position: fixed;
-  left: 50%;
-  top: 45%;
-  transform: translate(26rem, -50%);
-  width: 220px;
+@layer components {
+  .toc {
+    @apply hidden;
+    @screen xl {
+      @apply block;
+    }
 
-  &.overview,
-  &:hover {
+    position: fixed;
+    left: 50%;
+    top: 45%;
+    transform: translate(26rem, -50%);
+    width: 220px;
+
+    &.overview,
+    &:hover {
+      .toc-list-item {
+        @apply text-slate-400 #{!important};
+      }
+    }
+
     .toc-list-item {
-      @apply text-slate-400 #{!important};
-    }
-  }
+      @apply text-transparent transition-colors;
 
-  .toc-list-item {
-    @apply text-transparent transition-colors;
+      .item-value-node {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        padding: 3px 0;
+        transition: all 0.15s;
 
-    .item-value-node {
-      display: flex;
-      align-items: center;
-      font-size: 12px;
-      padding: 3px 0;
-      transition: all 0.15s;
+        &:before {
+          @apply bg-slate-200;
 
-      &:before {
-        @apply bg-slate-200;
-
-        content: "";
-        display: block;
-        flex-shrink: 0;
-        height: 4px;
-        border-radius: 4px;
-      }
-    }
-
-    &.active > .item-value-node {
-      @apply text-slate-400;
-
-      &:before {
-        @apply bg-slate-400;
+          content: "";
+          display: block;
+          flex-shrink: 0;
+          height: 4px;
+          border-radius: 4px;
+        }
       }
 
-      &:hover {
+      &.active > .item-value-node {
+        @apply text-slate-400;
+
         &:before {
           @apply bg-slate-400;
         }
 
-        @apply text-slate-600;
+        &:hover {
+          &:before {
+            @apply bg-slate-400;
+          }
+
+          @apply text-slate-600;
+        }
       }
     }
-  }
 
-  // 控制第一级标题样式（第一级可能是 H1 也可能是 H2...）
-  & > ul > li > .item-value-node {
-    font-weight: 600;
+    // 控制第一级标题样式（第一级可能是 H1 也可能是 H2...）
+    & > ul > li > .item-value-node {
+      font-weight: 600;
 
-    &:before {
-      width: 16px;
-      margin-right: 10px;
+      &:before {
+        width: 16px;
+        margin-right: 10px;
+      }
     }
-  }
 
-  // 第二级及之后的样式
-  & > ul > li li .item-value-node {
-    font-weight: 400;
+    // 第二级及之后的样式
+    & > ul > li li .item-value-node {
+      font-weight: 400;
 
-    &:before {
-      width: 10px;
-      margin-right: 24px;
+      &:before {
+        width: 10px;
+        margin-right: 24px;
+      }
     }
-  }
 
-  // 第二级之后的间距
-  & > ul > li ul {
-    //padding-left: 5px;
+    // 第二级之后的间距
+    & > ul > li ul {
+      //padding-left: 5px;
+    }
   }
 }
