@@ -11,7 +11,7 @@ import { request } from "@/lib/datocms";
 import { metaTagsFragment, responsiveImageFragment } from "@/lib/fragments";
 import PostTitle from '@/components/post/PostTitle'
 import PostContent from '@/components/post/PostContent'
-import PostTOC from '@/components/post/PostTOC'
+import PostToc from '@/components/post/PostToc'
 
 export async function getStaticPaths() {
   const data = await request({ query: `{ allPosts { slug } }` });
@@ -155,7 +155,7 @@ export default function Post({ subscription, preview }) {
           {/*<PostBody content={post.content} />*/}
         </article>
 
-        <PostTOC dataSource={post.content?.value?.document?.children}/>
+        <PostToc dataSource={post.content?.value?.document?.children}/>
         <hr className="border-accent-2 mt-28 mb-24" />
         {/*{morePosts.length > 0 && <MoreStories posts={morePosts} />}*/}
       </div>

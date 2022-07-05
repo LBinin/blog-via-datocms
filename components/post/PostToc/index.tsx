@@ -22,7 +22,7 @@ interface TOCLevelItem {
   children: TOCLevelItem[];
 }
 
-const PostTOC: React.FC<{
+const PostToc: React.FC<{
   dataSource?: Node[]
 }> = props => {
   const { dataSource } = props
@@ -152,4 +152,4 @@ const PostTOC: React.FC<{
   )
 }
 
-export default PostTOC
+export default PostToc
