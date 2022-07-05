@@ -24,6 +24,10 @@
     .toc-list-item {
       @apply text-transparent transition-colors;
 
+      .item-value-node {
+
+      }
+
       &.active,
       &:hover {
         @apply text-blue-500;

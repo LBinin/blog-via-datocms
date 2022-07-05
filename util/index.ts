@@ -8,7 +8,7 @@ const slugs = new Slugger()
  * 获取 Node 中的实际内容，转成 ID，用作 ID（GitHub 风格）
  * @param node
  */
-export function getNodeValue(node: Node) {
+export function getNodeValue(node: Node | Node[]) {
   slugs.reset()
   const value = toString(node, { includeImageAlt: false })
   return slugs.slug(value)

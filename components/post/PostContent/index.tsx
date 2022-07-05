@@ -13,7 +13,10 @@ const PostContent: React.FC<{
       <StructuredText
         data={dataSource}
         customNodeRules={[
-          renderNodeRule(isHeading, (ctx) => <Heading ctx={ctx}/>),
+          renderNodeRule(
+            isHeading,
+            (ctx) => <Heading ctx={ctx}/>
+          ),
         ]}
         // renderNode={console.log}
         renderBlock={({ record }) => {
