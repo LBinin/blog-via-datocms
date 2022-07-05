@@ -1,7 +1,6 @@
 @tailwind components;
 
-@layer components {
-  .toc {
+.toc {
     @apply hidden;
     @screen xl {
       @apply block;
@@ -83,4 +82,3 @@
       //padding-left: 5px;
     }
   }
-}
