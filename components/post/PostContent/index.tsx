@@ -1,8 +1,14 @@
 import React from 'react'
-import { renderMarkRule, renderNodeRule, StructuredText } from 'react-datocms'
+import { renderNodeRule, StructuredText } from 'react-datocms'
 import ImageBlock from '@/components/block/ImageBlock'
-import { isHeading, isParagraph } from 'datocms-structured-text-utils'
+import { isHeading} from 'datocms-structured-text-utils'
 import Heading from '@/components/block/Heading'
+
+import LightGallery from 'lightgallery/react'
+// import lgThumbnail from 'lightgallery/plugins/thumbnail'
+import lgZoom from 'lightgallery/plugins/zoom'
+import lgRotate from 'lightgallery/plugins/rotate'
+import lgFullscreen from 'lightgallery/plugins/fullscreen'
 
 const PostContent: React.FC<{
   dataSource?: any;
@@ -10,28 +16,33 @@ const PostContent: React.FC<{
   const { dataSource } = props
   return (
     <div className="prose max-w-full font-normal px-5 md:px-10">
-      <StructuredText
-        data={dataSource}
-        customNodeRules={[
-          renderNodeRule(
-            isHeading,
-            (ctx) => <Heading ctx={ctx}/>
-          ),
-        ]}
-        // renderNode={console.log}
-        renderBlock={({ record }) => {
-          if (record.__typename === 'ImageBlockRecord') {
-            return <ImageBlock record={record} />
-          }
+      <LightGallery
+        plugins={[lgZoom, lgRotate, lgFullscreen]}
+        hideScrollbar={true}
+        selector=".bigno-blog-image"
+      >
+        <StructuredText
+          data={dataSource}
+          customNodeRules={[
+            renderNodeRule(
+              isHeading,
+              (ctx) => <Heading ctx={ctx} />,
+            ),
+          ]}
+          renderBlock={({ record }) => {
+            if (record.__typename === 'ImageBlockRecord') {
+              return <ImageBlock record={record} />
+            }
 
-          return (
-            <>
-              <p>Don't know how to render a block!</p>
-              <pre>{JSON.stringify(record, null, 2)}</pre>
-            </>
-          )
-        }}
-      />
+            return (
+              <>
+                <p>Don't know how to render a block!</p>
+                <pre>{JSON.stringify(record, null, 2)}</pre>
+              </>
+            )
+          }}
+        />
+      </LightGallery>
     </div>
   )
 }
