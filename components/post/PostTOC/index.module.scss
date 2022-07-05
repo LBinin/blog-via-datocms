@@ -1,5 +1,5 @@
 .toc {
-  @apply bg-amber-300;
+  //@apply bg-amber-300;
 
   li > ul {
     @apply pl-2;
@@ -7,20 +7,27 @@
   }
   //:global(o)
 
+  &.overview,
+  &:hover {
+    .toc-list-item {
+      @apply text-blue-500 #{!important};
+    }
+  }
+
   .toc-list {
-    @apply bg-amber-600;
+    //@apply bg-amber-600;
+    // 没有任何 Active 的时候的总览
 
     &.active {
-      color: red;
     }
 
     .toc-list-item {
-      @apply bg-amber-700;
+      @apply text-transparent transition-colors;
 
-      &.active {
-        color: red;
+      &.active,
+      &:hover {
+        @apply text-blue-500;
       }
-      //background: red;
     }
   }
 }

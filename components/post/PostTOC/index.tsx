@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Heading, Node } from 'datocms-structured-text-utils/dist/types/types'
 import { isHeading } from 'datocms-structured-text-utils'
 import { toc } from 'mdast-util-toc'
@@ -27,13 +27,13 @@ const PostTOC: React.FC<{
 }> = props => {
   const { dataSource } = props
 
-  const documentRef = useRef<any>(null)
-  const scroll = useScroll(documentRef)
+  const [scrollTarget, setScrollTarget] = useState<any>()
+  const scroll = useScroll(scrollTarget)
 
   const [activeHeading, setActiveHeading] = useState<string | null>(null)
 
   useEffect(() => {
-    documentRef.current = document
+    setScrollTarget(document)
   }, [])
 
   // 获取所有标题节点
@@ -42,7 +42,7 @@ const PostTOC: React.FC<{
   // 页面滚动监听当前所在标题节点
   useEffect(() => {
     const firstNodeOffsetTop = getDOMOffset(
-      `#${getNodeValue(headingNodes[0])}`
+      `#${getNodeValue(headingNodes[0])}`,
     ).top
 
     if (
@@ -63,7 +63,7 @@ const PostTOC: React.FC<{
     })
 
     const index = headingOffsetList.findIndex(({ top }) =>
-      (scroll?.top ?? Infinity) < top - 1
+      (scroll?.top ?? Infinity) < top - 1,
     ) - 1
 
     // 变更当前 Heading
@@ -82,7 +82,7 @@ const PostTOC: React.FC<{
     window.history.replaceState({
       ...window.history.state,
       as: newUrl,
-      url: newUrl
+      url: newUrl,
     }, '', newUrl)
   }, [activeHeading])
 
@@ -95,57 +95,60 @@ const PostTOC: React.FC<{
     ordered: false,
   })
 
-  console.log({ tree, table, styles })
+  // console.log({ tree, table, styles })
 
-  const renderList = (list: List) => {
-    const listCls = classnames(styles.tocList, {
-      // [styles.active]: listValue
+  const renderList = (listNode: List) => {
+    let listActive = false
+
+    // 渲染子内容（包含子列表）
+    const listChildren = listNode.children.map((listItem, idx) => {
+      const currItemValue = getListItemValue(listItem)
+      const currItemActive = currItemValue === activeHeading
+
+      // 当前 item 就是 active item
+
+      let childrenActive = false
+
+      const itemChildren = listItem.children.map((child, _idx) => {
+        if (child.type === 'list') {
+          const { list, isActive } = renderList(child)
+          // 子 list 为 active
+          childrenActive = isActive
+          return list
+        }
+
+        return <div><StructuredText key={_idx} data={child as any} /></div>
+      })
+
+      // 当前 <li> 是否需要 active
+      const shouldListItemActive = currItemActive || childrenActive
+      // 判断当前 <ul> 是否需要 active
+      listActive = listActive || shouldListItemActive
+
+      return (
+        <li
+          className={classnames(styles.tocListItem, { [styles.active]: shouldListItemActive })}
+          key={idx}
+        >
+          {itemChildren}
+        </li>
+      )
     })
 
-    return (
-      <ul className={listCls}>
-        {list.children.map((listItem, idx) => {
-          const currItemValue = getListItemValue(listItem)
-          const currItemOffset = getDOMOffset(`#${currItemValue}`)
-
-          let showItem = false
-
-          // 最后一个
-          if (idx === list.children.length - 1) {
-
-          } else {
-            const nextItemValue = getListItemValue(list.children[idx + 1])
-            const nextItemOffset = getDOMOffset(`#${nextItemValue}`)
-
-            if (
-              (scroll?.top ?? 0) >= currItemOffset.top &&
-              (scroll?.top ?? 0) <= nextItemOffset.top
-            ) {
-              showItem = true
-            }
-            // const {} = getDOMOffset()
-          }
-          const listValue = getNodeValue(listItem as any)
-          const itemCls = classnames(styles.tocListItem, {
-            [styles.active]: showItem
-          })
-          return (
-            <li className={itemCls} key={idx}>
-              {listItem.children.map((child, _idx) => child.type === 'list'
-                ? renderList(child)
-                : (<div><StructuredText key={_idx} data={child as any} /></div>)
-              )}
-            </li>
-          )
-        })}
-      </ul>
-    )
+    return {
+      list: (
+        <ul className={classnames(styles.tocList)}>
+          {listChildren}
+        </ul>
+      ),
+      isActive: listActive,
+    }
   }
 
   return (
-    <div className={`fixed top-[100px] right-[10px] ${styles.toc}`}>
+    <div className={`fixed top-[100px] right-[10px] ${styles.toc} ${activeHeading === null ? styles.overview : ''}`}>
       {/*{table && <StructuredText data={table.map as any} />}*/}
-      {table.map && renderList(table.map)}
+      {table.map && renderList(table.map).list}
     </div>
   )
 }
