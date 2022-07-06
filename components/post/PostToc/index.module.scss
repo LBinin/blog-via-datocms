@@ -28,7 +28,7 @@
       transition: all 0.15s;
 
       &:before {
-        @apply bg-slate-200;
+        @apply bg-slate-200 transition-colors;
 
         content: "";
         display: block;

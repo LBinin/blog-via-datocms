@@ -120,6 +120,7 @@ const PostToc: React.FC<{
         return (
           <div key={_idx} className={classnames(styles.itemValueNode, { [`h${level}`]: level !== undefined })}>
             <StructuredText data={child as any} />
+            {/*{getNodeValue(child as any)}*/}
           </div>
         )
       })

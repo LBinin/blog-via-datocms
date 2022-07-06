@@ -1,0 +1,113 @@
+.post-content {
+  // 超链接
+  a {
+    @apply underline-offset-4 decoration-2 transition-colors font-bold mx-1;
+    text-decoration-color: var(--post-content-theme);
+
+    &:before {
+      content: "🔗 ";
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    &:hover {
+      color: var(--post-content-theme);
+    }
+  }
+
+  // 标题
+  h1, h2, h3, h4, h5, h6 {
+    @apply pt-1;
+
+    &:after {
+      content: "//";
+      vertical-align: text-bottom;
+      opacity: 0.1;
+      padding-left: 0.3em;
+    }
+  }
+
+  // 加粗
+  strong {
+    @apply text-zinc-700;
+  }
+
+  // 下划线
+  u {
+    @apply underline-offset-4 decoration-2;
+    text-decoration-color: var(--post-content-theme);
+  }
+
+  // 删除线
+  del {
+    @apply decoration-2;
+    text-decoration-color: var(--post-content-theme);
+  }
+
+  // 引用
+  blockquote {
+    @apply not-italic my-9 text-inherit border-l-4;
+    //border-color: var(--post-content-theme);
+
+    p {
+      &:before {
+        content: "";
+      }
+
+      &:after {
+        content: "";
+      }
+    }
+
+    footer {
+      @apply text-sm;
+      opacity: 0.4;
+
+      &:before {
+        @apply mr-2;
+        content: "———";
+      }
+    }
+  }
+
+  ul, ol {
+    @apply my-8 pl-5;
+
+    ul, ol {
+      @apply my-0;
+    }
+
+    li {
+      p {
+        @apply my-2;
+      }
+
+      &::marker {
+        color: var(--post-content-theme);
+      }
+    }
+  }
+
+  // 高亮标记
+  mark {
+    @apply box-decoration-clone font-bold px-2 py-1 mx-1 rounded-lg text-zinc-700;
+    //color: #e54d42;
+
+    background: linear-gradient(
+            104deg,
+            rgb(229 77 66 / 0%) .9%,
+            rgb(229 77 66) 2.4%,
+            rgb(229 77 66 / 50%) 5.8%,
+            rgb(229 77 66 / 10%) 93%,
+            rgb(229 77 66 / 70%) 96%
+    ),
+    linear-gradient(
+            183deg,
+            rgb(130 255 173 / 0%),
+            rgb(255 107 152 / 30%) 7.9%,
+            rgb(255 130 130 / 0%) 15%
+    );
+    text-shadow: -12px 12px 9.8px rgb(255 130 130 / 70%),
+    21px -18.1px 7.3px #fff,
+    -18.1px -27.3px 30px #fff;
+  }
+}

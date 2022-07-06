@@ -60,6 +60,10 @@ export async function getStaticProps({ params, preview = false }) {
               ...responsiveImageFragment
             }
           }
+          theme {
+            hex
+            alpha
+          }
           author {
             name
             picture {
@@ -151,7 +155,7 @@ export default function Post({ subscription, preview }) {
 
           {/*<div className="text-amber-400 font-bold text-3xl">====</div>*/}
 
-          <PostContent dataSource={post.content}/>
+          <PostContent dataSource={post.content} theme={post.theme?.hex}/>
           {/*<PostBody content={post.content} />*/}
         </article>
 
