@@ -12,6 +12,7 @@ import { metaTagsFragment, responsiveImageFragment } from "@/lib/fragments";
 import PostTitle from '@/components/post/PostTitle'
 import PostContent from '@/components/post/PostContent'
 import PostToc from '@/components/post/PostToc'
+import PostLayout from '../../layout/post'
 
 export async function getStaticPaths() {
   const data = await request({ query: `{ allPosts { slug } }` });
@@ -122,20 +123,27 @@ export async function getStaticProps({ params, preview = false }) {
 }
 
 export default function Post({ subscription, preview }) {
+  console.log({ subscription })
   const {
     data: { site, post, morePosts },
   } = useQuerySubscription(subscription);
 
   const metaTags = post.seo.concat(site.favicon);
 
-  console.log({ post })
+  console.log({ post, preview })
 
   return (
-    <Layout preview={preview}>
+    <PostLayout preview={preview}>
       <Head>{renderMetaTags(metaTags)}</Head>
-      <div className="max-w-3xl mx-auto">
-        <Header />
-        <article>
+      <div className="max-w-3xl mx-auto mt-8 md:mt-14 mb-24">
+        <PostTitle
+          title={post.title}
+          author={post.author}
+          date={post.date}
+          coverImage={post.coverImage?.responsiveImage}
+        />
+
+        <article className="relative">
           {/*<PostHeader*/}
           {/*  title={post.title}*/}
           {/*  coverImage={post.coverImage}*/}
@@ -143,26 +151,14 @@ export default function Post({ subscription, preview }) {
           {/*  author={post.author}*/}
           {/*/>*/}
 
-
-          {/*<div className="text-amber-400 font-bold text-3xl">====</div>*/}
-
-          <PostTitle
-            title={post.title}
-            author={post.author}
-            date={post.date}
-            coverImage={post.coverImage?.responsiveImage}
-          />
-
-          {/*<div className="text-amber-400 font-bold text-3xl">====</div>*/}
-
           <PostContent dataSource={post.content} theme={post.theme?.hex}/>
           {/*<PostBody content={post.content} />*/}
+          <PostToc dataSource={post.content?.value?.document?.children}/>
         </article>
 
-        <PostToc dataSource={post.content?.value?.document?.children}/>
-        <hr className="border-accent-2 mt-28 mb-24" />
+        {/*<hr className="border-accent-2 dark:border-[#404040] mt-28 mb-24" />*/}
         {/*{morePosts.length > 0 && <MoreStories posts={morePosts} />}*/}
       </div>
-    </Layout>
+    </PostLayout>
   );
 }

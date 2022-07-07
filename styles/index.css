@@ -5,5 +5,5 @@
 @tailwind utilities;
 
 html {
-  @apply antialiased
+  @apply antialiased scroll-smooth;
 }

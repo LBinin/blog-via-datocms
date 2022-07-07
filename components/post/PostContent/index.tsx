@@ -19,20 +19,21 @@ const PostContent: React.FC<{
   const { dataSource, theme } = props
   return (
     <div
-      className={`prose max-w-full text-zinc-500 font-normal px-5 md:px-10 ${styles.postContent}`}
+      className={`prose prose-bigno dark:prose-invert max-w-full font-normal px-5 md:px-10 ${styles.postContent}`}
       style={{ '--post-content-theme': theme ?? '#e54d42' } as any}
     >
       <LightGallery
         plugins={[lgZoom, lgRotate, lgFullscreen]}
         hideScrollbar={true}
         selector=".bigno-blog-image"
+        licenseKey="DO_NOT_WARNING_ON_CONSOLE"
       >
         <StructuredText
           data={dataSource}
           customNodeRules={[
             renderNodeRule(
               isHeading,
-              (ctx) => <Heading ctx={ctx} />,
+              (ctx) => <Heading ctx={ctx} key={ctx.key} />,
             ),
           ]}
           renderBlock={({ record }) => {

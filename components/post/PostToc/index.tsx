@@ -1,5 +1,5 @@
 import { u } from 'unist-builder'
-import { useScroll } from 'ahooks'
+import { useDebounceEffect, useScroll } from 'ahooks'
 import classnames from 'classnames'
 import { toc } from 'mdast-util-toc'
 import styles from './index.module.scss'
@@ -48,7 +48,7 @@ const PostToc: React.FC<{
 
     if (
       scroll?.top === undefined ||
-      scroll.top < firstNodeOffsetTop
+      scroll.top < firstNodeOffsetTop - 10
     ) {
       setActiveHeading(null)
       return
@@ -64,7 +64,7 @@ const PostToc: React.FC<{
     })
 
     const index = headingOffsetList.reverse().findIndex(({ top }) =>
-      (scroll?.top ?? Infinity) > top - 1, // 减去 1px 防止小数点没对齐
+      (scroll?.top ?? Infinity) > top - 10, // 减去 1px 防止小数点没对齐
     )
 
     // console.log({ scroll: scroll?.top, headingOffsetList, index })
@@ -74,7 +74,7 @@ const PostToc: React.FC<{
 
   // 动态修改 Hash
   // https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/plugin-active-header-links/clientRootMixin.js
-  useEffect(() => {
+  useDebounceEffect(() => {
     const { href } = window.location
     // 修改 Hash
     const url = new URL(href)
@@ -86,7 +86,7 @@ const PostToc: React.FC<{
       as: newUrl,
       url: newUrl,
     }, '', newUrl)
-  }, [activeHeading])
+  }, [activeHeading], { wait: 300 })
 
   // 解析 TOC
   const tree = u('root', headingNodes.map(node => u('heading', { depth: node.level }, node.children)))
@@ -138,15 +138,16 @@ const PostToc: React.FC<{
     })
 
     return {
-      list: <ul>{listChildren}</ul>,
+      list: <ul key="list">{listChildren}</ul>,
       isActive: listActive,
     }
   }
 
-  // console.log({ tree, table, styles })
-
   return (
     <div className={classnames(styles.toc, { [styles.overview]: activeHeading === null })}>
+      {/*<div className="w-0.5 bg-slate-100 mr-4 relative">*/}
+      {/*  <div className="w-1 bg-slate-200 absolute top-0 left-0 -translate-x-1/4" style={{ height: '50%' }}></div>*/}
+      {/*</div>*/}
       {/*{table && <StructuredText data={table.map as any} />}*/}
       {table.map && renderList(table.map).list}
     </div>

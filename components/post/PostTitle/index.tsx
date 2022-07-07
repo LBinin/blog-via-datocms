@@ -4,6 +4,7 @@ import { parseISO, format } from 'date-fns'
 import Avatar from '@/components/base/Avatar'
 import { ResponsiveImageType } from 'react-datocms/dist/types/Image'
 import { Image } from 'react-datocms'
+import Date from '@/components/base/Date'
 
 const PostTitle: React.FC<{
   title?: string;
@@ -18,7 +19,7 @@ const PostTitle: React.FC<{
       {/* 文章头图 */}
       <div className="">
         <Image
-          className="md:rounded-lg"
+          className="md:rounded-lg ring-1 ring-gray-100"
           data={{
             ...coverImage!,
             alt: `Cover Image for ${title}`,
@@ -35,7 +36,7 @@ const PostTitle: React.FC<{
         {/* 作者信息及日期 */}
         <div className="flex items-center justify-between">
           <Avatar name={author?.name} picture={author?.picture.responsiveImage} />
-          {date && <time className="text-xs md:text-base text-zinc-400" dateTime={date}>{format(parseISO(date), 'yyyy 年 MM 月	dd 日')}</time>}
+          <Date time={date}/>
         </div>
       </div>
     </div>

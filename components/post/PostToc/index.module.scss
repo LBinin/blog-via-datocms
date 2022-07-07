@@ -1,14 +1,20 @@
 .toc {
   @apply hidden;
+  //@apply hidden;
   @screen xl {
-    @apply block;
-  }
+    display: block;
+    position: absolute;
+    left: 110%;
+    top: 0;
+    bottom: 0;
+    width: 250px;
 
-  position: fixed;
-  left: 2rem;
-  top: 50%;
-  transform: translate(0, -50%);
-  width: 220px;
+    & > ul {
+      position: sticky;
+      top: 40%;
+      //transform: translateY(-50%);
+    }
+  }
 
   &.overview,
   &:hover {

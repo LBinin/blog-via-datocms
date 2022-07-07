@@ -1,4 +1,6 @@
 .post-content {
+  // 图片
+  @apply prose-img:rounded;
   // 超链接
   a {
     @apply underline-offset-4 decoration-2 transition-colors font-bold mx-1;
@@ -20,15 +22,10 @@
 
     &:after {
       content: "//";
-      vertical-align: text-bottom;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
       opacity: 0.1;
-      padding-left: 0.3em;
+      padding-left: 0.4em;
     }
-  }
-
-  // 加粗
-  strong {
-    @apply text-zinc-700;
   }
 
   // 下划线
@@ -110,4 +107,8 @@
     21px -18.1px 7.3px #fff,
     -18.1px -27.3px 30px #fff;
   }
+}
+
+:global(.dark) {
+  @apply prose-img:brightness-[0.85]
 }

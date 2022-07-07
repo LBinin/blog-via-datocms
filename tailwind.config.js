@@ -1,8 +1,10 @@
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
+    "./layout/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -11,6 +13,10 @@ module.exports = {
         "accent-7": "#333",
         success: "#0070f3",
         cyan: "#79FFE1",
+        midnight: {
+          100: "#232222",
+          200: "#171514",
+        }
       },
       spacing: {
         28: "7rem",
@@ -31,9 +37,20 @@ module.exports = {
         small: "0 5px 10px rgba(0, 0, 0, 0.12)",
         medium: "0 8px 30px rgba(0, 0, 0, 0.12)",
       },
-      typography: {
+      typography: ({ theme }) => ({
+        bigno: {
+          css: {
+            // '--tw-prose-body': "#71717a",
+            '--tw-prose-invert-body': "#d4d4d4",
+            '--tw-prose-invert-headings': theme('colors.white'),
+            '--tw-prose-invert-bold': theme('colors.white'),
+            // '--tw-prose-invert-hr': "#404040", // 亮一点
+            '--tw-prose-invert-hr': "#373737",
+          }
+        },
         DEFAULT: {
           css: {
+            '--tw-prose-body': theme('colors.zinc.500'),
             img: {
               marginTop: "0",
               marginBottom: "0",
@@ -48,7 +65,7 @@ module.exports = {
             },
           },
         },
-      },
+      }),
     },
   },
   plugins: [require("@tailwindcss/typography")],
