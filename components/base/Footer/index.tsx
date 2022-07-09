@@ -15,8 +15,8 @@ enum Stage {
 
 const Time = {
   Writing: 3000, // 写字到注意到你的时间
-  NoticeU: 2000, // 转场时间
-  Waving: 1000, // 挥手的离别时间（在这段时间内回来都还在挥手）
+  NoticeU: 1500, // 转场时间
+  Waving: 1500, // 挥手的离别时间（在这段时间内回来都还在挥手）
 }
 
 const Footer: React.FC = () => {
@@ -64,8 +64,8 @@ const Footer: React.FC = () => {
   return (
     <footer className="border-t border-accent-2 dark:border-[#404040]">
       <div className="container mx-auto pt-10 pb-20 flex flex-col items-center">
-        <h3 className="text-3xl md:text-4xl lg:text-6xl font-['Fira_Code'] font-bold tracking-tighter leading-tight text-center mb-10 mt-10 w-full">
-          Hello From Bigno.
+        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-['Fira_Code'] font-bold tracking-tighter leading-tight text-center mb-10 mt-10 w-full">
+          Hi There, It's Bigno.
         </h3>
 
 

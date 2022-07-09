@@ -16,10 +16,10 @@
     }
 
     :global(.writing) {
-      animation: writing-leave 0.8s 0.5s cubic-bezier(0.5, 0, 1, 0.5) forwards;
+      animation: writing-leave 0.4s 0.5s cubic-bezier(0.5, 0, 1, 0.5) forwards;
     }
     :global(.greeting) {
-      animation: greeting-enter 0.8s 1.3s cubic-bezier(0, 0.5, 0.5, 1) forwards;
+      animation: greeting-enter 0.4s 0.9s cubic-bezier(0, 0.5, 0.5, 1) forwards;
     }
   }
 

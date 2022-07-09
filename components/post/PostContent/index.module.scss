@@ -16,6 +16,14 @@
     }
   }
 
+  // inline code
+  :not(pre) > code {
+    @apply bg-gray-100 text-[0.8rem] px-2 py-[4px] rounded border border-gray-200;
+  }
+  //pre code {
+  //
+  //}
+
   // 标题
   h1, h2, h3, h4, h5, h6 {
     @apply pt-1;
@@ -110,5 +118,9 @@
 }
 
 :global(.dark) {
-  @apply prose-img:brightness-[0.85]
+  @apply prose-img:brightness-[0.85];
+
+  :not(pre) > code {
+    @apply bg-[#1c1c1c] border-[#181819] box-border
+  }
 }
