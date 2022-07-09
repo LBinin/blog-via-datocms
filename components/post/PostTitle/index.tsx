@@ -19,7 +19,7 @@ const PostTitle: React.FC<{
       {/* 文章头图 */}
       <div className="">
         <Image
-          className="md:rounded-lg ring-1 ring-gray-100"
+          className="md:rounded-lg ring-1 ring-gray-100 dark:ring-midnight-200"
           data={{
             ...coverImage!,
             alt: `Cover Image for ${title}`,

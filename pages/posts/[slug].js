@@ -50,6 +50,16 @@ export async function getStaticProps({ params, preview = false }) {
                   }
                 }
               }
+              ... on CodeBlockRecord {
+                id
+                caption
+                multiTabCodeBlock {
+                  blocks
+                  links
+                  value
+                }
+                showLineNumber
+              }
             }
           }
           date

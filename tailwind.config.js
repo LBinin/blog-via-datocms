@@ -46,6 +46,7 @@ module.exports = {
             '--tw-prose-invert-bold': theme('colors.white'),
             // '--tw-prose-invert-hr': "#404040", // 亮一点
             '--tw-prose-invert-hr': "#373737",
+            '--tw-prose-invert-quote-borders': "var(--post-content-theme)"
           }
         },
         DEFAULT: {

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export const ThemeContext = React.createContext({ theme: 'light', toggleTheme: () => {} })
 
@@ -8,7 +8,7 @@ export const ThemeContextProvider: React.FC = props => {
   const { children } = props
   const [theme, setTheme] = useState('light')
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const storeTheme = localStorage.getItem(STORE_THEME_KEY)
     if (storeTheme) { setTheme(storeTheme) }
   }, [])

@@ -19,7 +19,7 @@
   &.overview,
   &:hover {
     .toc-list-item {
-      @apply text-slate-400 #{!important};
+      @apply text-gray-400;
     }
   }
 
@@ -34,7 +34,7 @@
       transition: all 0.15s;
 
       &:before {
-        @apply bg-slate-200 transition-colors;
+        @apply bg-gray-200 transition-colors;
 
         content: "";
         display: block;
@@ -45,19 +45,19 @@
     }
 
     &.active > .item-value-node {
-      @apply text-slate-400;
+      @apply text-gray-400;
 
       &:before {
-        @apply bg-slate-400;
+        @apply bg-gray-400;
       }
     }
 
     .item-value-node:hover {
       &:before {
-        @apply bg-slate-400;
+        @apply bg-gray-400;
       }
 
-      @apply text-slate-600;
+      @apply text-gray-600;
     }
   }
 
@@ -84,5 +84,39 @@
   // 第二级之后的间距
   & > ul > li ul {
     //padding-left: 5px;
+  }
+}
+
+:global(.dark) {
+  .toc {
+    &.overview,
+    &:hover {
+      .toc-list-item {
+        @apply text-[#cac3c3];
+      }
+    }
+
+    .toc-list-item {
+      .item-value-node {
+        &:before {
+          @apply bg-neutral-700;
+        }
+      }
+
+      &.active > .item-value-node {
+        @apply text-[#cac3c3];
+
+        &:before {
+          @apply bg-[#7f7f7f];
+        }
+      }
+
+      .item-value-node:hover {
+        &:before {
+          @apply bg-neutral-500;
+        }
+        @apply text-white;
+      }
+    }
   }
 }

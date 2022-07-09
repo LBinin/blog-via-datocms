@@ -42,6 +42,9 @@ const PostToc: React.FC<{
 
   // 页面滚动监听当前所在标题节点
   useEffect(() => {
+    if (!headingNodes?.length) {
+      return
+    }
     const firstNodeOffsetTop = getDOMOffset(
       `#${getNodeValue(headingNodes[0])}`,
     ).top

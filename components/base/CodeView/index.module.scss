@@ -1,0 +1,39 @@
+.code-block {
+  pre {
+    @apply p-0 rounded-none bg-inherit my-6;
+  }
+
+  code {
+    @apply block float-left pr-5;
+  }
+
+  :global(.code-line) {
+    @apply block relative border-l-4 border-transparent pl-5;
+
+    &:global(.line-number) {
+      padding-left: 4em;
+
+      &::before {
+        content: attr(data-line);
+        position: absolute;
+        display: inline-block;
+        top: 0;
+        left: 0;
+        width: 2.5em;
+        text-align: right;
+        color: rgba(163, 163, 163, var(--tw-text-opacity));
+      }
+    }
+
+    &:global(.highlight-line) {
+      @apply border-l-4 border-sky-500;
+      background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, rgba(0, 0, 0, 0));
+    }
+  }
+}
+
+:global(.dark) {
+  .code-block {
+
+  }
+}

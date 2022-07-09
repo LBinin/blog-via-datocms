@@ -1,7 +1,7 @@
 import React from 'react'
 import { renderNodeRule, StructuredText } from 'react-datocms'
 import ImageBlock from '@/components/block/ImageBlock'
-import { isHeading } from 'datocms-structured-text-utils'
+import { isCode, isHeading } from 'datocms-structured-text-utils'
 import Heading from '@/components/block/Heading'
 
 import LightGallery from 'lightgallery/react'
@@ -11,6 +11,7 @@ import lgRotate from 'lightgallery/plugins/rotate'
 import lgFullscreen from 'lightgallery/plugins/fullscreen'
 
 import styles from './index.module.scss'
+import CodeBlock from '@/components/block/CodeBlock'
 
 const PostContent: React.FC<{
   dataSource?: any;
@@ -33,13 +34,23 @@ const PostContent: React.FC<{
           customNodeRules={[
             renderNodeRule(
               isHeading,
-              (ctx) => <Heading ctx={ctx} key={ctx.key} />,
+              (ctx) => <Heading key={ctx.key} ctx={ctx} />,
             ),
+            renderNodeRule(
+              isCode,
+              (ctx) => <CodeBlock key={ctx.key} record={ctx}/>
+            )
           ]}
           renderBlock={({ record }) => {
             if (record.__typename === 'ImageBlockRecord') {
               return <ImageBlock record={record} />
             }
+
+            if (record.__typename === 'CodeBlockRecord') {
+              return <CodeBlock record={record}/>
+            }
+
+            console.log('unknow block:', record)
 
             return (
               <>
