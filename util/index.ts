@@ -7,15 +7,16 @@ const slugs = new Slugger()
 /**
  * 获取 Node 中的实际内容，转成 ID，用作 ID（GitHub 风格）
  * @param node
+ * @param slug 是否获取 slug 格式，默认为 true
  */
-export function getNodeValue(node?: Node | Node[]) {
+export function getNodeValue(node?: Node | Node[], slug: boolean = true) {
   if (!node) {
     return ''
   }
 
   slugs.reset()
   const value = toString(node, { includeImageAlt: false })
-  return slugs.slug(value)
+  return slug ? slugs.slug(value) : value
 }
 
 /**

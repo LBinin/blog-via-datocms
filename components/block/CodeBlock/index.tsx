@@ -36,7 +36,7 @@ const CodeBlock: React.FC<{
         const heading = nodeList.slice(lastCodeBlockIndex, index).reverse().find(isHeading)
         result.push({
           codeNode: node,
-          caption: getNodeValue(heading) || `未命名-${untitledIndex++}`,
+          caption: getNodeValue(heading, false) || `未命名-${untitledIndex++}`,
         })
         lastCodeBlockIndex = index
       }

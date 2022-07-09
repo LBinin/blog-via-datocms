@@ -1,0 +1,30 @@
+@import "code/code.css"; /* purgecss start ignore */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+@tailwind utilities;
+
+html {
+  @apply antialiased scroll-smooth;
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .scrollbar-normal {
+    -ms-overflow-style: auto;
+    scrollbar-width: auto;
+
+    &::-webkit-scrollbar {
+      display: block;
+    }
+  }
+}

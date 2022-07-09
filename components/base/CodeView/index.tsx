@@ -9,6 +9,12 @@ import prismTypeScript from 'react-syntax-highlighter/dist/cjs/languages/prism/t
 import prismJavaScript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript'
 import prismJson from 'react-syntax-highlighter/dist/cjs/languages/prism/json'
 
+SyntaxHighlighter.registerLanguage('jsx', prismJSX)
+SyntaxHighlighter.registerLanguage('tsx', prismTSX)
+SyntaxHighlighter.registerLanguage('javascript', prismJavaScript)
+SyntaxHighlighter.registerLanguage('typescript', prismTypeScript)
+SyntaxHighlighter.registerLanguage('json', prismJson)
+
 const CodeView: React.FC<{
   language?: string;
   code?: string;
@@ -19,12 +25,6 @@ const CodeView: React.FC<{
   highlightLine?: number[];
 }> = props => {
   const { code, language, lineNumbers, wrapLongLine, highlightLine } = props
-
-  SyntaxHighlighter.registerLanguage('jsx', prismJSX)
-  SyntaxHighlighter.registerLanguage('tsx', prismTSX)
-  SyntaxHighlighter.registerLanguage('javascript', prismJavaScript)
-  SyntaxHighlighter.registerLanguage('typescript', prismTypeScript)
-  SyntaxHighlighter.registerLanguage('json', prismJson)
 
   if (!code || !language) {
     return null
