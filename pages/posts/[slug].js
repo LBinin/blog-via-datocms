@@ -59,6 +59,8 @@ export async function getStaticProps({ params, preview = false }) {
                   value
                 }
                 showLineNumber
+                wrapLongLines
+                defaultActiveTab
               }
             }
           }

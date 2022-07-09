@@ -27,13 +27,15 @@
 
     &:global(.highlight-line) {
       @apply border-l-4 border-sky-500;
-      background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, rgba(0, 0, 0, 0));
+      background: linear-gradient(to right, rgba(229, 229, 229, 0.5) 70%, rgba(0, 0, 0, 0));
     }
   }
 }
 
 :global(.dark) {
-  .code-block {
-
+  :global(.code-line) {
+    &:global(.highlight-line) {
+      background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, rgba(0, 0, 0, 0));
+    }
   }
 }

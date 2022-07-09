@@ -57,6 +57,8 @@ const CodeBlock: React.FC<{
         dataSource={codeBlockList}
         simpleMode={isSimpleMode}
         lineNumber={!isSimpleMode && record?.showLineNumber}
+        wrapLongLine={record?.wrapLongLines}
+        defaultActiveTab={record?.defaultActiveTab}
       />
     </div>
   )
