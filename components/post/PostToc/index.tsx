@@ -148,10 +148,6 @@ const PostToc: React.FC<{
 
   return (
     <div className={classnames(styles.toc, { [styles.overview]: activeHeading === null })}>
-      {/*<div className="w-0.5 bg-slate-100 mr-4 relative">*/}
-      {/*  <div className="w-1 bg-slate-200 absolute top-0 left-0 -translate-x-1/4" style={{ height: '50%' }}></div>*/}
-      {/*</div>*/}
-      {/*{table && <StructuredText data={table.map as any} />}*/}
       {table.map && renderList(table.map).list}
     </div>
   )

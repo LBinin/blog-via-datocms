@@ -14,7 +14,7 @@ const Header: React.FC<{
   }, titleRef, { delay: 2000 })
 
   return (
-    <header className="sticky top-0 z-30 h-[70px] bg-white dark:bg-midnight-100 !bg-opacity-50 backdrop-blur backdrop-filter firefox:bg-opacity-90 border-b border-gray-100 dark:border-midnight-200">
+    <header className="hidden sticky top-0 z-30 h-[70px] bg-white dark:bg-midnight-100 !bg-opacity-50 backdrop-blur backdrop-filter firefox:bg-opacity-90 border-b border-gray-200 dark:border-midnight-200">
       <div className="max-w-3xl mx-5 md:mx-auto flex items-center h-full">
         <Link href="/">
           <a ref={titleRef}>

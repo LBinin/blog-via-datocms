@@ -1,0 +1,149 @@
+.hi-from-bigno {
+  // 写作中
+  &:global(.iam-writing) {
+    :global(.writing) {
+      @apply origin-[70%_70%];
+      animation: is-writing 2.5s infinite;
+    }
+  }
+
+  // 注意到你
+  &:global(.notice-u) {
+    animation: none;
+
+    :global(.surprised) {
+      animation: is-surprised 0.5s forwards;
+    }
+
+    :global(.writing) {
+      animation: writing-leave 0.8s 0.5s cubic-bezier(0.5, 0, 1, 0.5) forwards;
+    }
+    :global(.greeting) {
+      animation: greeting-enter 0.8s 1.3s cubic-bezier(0, 0.5, 0.5, 1) forwards;
+    }
+  }
+
+  // 打招呼~
+  &:global(.waving-to-u) {
+
+    :global(.writing) {
+      transform: perspective(500px) rotateY(90deg) rotateX(30deg);
+    }
+    :global(.greeting) {
+      @apply origin-[70%_70%];
+      transform: perspective(500px) rotateY(0deg);
+      animation: is-waving 2.5s infinite;
+    }
+  }
+
+  :global(.writing) {
+    @apply text-7xl lg:text-8xl;
+  }
+
+  :global(.greeting) {
+    @apply absolute top-0 text-7xl lg:text-8xl;
+    transform: perspective(500px) rotateY(90deg) rotateX(30deg);
+  }
+
+  :global(.surprised) {
+    @apply opacity-0 text-lg lg:text-2xl absolute -rotate-[22deg] lg:-rotate-[15deg] -translate-x-5 translate-y-4;
+    &::before,
+    &::after {
+      display: inline-block;
+      @apply text-base lg:text-xl origin-bottom;
+      content: "❗️";
+    }
+
+    &::before {
+      @apply -rotate-12 lg:-rotate-[22deg] translate-x-2 lg:translate-x-3;
+    }
+
+    &::after {
+      @apply rotate-12 lg:rotate-[22deg] -translate-x-2 lg:-translate-x-3;
+    }
+  }
+
+  @keyframes is-surprised {
+    0% {
+      opacity: 1;
+    }
+    99% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  // 专场
+  @keyframes writing-leave {
+    0% {
+      transform: perspective(500px) rotateY(0deg);
+    }
+    100% {
+      transform: perspective(500px) rotateY(90deg) rotateX(30deg);
+    }
+  }
+
+  @keyframes greeting-enter {
+    0% {
+      transform: perspective(500px) rotateY(90deg) rotateX(30deg);
+    }
+    100% {
+      transform: perspective(500px) rotateY(0deg);
+    }
+  }
+
+  // 书写中
+  @keyframes is-writing {
+    0% {
+      transform: perspective(500px) rotateZ(0deg);
+    }
+    20% {
+      transform: perspective(500px) rotateZ(5deg);
+    }
+    60% {
+      transform: perspective(500px) rotateZ(0deg);
+    }
+    70% {
+      transform: perspective(500px) rotateZ(5deg);
+    }
+    75% {
+      transform: perspective(500px) rotateZ(0deg);
+    }
+    90% {
+      transform: perspective(500px) rotateZ(5deg);
+    }
+    0% {
+      transform: perspective(500px) rotateZ(0deg);
+    }
+  }
+
+  // 挥手中
+  @keyframes is-waving {
+    0% {
+      transform: rotate(0deg)
+    }
+    10% {
+      transform: rotate(14deg)
+    }
+    20% {
+      transform: rotate(-8deg)
+    }
+    30% {
+      transform: rotate(14deg)
+    }
+    40% {
+      transform: rotate(-8deg)
+    }
+    50% {
+      transform: rotate(10deg)
+    }
+    60% {
+      transform: rotate(0deg)
+    }
+    to {
+      transform: rotate(0deg)
+    }
+  }
+}

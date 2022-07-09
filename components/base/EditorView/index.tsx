@@ -76,7 +76,7 @@ const EditorView: React.FC<{
     BorderLight: isDarkTheme ? 'border-[#3c3c3d]' : 'border-gray-200',
     Text: isDarkTheme ? 'text-[#78787a]' : 'text-gray-400',
     TextActive: isDarkTheme ? 'text-white' : 'text-gray-800',
-    TabBg: isDarkTheme ? 'bg-[#3c3c3d]/50' : 'bg-gray-50',
+    TabBg: isDarkTheme ? 'bg-[#2c2c2d]' : 'bg-gray-50',
     TabActiveBg: isDarkTheme ? 'bg-[#1c1c1c]' : 'bg-white',
   }
 
@@ -86,12 +86,12 @@ const EditorView: React.FC<{
   // 功能性操作
   const functionalOperation = (
     <>
-      <div className="px-3 my-auto text-xs bg-gray-50 py-1 rounded opacity-50">
+      <div className={`px-3 my-auto text-xs ${EditorClass.TabBg} font-semibold py-1 rounded opacity-50`}>
         {currLanguage && (LanguageDisplayMapping[currLanguage] ?? currLanguage)}
       </div>
 
       <button onClick={handleToggleWrap} className="my-auto">
-        <svg className={classnames('p-1 bg-white/0 rounded box-content w-4 h-4 text-white transition-colors duration-300', { 'bg-gray-200': codeWrap })} fill={isDarkTheme ? '#78787a' : '#9ca3af'} viewBox="0 0 1024 1024" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <svg className={classnames('p-1 bg-white/0 rounded box-content w-4 h-4 text-white transition-colors duration-300', { 'bg-gray-200 dark:bg-gray-50/10': codeWrap })} fill={isDarkTheme ? '#78787a' : '#9ca3af'} viewBox="0 0 1024 1024" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M640 768h64a106.666667 106.666667 0 1 0 0-213.333333H170.666667a42.666667 42.666667 0 0 1 0-85.333334h533.333333a192 192 0 1 1 0 384H640v42.666667a21.333333 21.333333 0 0 1-34.133333 17.066667l-91.008-68.266667a42.666667 42.666667 0 0 1 0-68.266667l91.008-68.266666a21.333333 21.333333 0 0 1 34.133333 17.066666v42.666667zM170.666667 170.666667h682.666666a42.666667 42.666667 0 0 1 0 85.333333H170.666667a42.666667 42.666667 0 1 1 0-85.333333z m213.333333 640a42.666667 42.666667 0 0 1-42.666667 42.666666H170.666667a42.666667 42.666667 0 0 1 0-85.333333h170.666666a42.666667 42.666667 0 0 1 42.666667 42.666667z" />
         </svg>
       </button>
