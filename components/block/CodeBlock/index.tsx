@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react'
-import { Code, isCode, isHeading } from 'datocms-structured-text-utils'
+import { isCode, isHeading } from 'datocms-structured-text-utils'
 import { Node } from 'datocms-structured-text-utils/dist/types/types'
 import { getNodeValue } from '@/util'
-import CodeView from '@/components/base/CodeView'
 import EditorView, { CodeViewBlock } from '@/components/base/EditorView'
 
 const CodeBlock: React.FC<{

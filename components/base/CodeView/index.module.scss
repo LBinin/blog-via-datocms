@@ -4,7 +4,7 @@
   }
 
   code {
-    @apply block float-left pr-5;
+    @apply block float-left pr-5 min-w-full;
   }
 
   :global(.code-line) {

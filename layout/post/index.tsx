@@ -26,8 +26,6 @@ const PostLayout: React.FC<{
 
   const isDarkTheme = theme === 'dark'
 
-  console.log({ isDarkTheme })
-
   return (
     <div className="min-h-screen">
       <Header preview={preview} />
