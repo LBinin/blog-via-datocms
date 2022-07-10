@@ -1,0 +1,72 @@
+.toc {
+  //@apply shadow-2xl ring-1;
+
+  .section {
+    & > .title {
+      @apply flex items-center my-1 text-base rounded;
+      transition: all 0.15s;
+
+      & a {
+        @apply py-2 px-3;
+      }
+
+      & * {
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  // 控制第一级标题样式（第一级可能是 H1 也可能是 H2...）
+  & > ul > li > .title {
+    @apply font-bold;
+  }
+
+  & > ul > li li .title {
+    @apply ml-6;
+  }
+}
+
+.toc {
+  //@apply ;
+
+  .section {
+    & > .title {
+      @apply text-black;
+    }
+
+    &.active {
+      & > .title {
+        // 高亮时候的背景色
+        @apply bg-black/30 text-white;
+      }
+    }
+  }
+
+  // 控制第一级标题样式（第一级可能是 H1 也可能是 H2...）
+  & > ul > li > .title {
+    @apply text-black;
+  }
+}
+
+:global(.dark) {
+  .toc {
+    .section {
+      & > .title {
+        @apply text-[#b4b4b6];
+      }
+
+      &.active {
+        & > .title {
+          @apply bg-[#3c3c3d]
+        }
+      }
+    }
+
+    // 控制第一级标题样式（第一级可能是 H1 也可能是 H2...）
+    & > ul > li > .title {
+      @apply text-gray-100 #{!important};
+    }
+  }
+}

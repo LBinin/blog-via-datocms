@@ -6,19 +6,17 @@ import classnames from 'classnames'
 
 const PostLayout: React.FC<{
   preview?: boolean;
+  onMenuOpen?(): void;
 }> = props => {
-  const { preview, children } = props
+  const { preview, onMenuOpen, children } = props
 
   const { theme, toggleTheme } = useContext(ThemeContext)
-
-  console.log({ theme })
 
   const handleBackTop = () => {
     scrollTo({ top: 0 })
   }
 
   const handleToggleTheme = (e: any) => {
-    console.log({ e })
     e?.preventDefault()
     e?.stopPropagation()
     toggleTheme()
@@ -46,6 +44,10 @@ const PostLayout: React.FC<{
 
           {/* Sun Icon */}
           <svg className={classnames('absolute left-2 top-2 w-6 h-6 transition-all duration-300 ease-in-out opacity-0 -translate-y-full', { 'translate-y-0': isDarkTheme, 'opacity-100': isDarkTheme })} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+        </button>
+
+        <button onClick={onMenuOpen} className="block xl:hidden p-2 !bg-opacity-50 backdrop-blur backdrop-filter bg-zinc-200 dark:bg-zinc-800 md:bg-transparent text-zinc-500 dark:text-zinc-200 transition-all rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
         </button>
       </div>
 

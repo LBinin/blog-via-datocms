@@ -18,8 +18,8 @@ const Heading: React.FC<{
 
   return React.createElement(
     `h${ctx.node.level}`,
-    { id: slug },
-    ctx.children
+    {},
+    <span id={slug}>{ctx.children}</span>
   )
 }
 

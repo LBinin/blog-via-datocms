@@ -53,8 +53,6 @@ const Footer: React.FC = () => {
     }
   }, [inViewport])
 
-  console.log({ currStage })
-
   const cls = classnames(styles.hiFromBigno, 'relative', {
     'iam-writing': currStage === Stage.Writing,
     'notice-u': currStage === Stage.NoticeU,

@@ -28,6 +28,11 @@
   h1, h2, h3, h4, h5, h6 {
     @apply pt-1;
 
+    // 定位偏移
+    & > span {
+      padding-top: 90px;
+    }
+
     &:after {
       content: "//";
       font-family: Helvetica Neue, Helvetica, Arial, sans-serif;

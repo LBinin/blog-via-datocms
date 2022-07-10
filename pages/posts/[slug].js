@@ -13,6 +13,8 @@ import PostTitle from '@/components/post/PostTitle'
 import PostContent from '@/components/post/PostContent'
 import PostToc from '@/components/post/PostToc'
 import PostLayout from '../../layout/post'
+import PostTocDrawer from '@/components/post/PostTocDrawer'
+import React, { useState } from 'react'
 
 export async function getStaticPaths() {
   const data = await request({ query: `{ allPosts { slug } }` });
@@ -142,10 +144,12 @@ export default function Post({ subscription, preview }) {
 
   const metaTags = post.seo.concat(site.favicon);
 
+  const [menuVisible, setMenuVisible] = useState(false)
+
   console.log({ post, preview })
 
   return (
-    <PostLayout preview={preview}>
+    <PostLayout preview={preview} onMenuOpen={() => setMenuVisible(i => !i)}>
       <Head>{renderMetaTags(metaTags)}</Head>
       <div className="max-w-3xl mx-auto mt-8 md:mt-14 mb-24">
         <PostTitle
@@ -166,6 +170,12 @@ export default function Post({ subscription, preview }) {
           <PostContent dataSource={post.content} theme={post.theme?.hex}/>
           {/*<PostBody content={post.content} />*/}
           <PostToc dataSource={post.content?.value?.document?.children}/>
+
+          <PostTocDrawer
+            dataSource={post.content?.value?.document?.children}
+            visible={menuVisible}
+            onClose={() => setMenuVisible(false)}
+          />
         </article>
 
         {/*<hr className="border-accent-2 dark:border-[#404040] mt-28 mb-24" />*/}
