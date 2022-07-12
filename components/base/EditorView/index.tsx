@@ -81,7 +81,7 @@ const EditorView: React.FC<{
   }
 
   const currCodeNode = (currTab ? codeBlockList[currTab] : codeBlockList[0])?.codeNode
-  const currLanguage = currCodeNode.language?.toLowerCase()
+  const currLanguage = currCodeNode?.language?.toLowerCase()
 
   // 功能性操作
   const functionalOperation = (
@@ -90,14 +90,14 @@ const EditorView: React.FC<{
         {currLanguage && (LanguageDisplayMapping[currLanguage] ?? currLanguage)}
       </div>
 
-      <button onClick={handleToggleWrap} className="my-auto">
+      <button title="Wrap Lone Line" onClick={handleToggleWrap} className="my-auto">
         <svg className={classnames('p-1 bg-white/0 rounded box-content w-4 h-4 text-white transition-colors duration-300', { 'bg-gray-200 dark:bg-gray-50/10': codeWrap })} fill={isDarkTheme ? '#78787a' : '#9ca3af'} viewBox="0 0 1024 1024" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M640 768h64a106.666667 106.666667 0 1 0 0-213.333333H170.666667a42.666667 42.666667 0 0 1 0-85.333334h533.333333a192 192 0 1 1 0 384H640v42.666667a21.333333 21.333333 0 0 1-34.133333 17.066667l-91.008-68.266667a42.666667 42.666667 0 0 1 0-68.266667l91.008-68.266666a21.333333 21.333333 0 0 1 34.133333 17.066666v42.666667zM170.666667 170.666667h682.666666a42.666667 42.666667 0 0 1 0 85.333333H170.666667a42.666667 42.666667 0 1 1 0-85.333333z m213.333333 640a42.666667 42.666667 0 0 1-42.666667 42.666666H170.666667a42.666667 42.666667 0 0 1 0-85.333333h170.666666a42.666667 42.666667 0 0 1 42.666667 42.666667z" />
         </svg>
       </button>
 
       <CopyToClipboard text={currCodeNode.code} onCopy={handleCopyCode}>
-        <button onClick={handleCopyCode} className="my-auto hidden sm:block">
+        <button title="Copy" onClick={handleCopyCode} className="my-auto hidden sm:block">
           {codeCopied
             // 复制图标
             ? <svg className="p-1 box-content w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>

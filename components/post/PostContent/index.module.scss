@@ -1,32 +1,45 @@
 .post-content {
   // 图片
   @apply prose-img:rounded;
+
   // 超链接
   a {
-    @apply underline-offset-4 decoration-2 transition-colors font-bold mx-1;
+    @apply underline-offset-4 decoration-2 transition-colors font-bold mx-1 break-all;
     text-decoration-color: var(--post-content-theme);
 
     &:before {
       content: "🔗 ";
-      color: rgba(255, 255, 255, 0.6);
+      @apply transition-colors text-white/50;
     }
 
     &:hover {
       color: var(--post-content-theme);
+
+      &:before {
+        @apply text-white;
+      }
+
+      strong {
+        @apply text-inherit;
+      }
     }
+  }
+
+  // 空行留白
+  p:empty {
+    //@apply my-[50px];
+    height: 1rem;
+    //background: red;
   }
 
   // inline code
   :not(pre) > code {
     @apply bg-gray-100 text-[0.8rem] px-2 py-[4px] rounded border border-gray-200;
   }
-  //pre code {
-  //
-  //}
 
   // 标题
   h1, h2, h3, h4, h5, h6 {
-    @apply pt-1;
+    @apply pt-2;
 
     // 定位偏移
     & > span {
@@ -40,6 +53,9 @@
       padding-left: 0.4em;
     }
   }
+
+  h2 { @apply mt-16; }
+  h3 { @apply mt-16; }
 
   // 下划线
   u {
@@ -55,7 +71,7 @@
 
   // 引用
   blockquote {
-    @apply not-italic my-9 text-inherit border-l-4;
+    @apply not-italic mt-4 mb-9 text-inherit border-l-4 opacity-70;
     //border-color: var(--post-content-theme);
 
     p {
@@ -80,7 +96,7 @@
   }
 
   ul, ol {
-    @apply my-8 pl-5;
+    @apply mt-4 mb-4 pl-5;
 
     ul, ol {
       @apply my-0;
@@ -127,5 +143,12 @@
 
   :not(pre) > code {
     @apply bg-[#1c1c1c] border-[#181819] box-border
+  }
+}
+
+// 预览模式
+:global(.preview) {
+  p:empty {
+    @apply bg-white/5;
   }
 }

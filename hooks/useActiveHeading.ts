@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useScroll, useSize } from 'ahooks'
+import useDocument from '@/hooks/useDocument'
 import { getDOMOffset, getNodeValue } from '@/util'
-import { useScroll } from 'ahooks'
+import { useEffect, useMemo, useState } from 'react'
 import { isHeading } from 'datocms-structured-text-utils'
 import { Heading, Node } from 'datocms-structured-text-utils/dist/types/types'
-import useDocument from '@/hooks/useDocument'
 
 /**
  * 获取当前页面滚动到的标题（用于 Post 页面）
@@ -16,8 +16,13 @@ const useActiveHeading = (dataSource?: Node[]) => {
   // 获取所有标题节点
   const headingNodes = useMemo(() => dataSource?.filter(node => isHeading(node)) as Heading[], [dataSource])
 
+  const bodySize = useSize(() => doc?.querySelector('body'))
+  const windowHigh = useMemo(() => doc?.documentElement.clientHeight, [bodySize])
+
   // 页面滚动监听当前所在标题节点
   useEffect(() => {
+    const topOffset = ((windowHigh ?? 20) - 200) / 2 // 标题距离顶部多少算 active
+
     if (!headingNodes?.length) {
       return
     }
@@ -27,7 +32,7 @@ const useActiveHeading = (dataSource?: Node[]) => {
 
     if (
       scroll?.top === undefined ||
-      scroll.top < firstNodeOffsetTop - 10
+      scroll.top < firstNodeOffsetTop - topOffset
     ) {
       setActiveHeading(null)
       return
@@ -43,13 +48,12 @@ const useActiveHeading = (dataSource?: Node[]) => {
     })
 
     const index = headingOffsetList.reverse().findIndex(({ top }) =>
-      (scroll?.top ?? Infinity) > top - 10, // 减去 1px 防止小数点没对齐
+      (scroll?.top ?? Infinity) > top - topOffset, // 减去 1px 防止小数点没对齐
     )
 
-    // console.log({ scroll: scroll?.top, headingOffsetList, index })
     // 变更当前 Heading
     setActiveHeading(headingOffsetList[index].slug)
-  }, [scroll?.top])
+  }, [scroll?.top, windowHigh])
 
   return activeHeading
 }

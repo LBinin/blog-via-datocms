@@ -60,6 +60,8 @@ const CodeBlock: React.FC<{
         wrapLongLine={record?.wrapLongLines}
         defaultActiveTab={record?.defaultActiveTab}
       />
+
+      {record?.caption && <div className="text-sm text-center py-4 opacity-60">{record.caption}</div>}
     </div>
   )
 }

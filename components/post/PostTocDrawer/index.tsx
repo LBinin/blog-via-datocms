@@ -24,16 +24,19 @@ const PostTocDrawer: React.FC<{
   })
 
   useEffect(() => {
+    if (!doc) {
+      return
+    }
     if (visible) {
       overflowFlag.current = true
-      document.documentElement.style.overflow = 'hidden'
+      doc.documentElement.style.overflow = 'hidden'
     } else {
       if (overflowFlag.current) {
         overflowFlag.current = false
-        document.documentElement.style.overflow = ''
+        doc.documentElement.style.overflow = ''
       }
     }
-  }, [visible])
+  }, [doc, visible])
 
   const drawer = transitions((style, isVisible) => isVisible && (
     <div id="post-menu-portal" className={classnames('fixed flex inset-0 z-40 overflow-hidden flex-col-reverse')}>

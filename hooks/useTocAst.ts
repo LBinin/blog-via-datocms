@@ -1,6 +1,6 @@
+import { useMemo } from 'react'
 import { u } from 'unist-builder'
 import { toc } from 'mdast-util-toc'
-import { useMemo } from 'react'
 import { isHeading } from 'datocms-structured-text-utils'
 import { Heading, Node } from 'datocms-structured-text-utils/dist/types/types'
 
