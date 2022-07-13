@@ -1,17 +1,18 @@
 import React from 'react'
 import { renderNodeRule, StructuredText } from 'react-datocms'
 import ImageBlock from '@/components/block/ImageBlock'
-import { isCode, isHeading } from 'datocms-structured-text-utils'
+import { isCode, isHeading, isLink } from 'datocms-structured-text-utils'
 import Heading from '@/components/block/Heading'
 
 import LightGallery from 'lightgallery/react'
-// import lgThumbnail from 'lightgallery/plugins/thumbnail'
 import lgZoom from 'lightgallery/plugins/zoom'
 import lgRotate from 'lightgallery/plugins/rotate'
 import lgFullscreen from 'lightgallery/plugins/fullscreen'
 
 import styles from './index.module.scss'
 import CodeBlock from '@/components/block/CodeBlock'
+import Anchor from '@/components/block/Anchor'
+import CalloutBlock from '@/components/block/CalloutBlock'
 
 const PostContent: React.FC<{
   dataSource?: any;
@@ -32,22 +33,35 @@ const PostContent: React.FC<{
         <StructuredText
           data={dataSource}
           customNodeRules={[
+            // 标题节点
             renderNodeRule(
               isHeading,
               (ctx) => <Heading key={ctx.key} ctx={ctx} />,
             ),
+            // 普通代码块
             renderNodeRule(
               isCode,
               (ctx) => <CodeBlock key={ctx.key} record={ctx}/>
+            ),
+            // 链接
+            renderNodeRule(
+              isLink,
+              (ctx) => <Anchor key={ctx.key} ctx={ctx} />,
             )
           ]}
           renderBlock={({ record }) => {
+            // 图像块
             if (record.__typename === 'ImageBlockRecord') {
               return <ImageBlock record={record} />
             }
 
+            // 代码块（编辑器版本）
             if (record.__typename === 'CodeBlockRecord') {
               return <CodeBlock record={record}/>
+            }
+
+            if (record.__typename === 'CalloutBlockRecord') {
+              return <CalloutBlock record={record}/>
             }
 
             console.log('unknow block:', record)
@@ -55,6 +69,7 @@ const PostContent: React.FC<{
             return (
               <>
                 <p>Don't know how to render a block!</p>
+                {/*<CodeBlock key={record.id} record={record}/>*/}
                 <pre>{JSON.stringify(record, null, 2)}</pre>
               </>
             )

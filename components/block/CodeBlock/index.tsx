@@ -52,7 +52,7 @@ const CodeBlock: React.FC<{
   // const isMultiTab = codeBlockList.length > 1
 
   return (
-    <div>
+    <div className="my-5">
       <EditorView
         dataSource={codeBlockList}
         simpleMode={isSimpleMode}

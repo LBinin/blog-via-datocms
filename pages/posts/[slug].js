@@ -64,6 +64,17 @@ export async function getStaticProps({ params, preview = false }) {
                 wrapLongLines
                 defaultActiveTab
               }
+              ... on CalloutBlockRecord {
+                id
+                emojiIcon
+                calloutTitle
+                calloutContent {
+                  value
+                }
+                calloutColor {
+                  hex
+                }
+              }
             }
           }
           date

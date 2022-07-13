@@ -7,17 +7,17 @@
     @apply underline-offset-4 decoration-2 transition-colors font-bold mx-1 break-all;
     text-decoration-color: var(--post-content-theme);
 
-    &:before {
-      content: "🔗 ";
-      @apply transition-colors text-white/50;
-    }
+    //&:before {
+    //  content: "🔗 ";
+    //  @apply transition-colors text-white/50;
+    //}
 
     &:hover {
       color: var(--post-content-theme);
 
-      &:before {
-        @apply text-white;
-      }
+      //&:before {
+      //  @apply text-white;
+      //}
 
       strong {
         @apply text-inherit;
@@ -43,7 +43,7 @@
 
     // 定位偏移
     & > span {
-      padding-top: 90px;
+      padding-top: 100px;
     }
 
     &:after {
@@ -149,6 +149,12 @@
 // 预览模式
 :global(.preview) {
   p:empty {
-    @apply bg-white/5;
+    @apply bg-black/5;
+  }
+
+  &:global(.dark) {
+    p:empty {
+      @apply bg-white/5;
+    }
   }
 }
