@@ -33,13 +33,13 @@
 
   .section {
     & > .title {
-      @apply text-black;
+      @apply text-black/60;
     }
 
     &.active {
       & > .title {
         // 高亮时候的背景色
-        @apply bg-black/30 text-white;
+        @apply bg-black/5 text-black;
       }
     }
   }
