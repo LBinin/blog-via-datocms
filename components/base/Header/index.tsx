@@ -17,7 +17,8 @@ const Header: React.FC<{
     <header className="sticky top-0 z-30 h-[70px] bg-white dark:bg-midnight-100 !bg-opacity-50 backdrop-blur backdrop-filter firefox:bg-opacity-90 border-b border-gray-200 dark:border-midnight-200">
       <div className="max-w-3xl mx-5 md:mx-auto flex items-center h-full">
         <Link href="/">
-          <a ref={titleRef}>
+          <a ref={titleRef} className="flex items-center">
+            <span className="text-3xl md:text-4xl mr-3 opacity-70">✍</span>
             <h1 className="text-3xl md:text-4xl font-bold tracking-tighter leading-tight text-zinc-700 dark:text-white">Bigno.</h1>
           </a>
         </Link>

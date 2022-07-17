@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
     <footer className="border-t border-accent-2 dark:border-[#404040]">
       <div className="container mx-auto pt-10 pb-20 flex flex-col items-center">
         <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-['Fira_Code'] font-bold tracking-tighter leading-tight text-center mb-10 mt-10 w-full">
-          Hi There, It's Bigno.
+          Hi there, it's Bigno.
         </h3>
 
 

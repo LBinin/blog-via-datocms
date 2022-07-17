@@ -34,7 +34,14 @@
 
   // inline code
   :not(pre) > code {
-    @apply bg-gray-100 text-[0.8rem] px-2 py-[4px] rounded border border-gray-200;
+    @apply bg-gray-100 text-[0.8rem] px-[6px] py-[3px] rounded border border-gray-200;
+    color: inherit;
+    font-weight: inherit;
+
+    &::before,
+    &::after {
+      content: "";
+    }
   }
 
   // 标题
