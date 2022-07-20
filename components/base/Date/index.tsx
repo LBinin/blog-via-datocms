@@ -3,8 +3,9 @@ import { format, parseISO } from 'date-fns'
 
 const Date: React.FC<{
   time?: string;
+  className?: string;
 }> = props => {
-  const { time } = props
+  const { time, className } = props
 
   if (!time) {
     return null
@@ -12,7 +13,7 @@ const Date: React.FC<{
 
   return (
     <time
-      className="text-xs md:text-base text-zinc-400"
+      className={className}
       dateTime={time}
     >
       {format(parseISO(time), 'yyyy 年 MM 月	dd 日')}

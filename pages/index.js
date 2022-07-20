@@ -7,6 +7,7 @@ import Layout from "@/components/layout";
 import MoreStories from "@/components/more-stories";
 import { request } from "@/lib/datocms";
 import { metaTagsFragment, responsiveImageFragment } from "@/lib/fragments";
+import PostCard from '@/components/post/PostCard'
 
 export async function getStaticProps({ preview }) {
   const graphqlRequest = {
@@ -28,7 +29,7 @@ export async function getStaticProps({ preview }) {
           excerpt
           date
           coverImage {
-            responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 2000, h: 1000 }) {
+            responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 1000 }) {
               ...responsiveImageFragment
             }
           }
@@ -73,6 +74,7 @@ export default function Index({ subscription }) {
 
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
+  console.log({ morePosts })
   const metaTags = blog.seo.concat(site.favicon);
 
   return (
@@ -91,6 +93,9 @@ export default function Index({ subscription }) {
               excerpt={heroPost.excerpt}
             />
           )}
+          {/*{morePosts?.map((post, index) => (*/}
+          {/*  <PostCard key={[post, index].join()} post={post}/>*/}
+          {/*))}*/}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Container>
       </Layout>

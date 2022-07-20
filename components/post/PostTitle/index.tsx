@@ -35,8 +35,13 @@ const PostTitle: React.FC<{
 
         {/* 作者信息及日期 */}
         <div className="flex items-center justify-between">
-          <Avatar name={author?.name} picture={author?.picture.responsiveImage} />
-          <Date time={date}/>
+          <Avatar
+            avatarClass="w-6 md:w-10 h-6 md:h-10"
+            nameClass="text-xs md:text-base"
+            name={author?.name}
+            picture={author?.picture.responsiveImage}
+          />
+          <Date className="text-xs md:text-base text-zinc-400" time={date}/>
         </div>
       </div>
     </div>
