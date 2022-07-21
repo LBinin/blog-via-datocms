@@ -8,6 +8,8 @@ import MoreStories from "@/components/more-stories";
 import { request } from "@/lib/datocms";
 import { metaTagsFragment, responsiveImageFragment } from "@/lib/fragments";
 import PostCard from '@/components/post/PostCard'
+import HeroPostCard from '@/components/post/HeroPostCard'
+import Introduction from '@/components/home/Introduction'
 
 export async function getStaticProps({ preview }) {
   const graphqlRequest = {
@@ -81,23 +83,28 @@ export default function Index({ subscription }) {
     <>
       <Layout preview={subscription.preview}>
         <Head>{renderMetaTags(metaTags)}</Head>
-        <Container>
-          <Intro />
+        <div className="max-w-3xl mx-auto mb-24">
+          {/*<Intro />*/}
+          <Introduction />
+
           {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
+            <HeroPostCard post={heroPost}/>
           )}
-          {/*{morePosts?.map((post, index) => (*/}
-          {/*  <PostCard key={[post, index].join()} post={post}/>*/}
-          {/*))}*/}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-        </Container>
+          {/*{heroPost && (*/}
+          {/*  <HeroPost*/}
+          {/*    title={heroPost.title}*/}
+          {/*    coverImage={heroPost.coverImage}*/}
+          {/*    date={heroPost.date}*/}
+          {/*    author={heroPost.author}*/}
+          {/*    slug={heroPost.slug}*/}
+          {/*    excerpt={heroPost.excerpt}*/}
+          {/*  />*/}
+          {/*)}*/}
+          {morePosts?.map((post, index) => (
+            <PostCard key={[post, index].join()} post={post}/>
+          ))}
+          {/*{morePosts.length > 0 && <MoreStories posts={morePosts} />}*/}
+        </div>
       </Layout>
     </>
   );

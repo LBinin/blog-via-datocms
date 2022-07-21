@@ -1,11 +1,10 @@
 import React from 'react'
+import classnames from 'classnames'
 import { Image } from 'react-datocms'
 import { ResponsiveImageType } from 'react-datocms/dist/types/Image'
-import classnames from 'classnames'
 
 const Avatar: React.FC<{
   name?: string;
-  // size?: 'default' | 'large' | 'small';
   picture?: ResponsiveImageType;
   avatarClass?: string;
   nameClass?: string;
@@ -15,7 +14,7 @@ const Avatar: React.FC<{
   const nameCls = classnames('font-semibold tracking-wider text-zinc-500', nameClass)
 
   return (
-    <div className="flex items-center space-x-1 md:space-x-2">
+    <div className="flex items-center space-x-1">
       <div className={avatarClass}>
         {picture && (
           <Image
