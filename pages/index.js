@@ -1,12 +1,12 @@
-import Head from "next/head";
-import { renderMetaTags, useQuerySubscription } from "react-datocms";
-import Container from "@/components/container";
-import HeroPost from "@/components/hero-post";
-import Intro from "@/components/intro";
-import Layout from "@/components/layout";
-import MoreStories from "@/components/more-stories";
-import { request } from "@/lib/datocms";
-import { metaTagsFragment, responsiveImageFragment } from "@/lib/fragments";
+import Head from 'next/head'
+import { renderMetaTags, useQuerySubscription } from 'react-datocms'
+import Container from '@/components/container'
+import HeroPost from '@/components/hero-post'
+import Intro from '@/components/intro'
+import Layout from '@/components/layout'
+import MoreStories from '@/components/more-stories'
+import { request } from '@/lib/datocms'
+import { metaTagsFragment, responsiveImageFragment } from '@/lib/fragments'
 import PostCard from '@/components/post/PostCard'
 import HeroPostCard from '@/components/post/HeroPostCard'
 import Introduction from '@/components/home/Introduction'
@@ -35,6 +35,10 @@ export async function getStaticProps({ preview }) {
               ...responsiveImageFragment
             }
           }
+          category {
+            name
+            slug
+          }
           author {
             name
             picture {
@@ -50,7 +54,7 @@ export async function getStaticProps({ preview }) {
       ${responsiveImageFragment}
     `,
     preview,
-  };
+  }
 
   return {
     props: {
@@ -66,30 +70,28 @@ export async function getStaticProps({ preview }) {
             initialData: await request(graphqlRequest),
           },
     },
-  };
+  }
 }
 
 export default function Index({ subscription }) {
   const {
     data: { allPosts, site, blog },
-  } = useQuerySubscription(subscription);
+  } = useQuerySubscription(subscription)
 
-  const heroPost = allPosts[0];
-  const morePosts = allPosts.slice(1);
+  const heroPost = allPosts[0]
+  const morePosts = allPosts.slice(1)
   console.log({ morePosts })
-  const metaTags = blog.seo.concat(site.favicon);
+  const metaTags = blog.seo.concat(site.favicon)
 
   return (
     <>
       <Layout preview={subscription.preview}>
         <Head>{renderMetaTags(metaTags)}</Head>
-        <div className="max-w-3xl mx-auto mb-24">
+        <div className="mx-auto mb-24 max-w-3xl">
           {/*<Intro />*/}
           <Introduction />
 
-          {heroPost && (
-            <HeroPostCard post={heroPost}/>
-          )}
+          {heroPost && <HeroPostCard post={heroPost} />}
           {/*{heroPost && (*/}
           {/*  <HeroPost*/}
           {/*    title={heroPost.title}*/}
@@ -101,11 +103,11 @@ export default function Index({ subscription }) {
           {/*  />*/}
           {/*)}*/}
           {morePosts?.map((post, index) => (
-            <PostCard key={[post, index].join()} post={post}/>
+            <PostCard key={[post, index].join()} post={post} />
           ))}
           {/*{morePosts.length > 0 && <MoreStories posts={morePosts} />}*/}
         </div>
       </Layout>
     </>
-  );
+  )
 }

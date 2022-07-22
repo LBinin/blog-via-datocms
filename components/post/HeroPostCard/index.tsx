@@ -3,6 +3,7 @@ import { Image } from 'react-datocms'
 import Avatar from '@/components/base/Avatar'
 import Date from '@/components/base/Date'
 import Link from 'next/link'
+import MarkedText from '@/components/base/MarkedText'
 
 const HeroPostCard: React.FC<{
   post?: any
@@ -15,18 +16,30 @@ const HeroPostCard: React.FC<{
 
   return (
     <Link href={`/posts/${post.slug}`}>
-      <a aria-label={post.title} className="block rounded-md overflow-hidden border relative">
+      <a
+        aria-label={post.title}
+        className="group relative block overflow-hidden md:rounded-md md:border"
+      >
         <Image
+          className="transition duration-500 md:group-hover:scale-110"
           data={{
             ...post.coverImage?.responsiveImage,
             alt: `Cover Image for ${post.title}`,
           }}
         />
 
-        <div className="p-4 absolute bottom-0 left-0">
-          <div className="flex items-center space-x-5 bg-white p-1">
+        {/*  md:absolute bottom-0 left-0 */}
+        <div className="bottom-0 left-0 inline-flex flex-col items-start space-y-1 p-4 transition duration-300 md:absolute md:space-y-2 md:group-hover:opacity-30">
+          {/* 文章标题 */}
+          <MarkedText
+            className="inline-block bg-white px-2 py-1 text-2xl font-bold tracking-wide text-gray-700"
+            text={post.title}
+          />
+
+          {/* 作者及日期 */}
+          <div className="inline-flex items-center space-x-5 bg-white px-2 py-1">
             <Avatar
-              avatarClass="w-6 h-6"
+              avatarClass="w-4 h-4"
               nameClass="text-xs"
               name={post.author?.name}
               picture={post.author?.picture.responsiveImage}
@@ -34,8 +47,12 @@ const HeroPostCard: React.FC<{
             <Date className="text-xs text-zinc-400" time={post.date} />
           </div>
 
-          <p className="text-2xl font-bold mt-3 tracking-wide text-gray-700 bg-white p-1">{post.title}</p>
-          <p className="text-sm text-gray-400 mt-2 font-bold bg-white p-1">{post.excerpt}</p>
+          {/* 摘要 */}
+          {post.excerpt && (
+            <p className="max-w-sm bg-white px-2 py-1 text-sm font-bold text-gray-400">
+              {post.excerpt}
+            </p>
+          )}
         </div>
       </a>
     </Link>
