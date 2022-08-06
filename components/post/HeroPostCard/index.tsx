@@ -37,8 +37,8 @@ const HeroPostCard: React.FC<{
         />
 
         {/* 作者及日期 */}
-        <div className="z-[2] col-start-1 mx-2 mt-2 text-[0px] md:row-start-3 md:mx-3 md:mt-3">
-          <div className="inline-flex items-center space-x-5 bg-white px-2 py-1">
+        <div className="z-[2] col-start-1 mx-3 mt-3 text-[0px] md:row-start-3">
+          <div className="inline-flex items-center space-x-5 bg-white px-2 py-1.5">
             <Avatar
               avatarClass="w-4 h-4 border border-1 border-[#E54D42]"
               nameClass="text-xs"
@@ -51,7 +51,7 @@ const HeroPostCard: React.FC<{
 
         {/* 摘要 */}
         {post.excerpt && (
-          <div className="z-[2] col-start-1 mx-2 my-1 max-w-sm md:row-start-4 md:mx-3 md:my-3">
+          <div className="z-[2] col-start-1 mx-3 my-1 max-w-sm md:row-start-4 md:mb-3">
             <p className="text-md inline-block bg-white px-2 py-1 font-bold text-gray-400 md:text-sm">
               {post.excerpt}
             </p>
