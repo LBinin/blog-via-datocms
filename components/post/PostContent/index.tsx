@@ -13,15 +13,16 @@ import styles from './index.module.scss'
 import CodeBlock from '@/components/block/CodeBlock'
 import Anchor from '@/components/block/Anchor'
 import CalloutBlock from '@/components/block/CalloutBlock'
+import TableBlock from '@/components/block/TableBlock'
 
 const PostContent: React.FC<{
-  dataSource?: any;
-  theme?: string; // 主题色
+  dataSource?: any
+  theme?: string // 主题色
 }> = props => {
   const { dataSource, theme } = props
   return (
     <div
-      className={`prose prose-bigno dark:prose-invert max-w-full font-normal px-5 md:px-10 ${styles.postContent}`}
+      className={`prose prose-bigno max-w-full px-5 font-normal dark:prose-invert md:px-10 ${styles.postContent}`}
       style={{ '--post-content-theme': theme ?? '#e54d42' } as any}
     >
       <LightGallery
@@ -34,20 +35,15 @@ const PostContent: React.FC<{
           data={dataSource}
           customNodeRules={[
             // 标题节点
-            renderNodeRule(
-              isHeading,
-              (ctx) => <Heading key={ctx.key} ctx={ctx} />,
-            ),
+            renderNodeRule(isHeading, ctx => (
+              <Heading key={ctx.key} ctx={ctx} />
+            )),
             // 普通代码块
-            renderNodeRule(
-              isCode,
-              (ctx) => <CodeBlock key={ctx.key} record={ctx}/>
-            ),
+            renderNodeRule(isCode, ctx => (
+              <CodeBlock key={ctx.key} record={ctx} />
+            )),
             // 链接
-            renderNodeRule(
-              isLink,
-              (ctx) => <Anchor key={ctx.key} ctx={ctx} />,
-            )
+            renderNodeRule(isLink, ctx => <Anchor key={ctx.key} ctx={ctx} />),
           ]}
           renderBlock={({ record }) => {
             // 图像块
@@ -57,11 +53,16 @@ const PostContent: React.FC<{
 
             // 代码块（编辑器版本）
             if (record.__typename === 'CodeBlockRecord') {
-              return <CodeBlock record={record}/>
+              return <CodeBlock record={record} />
             }
 
             if (record.__typename === 'CalloutBlockRecord') {
-              return <CalloutBlock record={record}/>
+              return <CalloutBlock record={record} />
+            }
+
+            if (record.__typename === 'TableBlockRecord') {
+              return <TableBlock record={record} />
+              // return <span>111</span>
             }
 
             console.log('unknow block:', record)

@@ -8,6 +8,7 @@
     "export": "next build && next export"
   },
   "dependencies": {
+    "@tanstack/react-table": "^8.5.11",
     "ahooks": "^3.5.2",
     "classnames": "2.3.1",
     "date-fns": "^2.28.0",

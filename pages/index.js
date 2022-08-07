@@ -6,10 +6,10 @@ import Intro from '@/components/intro'
 import Layout from '@/components/layout'
 import MoreStories from '@/components/more-stories'
 import { request } from '@/lib/datocms'
-import { metaTagsFragment, responsiveImageFragment } from '@/lib/fragments'
 import PostCard from '@/components/post/PostCard'
 import HeroPostCard from '@/components/post/HeroPostCard'
 import Introduction from '@/components/home/Introduction'
+import { metaTagsFragment, responsiveImageFragment } from '../const/slug'
 
 export async function getStaticProps({ preview }) {
   const graphqlRequest = {

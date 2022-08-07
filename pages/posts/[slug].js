@@ -1,28 +1,32 @@
-import Head from "next/head";
-import { renderMetaTags, useQuerySubscription } from "react-datocms";
-import Container from "@/components/container";
-import Header from "@/components/header";
-import Layout from "@/components/layout";
-import MoreStories from "@/components/more-stories";
-import PostBody from "@/components/post-body";
-import PostHeader from "@/components/post-header";
-import { request } from "@/lib/datocms";
+import Head from 'next/head'
+import { renderMetaTags, useQuerySubscription } from 'react-datocms'
+import Container from '@/components/container'
+import Header from '@/components/header'
+import Layout from '@/components/layout'
+import MoreStories from '@/components/more-stories'
+import PostBody from '@/components/post-body'
+import PostHeader from '@/components/post-header'
+import { request } from '@/lib/datocms'
 
-import { metaTagsFragment, responsiveImageFragment } from "@/lib/fragments";
 import PostTitle from '@/components/post/PostTitle'
 import PostContent from '@/components/post/PostContent'
 import PostToc from '@/components/post/PostToc'
 import PostLayout from '../../layout/post'
 import PostTocDrawer from '@/components/post/PostTocDrawer'
 import React, { useState } from 'react'
+import {
+  AllPostBlocks,
+  metaTagsFragment,
+  responsiveImageFragment,
+} from '../../const/slug'
 
 export async function getStaticPaths() {
-  const data = await request({ query: `{ allPosts { slug } }` });
+  const data = await request({ query: `{ allPosts { slug } }` })
 
   return {
-    paths: data.allPosts.map((post) => `/posts/${post.slug}`),
+    paths: data.allPosts.map(post => `/posts/${post.slug}`),
     fallback: false,
-  };
+  }
 }
 
 export async function getStaticProps({ params, preview = false }) {
@@ -42,40 +46,7 @@ export async function getStaticProps({ params, preview = false }) {
           slug
           content {
             value
-            blocks {
-              __typename
-              ...on ImageBlockRecord {
-                id
-                image {
-                  responsiveImage(imgixParams: {fm: jpg, fit: crop }) {
-                    ...responsiveImageFragment
-                  }
-                }
-              }
-              ... on CodeBlockRecord {
-                id
-                caption
-                multiTabCodeBlock {
-                  blocks
-                  links
-                  value
-                }
-                showLineNumber
-                wrapLongLines
-                defaultActiveTab
-              }
-              ... on CalloutBlockRecord {
-                id
-                emojiIcon
-                calloutTitle
-                calloutContent {
-                  value
-                }
-                calloutColor {
-                  hex
-                }
-              }
-            }
+            ${AllPostBlocks}
           }
           date
           ogImage: coverImage{
@@ -128,7 +99,7 @@ export async function getStaticProps({ params, preview = false }) {
     variables: {
       slug: params.slug,
     },
-  };
+  }
 
   return {
     props: {
@@ -144,16 +115,16 @@ export async function getStaticProps({ params, preview = false }) {
           },
       preview,
     },
-  };
+  }
 }
 
 export default function Post({ subscription, preview }) {
   console.log({ subscription })
   const {
     data: { site, post, morePosts },
-  } = useQuerySubscription(subscription);
+  } = useQuerySubscription(subscription)
 
-  const metaTags = post.seo.concat(site.favicon);
+  const metaTags = post.seo.concat(site.favicon)
 
   const [menuVisible, setMenuVisible] = useState(false)
 
@@ -162,7 +133,7 @@ export default function Post({ subscription, preview }) {
   return (
     <PostLayout preview={preview} onMenuOpen={() => setMenuVisible(i => !i)}>
       <Head>{renderMetaTags(metaTags)}</Head>
-      <div className="max-w-3xl mx-auto mt-8 md:mt-14 mb-24">
+      <div className="mx-auto mt-8 mb-24 max-w-3xl md:mt-14">
         <PostTitle
           title={post.title}
           author={post.author}
@@ -178,9 +149,9 @@ export default function Post({ subscription, preview }) {
           {/*  author={post.author}*/}
           {/*/>*/}
 
-          <PostContent dataSource={post.content} theme={post.theme?.hex}/>
+          <PostContent dataSource={post.content} theme={post.theme?.hex} />
           {/*<PostBody content={post.content} />*/}
-          <PostToc dataSource={post.content?.value?.document?.children}/>
+          <PostToc dataSource={post.content?.value?.document?.children} />
 
           <PostTocDrawer
             dataSource={post.content?.value?.document?.children}
@@ -193,5 +164,5 @@ export default function Post({ subscription, preview }) {
         {/*{morePosts.length > 0 && <MoreStories posts={morePosts} />}*/}
       </div>
     </PostLayout>
-  );
+  )
 }
