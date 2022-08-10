@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import { renderMetaTags, useQuerySubscription } from 'react-datocms'
-import Container from '@/components/container'
-import Header from '@/components/header'
-import Layout from '@/components/layout'
-import MoreStories from '@/components/more-stories'
-import PostBody from '@/components/post-body'
-import PostHeader from '@/components/post-header'
+// import Container from '@/components/container'
+// import Header from '@/components/header'
+// import Layout from '@/components/layout'
+// import MoreStories from '@/components/more-stories'
+// import PostBody from '@/components/post-body'
+// import PostHeader from '@/components/post-header'
 import { request } from '@/lib/datocms'
 
 import PostTitle from '@/components/post/PostTitle'
@@ -18,7 +18,7 @@ import {
   AllPostBlocks,
   metaTagsFragment,
   responsiveImageFragment,
-} from '../../const/slug'
+} from '../../const/slug-query'
 
 export async function getStaticPaths() {
   const data = await request({ query: `{ allPosts { slug } }` })
@@ -69,6 +69,7 @@ export async function getStaticProps({ params, preview = false }) {
               }
             }
           }
+          wip
         }
 
         morePosts: allPosts(orderBy: date_DESC, first: 2, filter: {slug: {neq: $slug}}) {
@@ -139,6 +140,7 @@ export default function Post({ subscription, preview }) {
           author={post.author}
           date={post.date}
           coverImage={post.coverImage?.responsiveImage}
+          wip={post.wip}
         />
 
         <article className="relative">

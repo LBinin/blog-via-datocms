@@ -72,6 +72,7 @@ export const responsiveImageFragment = `
     base64
   }
 `
+
 export const metaTagsFragment = `
   fragment metaTagsFragment on Tag {
     attributes

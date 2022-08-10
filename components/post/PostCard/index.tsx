@@ -24,7 +24,10 @@ const PostCard: React.FC<{
         aria-label={post.title}
         className="group mx-5 my-10 flex flex-col items-stretch overflow-hidden rounded-md border transition duration-300 hover:shadow-xl dark:border-[#3c3c3d] md:mx-0 md:flex-row"
       >
-        <div className="relative w-full shrink-0 md:w-[45%]">
+        <div className="relative w-full shrink-0 md:w-[45%] relative">
+          {post.wip && (
+            <div className="absolute bg-[#E54D42] top-3 left-3 z-10 font-bold px-1.5 py-0.5 rounded text-white text-sm">WIP</div>
+          )}
           <Image
             className="!max-w-full transition duration-300 md:h-full md:group-hover:scale-110"
             objectFit="cover"

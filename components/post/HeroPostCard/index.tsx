@@ -21,7 +21,11 @@ const HeroPostCard: React.FC<{
         className="group relative grid overflow-hidden md:rounded-md md:border md:dark:border-black"
       >
         {/* 文章标题 */}
-        <div className="relative z-[2] col-start-1 row-start-4 mx-3 my-3 flex flex-col-reverse items-start md:row-start-2 md:my-0">
+        <div className="relative z-[2] col-start-1 row-start-4 mx-3 my-3 flex items-center md:row-start-2 md:my-0">
+          {post.wip && (
+            <div className="inline-block bg-[#E54D42] px-2 mr-3 text-white py-0.5 text-2xl font-bold align-[9%]">WIP</div>
+          )}
+
           <MarkedText
             className="inline-block bg-white px-2 py-1 text-2xl font-bold tracking-wide text-gray-700"
             text={post.title}
@@ -50,13 +54,13 @@ const HeroPostCard: React.FC<{
         </div>
 
         {/* 摘要 */}
-        {post.excerpt && (
-          <div className="z-[2] col-start-1 mx-3 my-1 max-w-sm md:row-start-4 md:mb-3">
+        <div className="z-[2] col-start-1 mx-3 my-1 max-w-sm md:row-start-4 md:mb-3">
+          {post.excerpt && (
             <p className="text-md inline-block bg-white px-2 py-1 font-bold text-gray-400 md:text-sm">
               {post.excerpt}
             </p>
-          </div>
-        )}
+          )}
+        </div>
       </a>
     </Link>
   )

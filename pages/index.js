@@ -1,15 +1,15 @@
 import Head from 'next/head'
 import { renderMetaTags, useQuerySubscription } from 'react-datocms'
-import Container from '@/components/container'
-import HeroPost from '@/components/hero-post'
-import Intro from '@/components/intro'
+// import Container from '@/components/container'
+// import HeroPost from '@/components/hero-post'
+// import Intro from '@/components/intro'
 import Layout from '@/components/layout'
-import MoreStories from '@/components/more-stories'
+// import MoreStories from '@/components/more-stories'
 import { request } from '@/lib/datocms'
 import PostCard from '@/components/post/PostCard'
 import HeroPostCard from '@/components/post/HeroPostCard'
 import Introduction from '@/components/home/Introduction'
-import { metaTagsFragment, responsiveImageFragment } from '../const/slug'
+import { metaTagsFragment, responsiveImageFragment } from '../const/slug-query'
 
 export async function getStaticProps({ preview }) {
   const graphqlRequest = {
@@ -47,6 +47,7 @@ export async function getStaticProps({ preview }) {
               }
             }
           }
+          wip
         }
       }
 
