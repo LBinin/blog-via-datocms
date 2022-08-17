@@ -10,8 +10,9 @@ import PostCard from '@/components/post/PostCard'
 import HeroPostCard from '@/components/post/HeroPostCard'
 import Introduction from '@/components/home/Introduction'
 import { metaTagsFragment, responsiveImageFragment } from '../const/slug-query'
+import { PostInfo } from '@/typing/post'
 
-export async function getStaticProps({ preview }) {
+export async function getStaticProps({ preview }: any) {
   const graphqlRequest = {
     query: `
       {
@@ -74,7 +75,7 @@ export async function getStaticProps({ preview }) {
   }
 }
 
-export default function Index({ subscription }) {
+export default function Index({ subscription }: any) {
   const {
     data: { allPosts, site, blog },
   } = useQuerySubscription(subscription)
@@ -103,7 +104,7 @@ export default function Index({ subscription }) {
           {/*    excerpt={heroPost.excerpt}*/}
           {/*  />*/}
           {/*)}*/}
-          {morePosts?.map((post, index) => (
+          {morePosts?.map((post: PostInfo, index: number) => (
             <PostCard key={[post, index].join()} post={post} />
           ))}
           {/*{morePosts.length > 0 && <MoreStories posts={morePosts} />}*/}

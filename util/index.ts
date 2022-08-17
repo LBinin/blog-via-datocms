@@ -32,7 +32,7 @@ export function getDOMOffset(selector: string) {
 
   // console.log({ box: box.top, scroll: win?.scrollY, offset: win?.pageYOffset })
   return {
-    top: box.top + ( win?.scrollY || win?.pageYOffset || 0 ),
-    left: box.left + ( win?.scrollX || win?.pageXOffset || 0 )
+    top: box.top + (win?.scrollY || win?.pageYOffset || 0),
+    left: box.left + (win?.scrollX || win?.pageXOffset || 0),
   }
 }

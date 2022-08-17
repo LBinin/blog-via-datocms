@@ -1,13 +1,13 @@
 import React from 'react'
 import Slugger from 'github-slugger'
 import { toString } from 'mdast-util-to-string'
-import { StructuredTextRenderContext } from '@/model'
 import { Heading } from 'datocms-structured-text-utils/dist/types/types'
+import { StructuredTextRenderContext } from '@/typing/post'
 
 const slugs = new Slugger()
 
 const Heading: React.FC<{
-  ctx: StructuredTextRenderContext<Heading>;
+  ctx: StructuredTextRenderContext<Heading>
 }> = props => {
   const { ctx } = props
 

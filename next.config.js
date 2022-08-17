@@ -30,20 +30,25 @@ function cssLoaderOptions(modules) {
 module.exports = {
   reactStrictMode: false,
   env: {
-    NEXT_EXAMPLE_CMS_DATOCMS_API_TOKEN: process.env.NEXT_EXAMPLE_CMS_DATOCMS_API_TOKEN,
+    NEXT_EXAMPLE_CMS_DATOCMS_API_TOKEN:
+      process.env.NEXT_EXAMPLE_CMS_DATOCMS_API_TOKEN,
   },
-  webpack: (config) => {
-    const oneOf = config.module.rules.find((rule) => typeof rule.oneOf === 'object')
+  webpack: config => {
+    const oneOf = config.module.rules.find(
+      rule => typeof rule.oneOf === 'object'
+    )
 
     if (oneOf) {
       // Find the module which targets *.scss|*.sass files
-      const moduleSassRule = oneOf.oneOf.find((rule) =>
+      const moduleSassRule = oneOf.oneOf.find(rule =>
         regexEqual(rule.test, /\.module\.(scss|sass)$/)
       )
 
       if (moduleSassRule) {
         // Get the config object for css-loader plugin
-        const cssLoader = moduleSassRule.use.find(({ loader }) => loader.includes('css-loader'))
+        const cssLoader = moduleSassRule.use.find(({ loader }) =>
+          loader.includes('css-loader')
+        )
         if (cssLoader) {
           cssLoader.options = {
             ...cssLoader.options,
@@ -54,5 +59,5 @@ module.exports = {
     }
 
     return config
-  }
+  },
 }

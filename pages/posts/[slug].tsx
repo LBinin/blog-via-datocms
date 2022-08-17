@@ -1,14 +1,8 @@
 import Head from 'next/head'
 import { renderMetaTags, useQuerySubscription } from 'react-datocms'
-// import Container from '@/components/container'
-// import Header from '@/components/header'
-// import Layout from '@/components/layout'
-// import MoreStories from '@/components/more-stories'
-// import PostBody from '@/components/post-body'
-// import PostHeader from '@/components/post-header'
 import { request } from '@/lib/datocms'
 
-import PostTitle from '@/components/post/PostTitle'
+import PostHeader from '@/components/post/PostHeader'
 import PostContent from '@/components/post/PostContent'
 import PostToc from '@/components/post/PostToc'
 import PostLayout from '../../layout/post'
@@ -18,18 +12,22 @@ import {
   AllPostBlocks,
   metaTagsFragment,
   responsiveImageFragment,
-} from '../../const/slug-query'
+} from '@/const/slug-query'
+import { PostContext } from '@/context/post'
+import { PostInfo } from '@/typing/post'
 
 export async function getStaticPaths() {
-  const data = await request({ query: `{ allPosts { slug } }` })
+  const data = await request({
+    query: `{ allPosts { slug } }`,
+  })
 
   return {
-    paths: data.allPosts.map(post => `/posts/${post.slug}`),
+    paths: data.allPosts.map((post: any) => `/posts/${post.slug}`),
     fallback: false,
   }
 }
 
-export async function getStaticProps({ params, preview = false }) {
+export async function getStaticProps({ params, preview = false }: any) {
   const graphqlRequest = {
     query: `
       query PostBySlug($slug: String) {
@@ -119,52 +117,45 @@ export async function getStaticProps({ params, preview = false }) {
   }
 }
 
-export default function Post({ subscription, preview }) {
+export default function Post({ subscription, preview }: any) {
   console.log({ subscription })
-  const {
-    data: { site, post, morePosts },
-  } = useQuerySubscription(subscription)
+  const { data: { site, post, morePosts } = {} } = useQuerySubscription<{
+    site: any
+    post: PostInfo
+    morePosts: any
+  }>(subscription)
 
-  const metaTags = post.seo.concat(site.favicon)
+  const metaTags = post?.seo?.concat(site.favicon)
+
+  console.log({})
 
   const [menuVisible, setMenuVisible] = useState(false)
 
   console.log({ post, preview })
 
   return (
-    <PostLayout preview={preview} onMenuOpen={() => setMenuVisible(i => !i)}>
-      <Head>{renderMetaTags(metaTags)}</Head>
-      <div className="mx-auto mt-8 mb-24 max-w-3xl md:mt-14">
-        <PostTitle
-          title={post.title}
-          author={post.author}
-          date={post.date}
-          coverImage={post.coverImage?.responsiveImage}
-          wip={post.wip}
-        />
+    <PostContext.Provider value={post ?? {}}>
+      <PostLayout preview={preview} onMenuOpen={() => setMenuVisible(i => !i)}>
+        {metaTags && <Head>{renderMetaTags(metaTags)}</Head>}
 
-        <article className="relative">
-          {/*<PostHeader*/}
-          {/*  title={post.title}*/}
-          {/*  coverImage={post.coverImage}*/}
-          {/*  date={post.date}*/}
-          {/*  author={post.author}*/}
-          {/*/>*/}
+        <div className="mx-auto mt-8 mb-24 max-w-3xl md:mt-14">
+          <PostHeader />
 
-          <PostContent dataSource={post.content} theme={post.theme?.hex} />
-          {/*<PostBody content={post.content} />*/}
-          <PostToc dataSource={post.content?.value?.document?.children} />
+          <article className="relative">
+            <PostContent theme={post?.theme?.hex} />
+            {/*<PostBody content={post.content} />*/}
+            <PostToc dataSource={post?.content?.value?.document?.children} />
 
-          <PostTocDrawer
-            dataSource={post.content?.value?.document?.children}
-            visible={menuVisible}
-            onClose={() => setMenuVisible(false)}
-          />
-        </article>
-
-        {/*<hr className="border-accent-2 dark:border-[#404040] mt-28 mb-24" />*/}
-        {/*{morePosts.length > 0 && <MoreStories posts={morePosts} />}*/}
-      </div>
-    </PostLayout>
+            <PostTocDrawer
+              dataSource={post?.content?.value?.document?.children}
+              visible={menuVisible}
+              onClose={() => setMenuVisible(false)}
+            />
+          </article>
+          {/*<hr className="border-accent-2 dark:border-[#404040] mt-28 mb-24" />*/}
+          {/*{morePosts.length > 0 && <MoreStories posts={morePosts} />}*/}
+        </div>
+      </PostLayout>
+    </PostContext.Provider>
   )
 }
