@@ -127,8 +127,6 @@ export default function Post({ subscription, preview }: any) {
 
   const metaTags = post?.seo?.concat(site.favicon)
 
-  console.log({})
-
   const [menuVisible, setMenuVisible] = useState(false)
 
   console.log({ post, preview })

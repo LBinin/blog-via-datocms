@@ -23,7 +23,10 @@ export async function request({ query, variables, preview }: any) {
   })
 
   if (body.errors) {
-    console.error('Ouch! The query has some errors!')
+    console.error(
+      'Ouch! The query has some errors!',
+      JSON.stringify(body.errors)
+    )
     throw body.errors
   }
 
