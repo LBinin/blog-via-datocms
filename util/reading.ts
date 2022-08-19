@@ -1,7 +1,13 @@
-import { StructuredTextPropTypes } from 'react-datocms/dist/types/StructuredText'
 import { StructuredText as StructuredTextGraphQlResponse } from 'datocms-structured-text-utils/dist/types/types'
 import { getNodeValue } from '@/util/index'
 import { MyBlock } from '@/const/block'
+import {
+  isCalloutBlock,
+  isCodeBlock,
+  isImageBlock,
+  isTableBlock,
+} from '@/util/block'
+import { isCode } from 'datocms-structured-text-utils'
 
 /**
  * 图片的读取时间第一张 12 秒，第二张 11 秒，依次减少 1 秒，第十章后每张最少 3 秒。
@@ -98,11 +104,43 @@ export function countPostContent(content?: StructuredTextGraphQlResponse) {
 
   if (!content) return result
 
-  const imageCount = content.blocks?.filter(
-    block => block.__typename === MyBlock.Image
-  ).length
+  const imageCount = content.blocks?.filter(isImageBlock).length
 
-  result.text = getNodeValue(content.value.document, false)
+  // 文章内的 plain text
+  const originTextCount = getNodeValue(content.value.document, false)
+
+  // 自定义 Block 的文字内恶龙
+  const blockTextCount = content.blocks?.map(block => {
+    if (isCodeBlock(block)) {
+      return getNodeValue(block.multiTabCodeBlock?.value.document, false)
+    }
+    if (isCalloutBlock(block)) {
+      return [
+        getNodeValue(block.content?.value.document, false),
+        block.title,
+      ].join('')
+    }
+    if (isTableBlock(block)) {
+      return [
+        block.content?.columns.join(''),
+        block.content?.data && Object.values(block.content?.data).join(''),
+      ]
+    }
+
+    return ''
+  })
+
+  // 不被 getNodeValue 计算在内的 Node 文字计算
+  const specialTypeNodeText = content.value.document.children.map(node => {
+    if (isCode(node)) {
+      return node.code
+    }
+
+    return ''
+  })
+
+  result.text =
+    originTextCount + blockTextCount?.join('') + specialTypeNodeText.join('')
   result.imageCount = imageCount ?? 0
 
   return result
