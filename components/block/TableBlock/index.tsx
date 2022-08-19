@@ -5,22 +5,16 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-
-interface TableDataSource {
-  data: { [columnName: string]: string }[]
-  columns: string[]
-}
+import { TableBlockRecord } from '@/typing/block'
 
 const TableBlock: React.FC<{
-  record?: any
+  record: TableBlockRecord
 }> = props => {
   const { record } = props
 
-  if (!record) {
-    return null
-  }
+  if (!record.content) return null
 
-  const dataSource = record.content as TableDataSource
+  const dataSource = record.content
 
   const columnHelper = createColumnHelper<any>()
 

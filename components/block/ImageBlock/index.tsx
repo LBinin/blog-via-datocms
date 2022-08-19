@@ -1,15 +1,15 @@
 import React from 'react'
 import { Image } from 'react-datocms'
-import type { ResponsiveImageType } from 'react-datocms/dist/types/Image'
 import { IMAGE_CLASSNAME } from '@/const/block'
+import type { ImageBlockRecord } from '@/typing/block'
 
 const ImageBlock: React.FC<{
-  record?: any
+  record?: ImageBlockRecord
 }> = props => {
   const { record } = props
+  const responsiveImage = record?.image?.responsiveImage
 
-  const responsiveImage = (record.image as any)
-    .responsiveImage as ResponsiveImageType
+  if (!responsiveImage) return null
 
   return (
     <figure

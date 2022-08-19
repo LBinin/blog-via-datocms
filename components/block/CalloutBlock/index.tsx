@@ -1,21 +1,19 @@
 import React from 'react'
 import { StructuredText } from 'react-datocms'
+import { CalloutBlockRecord } from '@/typing/block'
 
 const CalloutBlock: React.FC<{
-  record?: any;
+  record: CalloutBlockRecord
 }> = props => {
   const { record } = props
-
-  console.log({ record })
-
-  const { emojiIcon, calloutTitle, calloutContent, calloutColor } = record
+  const { emojiIcon, title, content } = record
 
   return (
-    <div className="my-5 flex p-5 pb-2 border rounded-lg space-x-4">
+    <div className="my-5 flex space-x-4 rounded-lg border p-5 pb-2">
       <span className="text-lg">{emojiIcon}</span>
       <div>
-        <div className="-mb-2 font-bold">{calloutTitle}</div>
-        <StructuredText data={calloutContent}/>
+        <div className="-mb-2 font-bold">{title}</div>
+        <StructuredText data={content} />
       </div>
     </div>
   )

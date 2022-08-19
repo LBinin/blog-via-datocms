@@ -1,18 +1,11 @@
-import {
-  Node,
-  StructuredText as StructuredTextGraphQlResponse,
-} from 'datocms-structured-text-utils/dist/types/types'
-import {
-  RenderContext,
-  TrasformFn,
-} from 'datocms-structured-text-utils/dist/types/render'
-import { ResponsiveImageType } from 'react-datocms/dist/types/Image'
+import { StructuredText } from 'datocms-structured-text-utils/dist/types/types'
+import { AuthorInfo, PictureInfo } from '@/typing/index'
 
 export type PostInfo = {
   // 文章标题
   title?: string
   // 作者信息
-  author?: PostAuthorInfo
+  author?: AuthorInfo
   // 日期
   date?: string
   // 封面图片
@@ -21,7 +14,7 @@ export type PostInfo = {
   // 是否 WIP
   wip?: boolean
   // 文章内容
-  content?: StructuredTextGraphQlResponse
+  content?: StructuredText
   // SEO
   seo?: any[]
   theme?: {
@@ -30,20 +23,3 @@ export type PostInfo = {
 } & {
   [prop: string]: unknown
 }
-
-export type PictureInfo = {
-  responsiveImage: ResponsiveImageType
-}
-
-// 文章作者信息
-export interface PostAuthorInfo {
-  name: string
-  picture: PictureInfo
-}
-
-export type StructuredTextRenderContext<N extends Node> = RenderContext<
-  TrasformFn,
-  TrasformFn,
-  TrasformFn,
-  N
->

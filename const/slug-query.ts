@@ -29,11 +29,11 @@ export const CalloutBlock = `
   ... on CalloutBlockRecord {
     id
     emojiIcon
-    calloutTitle
-    calloutContent {
+    title
+    content {
       value
     }
-    calloutColor {
+    color {
       hex
     }
   }
