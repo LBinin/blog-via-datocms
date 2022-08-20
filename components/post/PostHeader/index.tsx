@@ -38,16 +38,22 @@ const PostHeader: React.FC = _ => {
 
         {/* 作者信息及日期 */}
         <div className="flex items-center justify-between">
-          <Avatar
-            avatarClass="w-6 md:w-10 h-6 md:h-10"
-            nameClass="text-xs md:text-base"
-            name={author?.name}
-            picture={author?.picture.responsiveImage}
-          />
+          <div className="flex items-center space-x-2">
+            <Avatar
+              avatarClass="w-6 md:w-10 h-6 md:h-10"
+              nameClass="text-xs md:text-base"
+              name={author?.name}
+              picture={author?.picture.responsiveImage}
+            />
+            <Date
+              className="text-xs text-zinc-400 md:hidden md:text-base"
+              time={date}
+            />
+          </div>
 
           <div className="text-xs text-zinc-400 md:text-base">
-            <Date time={date} />
-            <span className="mx-1 select-none">・</span>
+            <Date className="hidden md:inline" time={date} />
+            <span className="mx-1 hidden select-none md:inline">・</span>
             <span>{timeString}</span>
           </div>
         </div>

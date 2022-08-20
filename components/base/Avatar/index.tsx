@@ -12,10 +12,7 @@ const Avatar: React.FC<{
   const { picture, name, nameClass, avatarClass } = props
 
   const avatarCls = classnames('overflow-hidden rounded-full', avatarClass)
-  const nameCls = classnames(
-    'font-semibold tracking-wider text-zinc-500',
-    nameClass
-  )
+  const nameCls = classnames('font-semibold text-zinc-500', nameClass)
 
   return (
     <div className="flex items-center space-x-1">

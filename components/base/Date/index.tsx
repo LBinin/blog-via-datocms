@@ -1,5 +1,11 @@
 import React from 'react'
-import { format, parseISO } from 'date-fns'
+import dayjs from 'dayjs'
+
+import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/zh-cn'
+
+dayjs.extend(relativeTime)
+dayjs.locale('zh-cn')
 
 const Date: React.FC<{
   time?: string
@@ -9,9 +15,11 @@ const Date: React.FC<{
 
   if (!time) return null
 
+  const timeStr = dayjs(time).format('YYYY 年 MM 月 DD 日')
+
   return (
-    <time className={className} dateTime={time}>
-      {format(parseISO(time), 'yyyy 年 MM 月	dd 日')}
+    <time className={className} dateTime={time} title={timeStr}>
+      {dayjs(time).fromNow(false)}
     </time>
   )
 }
