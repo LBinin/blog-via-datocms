@@ -15,7 +15,7 @@ const Avatar: React.FC<{
   const nameCls = classnames('font-semibold text-zinc-500', nameClass)
 
   return (
-    <div className="flex items-center space-x-1">
+    <div className="flex items-center space-x-1.5">
       <div className={avatarCls}>{picture && <Image data={picture} />}</div>
       {name && <div className={nameCls}>{name}</div>}
     </div>

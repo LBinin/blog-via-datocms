@@ -25,7 +25,7 @@ const TopicLink: React.FC<{
 
   return (
     <Link href={`/topics/${slug}`}>
-      <a>{content}</a>
+      <a className="hover:text-gray-700">{content}</a>
     </Link>
   )
 }

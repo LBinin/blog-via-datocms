@@ -21,9 +21,11 @@ const HeroPostCard: React.FC<{
         className="group relative grid overflow-hidden md:rounded-md md:border md:dark:border-black"
       >
         {/* 文章标题 */}
-        <div className="relative z-[2] col-start-1 row-start-4 mx-3 my-3 flex items-center md:row-start-2 md:my-0">
+        <div className="relative z-[2] col-start-1 row-start-4 mx-3 my-3 flex items-center transition group-hover:opacity-50 md:row-start-2 md:my-0">
           {post.wip && (
-            <div className="inline-block bg-[#E54D42] px-2 mr-3 text-white py-0.5 text-2xl font-bold align-[9%]">WIP</div>
+            <div className="mr-3 inline-block flex h-full items-center bg-[#E54D42] px-2 py-0.5 text-2xl font-bold text-white">
+              WIP
+            </div>
           )}
 
           <MarkedText
@@ -33,7 +35,7 @@ const HeroPostCard: React.FC<{
         </div>
 
         <Image
-          className="col-start-1 row-span-4 row-start-1 transition duration-500"
+          className="col-start-1 row-span-4 row-start-1 transition duration-500 group-hover:scale-110"
           data={{
             ...post.coverImage?.responsiveImage,
             alt: `Cover Image for ${post.title}`,
@@ -41,10 +43,10 @@ const HeroPostCard: React.FC<{
         />
 
         {/* 作者及日期 */}
-        <div className="z-[2] col-start-1 mx-3 mt-3 text-[0px] md:row-start-3">
-          <div className="inline-flex items-center space-x-5 bg-white px-2 py-1.5">
+        <div className="z-[2] col-start-1 mx-3 mt-3 text-[0px] transition group-hover:opacity-50 md:row-start-3">
+          <div className="inline-flex items-center space-x-3 bg-white px-2 py-1.5">
             <Avatar
-              avatarClass="w-4 h-4 border border-1 border-[#E54D42]"
+              avatarClass="w-5 h-5 border border-1 border-[#E54D42]"
               nameClass="text-xs"
               name={post.author?.name}
               picture={post.author?.picture.responsiveImage}
@@ -54,7 +56,7 @@ const HeroPostCard: React.FC<{
         </div>
 
         {/* 摘要 */}
-        <div className="z-[2] col-start-1 mx-3 my-1 max-w-sm md:row-start-4 md:mb-3">
+        <div className="z-[2] col-start-1 mx-3 my-1 max-w-sm transition group-hover:opacity-50 md:row-start-4 md:mb-3">
           {post.excerpt && (
             <p className="text-md inline-block bg-white px-2 py-1 font-bold text-gray-400 md:text-sm">
               {post.excerpt}

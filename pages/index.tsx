@@ -3,8 +3,6 @@ import { renderMetaTags, useQuerySubscription } from 'react-datocms'
 // import Container from '@/components/container'
 // import HeroPost from '@/components/hero-post'
 // import Intro from '@/components/intro'
-import Layout from '@/components/layout'
-// import MoreStories from '@/components/more-stories'
 import { request } from '@/lib/datocms'
 import PostCard from '@/components/post/PostCard'
 import HeroPostCard from '@/components/post/HeroPostCard'
@@ -86,9 +84,10 @@ export default function Index({ subscription }: any) {
   const metaTags = blog.seo.concat(site.favicon)
 
   return (
-    <>
-      <Layout preview={subscription.preview}>
-        <Head>{renderMetaTags(metaTags)}</Head>
+    <div className="min-h-screen">
+      <Head>{renderMetaTags(metaTags)}</Head>
+
+      <main>
         <div className="mx-auto mb-24 max-w-3xl">
           {/*<Intro />*/}
           <Introduction />
@@ -107,9 +106,8 @@ export default function Index({ subscription }: any) {
           {morePosts?.map((post: PostInfo, index: number) => (
             <PostCard key={[post, index].join()} post={post} />
           ))}
-          {/*{morePosts.length > 0 && <MoreStories posts={morePosts} />}*/}
         </div>
-      </Layout>
-    </>
+      </main>
+    </div>
   )
 }

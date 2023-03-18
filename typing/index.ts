@@ -1,9 +1,4 @@
 import { ResponsiveImageType } from 'react-datocms/dist/types/Image'
-import { Node } from 'datocms-structured-text-utils/dist/types/types'
-import {
-  RenderContext,
-  TrasformFn,
-} from 'datocms-structured-text-utils/dist/types/render'
 
 // 响应式图片
 export interface PictureInfo {
@@ -25,10 +20,8 @@ export interface ColorInfo {
   red: number
 }
 
-// Node 渲染上下文
-export type StructuredTextRenderContext<N extends Node> = RenderContext<
-  TrasformFn,
-  TrasformFn,
-  TrasformFn,
-  N
->
+// 话题信息
+export interface TopicInfo {
+  name: string
+  slug: string
+}

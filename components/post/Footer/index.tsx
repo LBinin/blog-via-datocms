@@ -42,10 +42,8 @@ const Footer: React.FC = () => {
       timerWaving.current = setTimeout(() => {
         setCurrStage(Stage.Waving)
       }, Time.Writing + Time.NoticeU)
-
     } else {
       timerWriting.current = setTimeout(() => {
-        console.log('clear timerWriting')
         setCurrStage(Stage.Writing)
         clearTimeout(timerNotice.current)
         clearTimeout(timerWaving.current)
@@ -61,16 +59,13 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="border-t border-accent-2 dark:border-[#404040]">
-      <div className="container mx-auto pt-10 pb-20 flex flex-col items-center">
-        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-['Fira_Code'] font-bold tracking-tighter leading-tight text-center mb-10 mt-10 w-full">
+      <div className="container mx-auto flex flex-col items-center pt-10 pb-20">
+        <h3 className="mb-10 mt-10 w-full text-center font-['Fira_Code'] text-2xl font-bold leading-tight tracking-tighter sm:text-3xl md:text-4xl lg:text-6xl">
           Hi there, it's Bigno.
         </h3>
 
-
         <div className={cls} ref={handRef}>
-          <div className="surprised">
-            ❗️
-          </div>
+          <div className="surprised">❗️</div>
           <div className="writing">✍</div>
           <div className="greeting">👋</div>
         </div>

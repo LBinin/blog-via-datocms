@@ -4,7 +4,7 @@ import { CodeBlockRecord } from '@/typing/block'
 import { isCode, isHeading } from 'datocms-structured-text-utils'
 import EditorView, { CodeViewBlock } from '@/components/base/EditorView'
 import { Code } from 'datocms-structured-text-utils/dist/types/types'
-import { StructuredTextRenderContext } from '@/typing'
+import { StructuredTextRenderContext } from '@/typing/post'
 
 const CodeBlock: React.FC<{
   record: CodeBlockRecord | StructuredTextRenderContext<Code>

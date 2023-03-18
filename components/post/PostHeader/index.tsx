@@ -26,14 +26,16 @@ const PostHeader: React.FC = _ => {
 
       <div className="mt-8 mb-14 px-5 md:mt-14 md:mb-20 md:px-10">
         {/* 文章标题 */}
-
         <h1 className="mb-8 text-2xl font-bold leading-normal md:mb-10 md:text-4xl">
           {wip && (
-            <div className="mr-2 inline-block rounded bg-[#E54D42] px-2 py-0.5 align-[28%] text-base text-white">
+            <div
+              className="mr-2 inline-block select-none rounded bg-[#E54D42] px-2 py-0.5 align-[16%] text-xl text-white"
+              title="Work In Progress"
+            >
               WIP
             </div>
           )}
-          {title?.repeat(1)}
+          {title}
         </h1>
 
         {/* 作者信息及日期 */}
