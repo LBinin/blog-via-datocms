@@ -12,17 +12,15 @@ const PostHeader: React.FC = _ => {
   const { timeString } = useReadingTime(content)
 
   return (
-    <div>
+    <>
       {/* 文章头图 */}
-      <div className="">
-        <Image
-          className="ring-1 ring-gray-100 dark:ring-midnight-200 md:rounded-lg"
-          data={{
-            ...coverImage?.responsiveImage!,
-            alt: `Cover Image for ${title}`,
-          }}
-        />
-      </div>
+      <Image
+        className="block ring-1 ring-stone-200 dark:ring-midnight-200 md:rounded-lg"
+        data={{
+          ...coverImage?.responsiveImage!,
+          alt: `Cover Image for ${title}`,
+        }}
+      />
 
       <div className="mt-8 mb-14 px-5 md:mt-14 md:mb-20 md:px-10">
         {/* 文章标题 */}
@@ -80,7 +78,7 @@ const PostHeader: React.FC = _ => {
           </div>
         )}
       </div>
-    </div>
+    </>
   )
 }
 

@@ -136,7 +136,7 @@ export default function Post({ subscription, preview }: any) {
       <PostLayout preview={preview} onMenuOpen={() => setMenuVisible(i => !i)}>
         {metaTags && <Head>{renderMetaTags(metaTags)}</Head>}
 
-        <div className="mx-auto mt-8 mb-24 max-w-3xl md:mt-14">
+        <div className="mx-auto mb-24 max-w-3xl md:mt-14">
           <PostHeader />
 
           <article className="relative">

@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
   })
 
   return (
-    <footer className="border-t border-accent-2 dark:border-[#404040]">
+    <footer className="border-t border-accent-2 bg-stone-100 dark:border-[#404040] dark:bg-midnight-200">
       <div className="container mx-auto flex flex-col items-center pt-10 pb-20">
         <h3 className="mb-10 mt-10 w-full text-center font-['Fira_Code'] text-2xl font-bold leading-tight tracking-tighter sm:text-3xl md:text-4xl lg:text-6xl">
           Hi there, it's Bigno.

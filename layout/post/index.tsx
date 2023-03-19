@@ -44,6 +44,8 @@ const PostLayout: React.FC<{
     <div className="min-h-screen">
       <Header preview={preview} />
 
+      <div className="absolute inset-x-0 top-0 hidden h-[420px] bg-stone-200 dark:bg-midnight-200 md:block" />
+
       {/* 文章主题 */}
       {children}
 
