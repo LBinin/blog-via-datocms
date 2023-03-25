@@ -1,6 +1,6 @@
 import { ColorInfo, PictureInfo } from '@/typing'
 import { StructuredText } from 'datocms-structured-text-utils/dist/types/types'
-import { MyBlock } from '@/const/block'
+import { MyBlock } from '@/const'
 
 interface Record {
   __typename: MyBlock | string

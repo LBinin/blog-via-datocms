@@ -1,6 +1,6 @@
 import { StructuredText as StructuredTextGraphQlResponse } from 'datocms-structured-text-utils/dist/types/types'
 import { getNodeValue } from '@/util/index'
-import { MyBlock } from '@/const/block'
+import { MyBlock } from '@/const'
 import {
   isCalloutBlock,
   isCodeBlock,

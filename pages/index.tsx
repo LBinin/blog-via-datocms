@@ -1,60 +1,18 @@
 import Head from 'next/head'
 import { renderMetaTags, useQuerySubscription } from 'react-datocms'
-// import Container from '@/components/container'
-// import HeroPost from '@/components/hero-post'
-// import Intro from '@/components/intro'
 import { request } from '@/lib/datocms'
 import PostCard from '@/components/post/PostCard'
 import HeroPostCard from '@/components/post/HeroPostCard'
 import Introduction from '@/components/home/Introduction'
-import { metaTagsFragment, responsiveImageFragment } from '../const/slug-query'
 import { PostInfo } from '@/typing/post'
+import {
+  metaTagsFragment,
+  responsiveImageFragment,
+} from '@/const/query/fragment'
+import { HomePage } from '@/const/query'
 
 export async function getStaticProps({ preview }: any) {
-  const graphqlRequest = {
-    query: `
-      {
-        site: _site {
-          favicon: faviconMetaTags {
-            ...metaTagsFragment
-          }
-        }
-        blog {
-          seo: _seoMetaTags {
-            ...metaTagsFragment
-          }
-        }
-        allPosts(orderBy: date_DESC, first: 20) {
-          title
-          slug
-          excerpt
-          date
-          coverImage {
-            responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 1000 }) {
-              ...responsiveImageFragment
-            }
-          }
-          category {
-            name
-            slug
-          }
-          author {
-            name
-            picture {
-              responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100}) {
-                ...responsiveImageFragment
-              }
-            }
-          }
-          wip
-        }
-      }
-
-      ${metaTagsFragment}
-      ${responsiveImageFragment}
-    `,
-    preview,
-  }
+  const graphqlRequest = { query: HomePage, preview }
 
   return {
     props: {
@@ -73,15 +31,17 @@ export async function getStaticProps({ preview }: any) {
   }
 }
 
-export default function Index({ subscription }: any) {
+export default function Index(props: any) {
+  const { subscription } = props
   const {
     data: { allPosts, site, blog },
   } = useQuerySubscription(subscription)
 
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
-  console.log({ morePosts })
   const metaTags = blog.seo.concat(site.favicon)
+
+  console.log({ props, allPosts, site, blog })
 
   return (
     <div className="min-h-screen">
@@ -93,16 +53,7 @@ export default function Index({ subscription }: any) {
           <Introduction />
 
           {heroPost && <HeroPostCard post={heroPost} />}
-          {/*{heroPost && (*/}
-          {/*  <HeroPost*/}
-          {/*    title={heroPost.title}*/}
-          {/*    coverImage={heroPost.coverImage}*/}
-          {/*    date={heroPost.date}*/}
-          {/*    author={heroPost.author}*/}
-          {/*    slug={heroPost.slug}*/}
-          {/*    excerpt={heroPost.excerpt}*/}
-          {/*  />*/}
-          {/*)}*/}
+
           {morePosts?.map((post: PostInfo, index: number) => (
             <PostCard key={[post, index].join()} post={post} />
           ))}

@@ -14,7 +14,7 @@ import { PostContext } from '@/context/post'
 import Anchor from '@/components/block/Anchor'
 import CodeBlock from '@/components/block/CodeBlock'
 import TableBlock from '@/components/block/TableBlock'
-import { IMAGE_CLASSNAME, MyBlock } from '@/const/block'
+import { IMAGE_CLASSNAME, MyBlock } from '@/const'
 import CalloutBlock from '@/components/block/CalloutBlock'
 
 const PostContent: React.FC<{
@@ -68,7 +68,7 @@ const PostContent: React.FC<{
               return <TableBlock record={record} />
             }
 
-            console.log('unknown block:', record)
+            console.log('unknown index.ts:', record)
 
             return (
               <>

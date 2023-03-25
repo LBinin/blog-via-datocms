@@ -8,13 +8,13 @@ import PostToc from '@/components/post/PostToc'
 import PostLayout from '../../layout/post'
 import PostTocDrawer from '@/components/post/PostTocDrawer'
 import React, { useState } from 'react'
-import {
-  AllPostBlocks,
-  metaTagsFragment,
-  responsiveImageFragment,
-} from '@/const/slug-query'
 import { PostContext } from '@/context/post'
 import { PostInfo } from '@/typing/post'
+import { AllPostBlocks } from '@/const/query/block'
+import {
+  metaTagsFragment,
+  responsiveImageFragment,
+} from '@/const/query/fragment'
 
 export async function getStaticPaths() {
   const data = await request({

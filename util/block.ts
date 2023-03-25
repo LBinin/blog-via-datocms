@@ -5,7 +5,7 @@ import {
   ImageBlockRecord,
   TableBlockRecord,
 } from '@/typing/block'
-import { MyBlock } from '@/const/block'
+import { MyBlock } from '@/const'
 
 export function isCodeBlock(record: Record): record is CodeBlockRecord {
   return record.__typename === MyBlock.Code
