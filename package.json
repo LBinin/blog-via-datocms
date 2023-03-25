@@ -11,6 +11,7 @@
     "@datocms/cma-client-browser": "^1.2.9",
     "@headlessui/react": "^1.7.13",
     "@tanstack/react-table": "^8.5.11",
+    "@vercel/analytics": "^0.1.11",
     "ahooks": "^3.7.6",
     "algoliasearch": "^4.16.0",
     "classnames": "2.3.1",
