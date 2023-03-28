@@ -2,7 +2,7 @@ import { toString } from 'mdast-util-to-string'
 import { Node } from 'datocms-structured-text-utils/dist/types/types'
 import Slugger from 'github-slugger'
 
-const slugs = new Slugger()
+export const slugs = new Slugger()
 
 /**
  * 获取 Node 中的实际内容，转成 ID，用作 ID（GitHub 风格）

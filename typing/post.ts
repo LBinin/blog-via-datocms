@@ -1,5 +1,6 @@
 import {
-  Node,
+  Document as StructuredTextDocument,
+  Node, Record as StructuredTextGraphQlResponseRecord, StructuredText as StructuredTextGraphQlResponse,
   StructuredText,
 } from 'datocms-structured-text-utils/dist/types/types'
 import { AuthorInfo, PictureInfo, TopicInfo } from '@/typing/index'
@@ -43,3 +44,11 @@ export type StructuredTextRenderContext<N extends Node> = RenderContext<
   TrasformFn,
   N
 >
+
+// DatoCMS 内容结构体
+export type StructuredTextContent<R extends StructuredTextGraphQlResponseRecord = StructuredTextGraphQlResponseRecord> =
+  | StructuredTextGraphQlResponse<StructuredTextGraphQlResponseRecord>
+  | StructuredTextDocument
+  | Node
+  | null
+  | undefined

@@ -1,6 +1,8 @@
 import React, { useRef } from 'react'
 import Link from 'next/link'
 import { useLongPress } from 'ahooks'
+import GlobalSearch from '@/components/search/GlobalSearch'
+import ThemeButton from '@/components/base/ThemeButton'
 
 const Header: React.FC<{
   preview?: boolean
@@ -37,6 +39,12 @@ const Header: React.FC<{
             </div>
           </a>
         )}
+
+        <div className="ml-auto flex space-x-2 items-center">
+          <GlobalSearch/>
+
+          <ThemeButton />
+        </div>
       </div>
     </header>
   )

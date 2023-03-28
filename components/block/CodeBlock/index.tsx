@@ -15,7 +15,7 @@ const CodeBlock: React.FC<{
   // const isSimpleMode = '__typename' in record && record.__typename !== 'CodeBlockRecord'
   const isSimpleMode = !('__typename' in record)
 
-  console.log({ isSimpleMode, record })
+  // console.log({ isSimpleMode, record })
 
   // 获取所有 CodeBlock 及其 Caption
   const codeBlockList = useMemo(() => {

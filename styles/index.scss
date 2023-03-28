@@ -28,3 +28,108 @@ html {
     }
   }
 }
+
+// DocSearch Style
+:root {
+  --docsearch-primary-color: #71717a !important;
+  --docsearch-text-color: #404040 !important;
+}
+
+// 搜索结果页
+.DocSearch.DocSearch-Container {
+  .DocSearch-NoResults {
+    .DocSearch-Screen-Icon {
+      @apply flex justify-center;
+    }
+
+    .DocSearch-Title {
+      @apply mt-5 mb-10 break-words text-gray-400 dark:text-white/70;
+    }
+  }
+}
+
+.dark .DocSearch {
+  --docsearch-modal-background: #232222;
+  --docsearch-modal-shadow: #171514;
+
+  --docsearch-footer-background: #1c1c1c;
+  --docsearch-footer-shadow: #171514;
+
+  --docsearch-searchbox-focus-background: rgba(238,240,244,.1);
+  --docsearch-searchbox-shadow: transparent;
+
+  --docsearch-highlight-color: #007ACC;
+  --docsearch-text-color: rgba(255, 255, 255, .87);
+
+  --docsearch-hit-background: rgba(238,240,244,.1);
+  --docsearch-hit-shadow: transparent;
+  --docsearch-hit-color: rgba(255, 255, 255, .8);
+  --docsearch-muted-color: rgba(255, 255, 255, .45);
+
+  --docsearch-key-gradient: transparent;
+  --docsearch-key-shadow: transparent;
+
+  .DocSearch-MagnifierLabel {
+    color: rgba(255, 255, 255, .87);
+  }
+
+  .DocSearch-Hit[aria-selected=true] a {
+    background: #525252;
+  }
+  .DocSearch-Logo svg {
+    opacity: 0.7;
+  }
+}
+
+#blog-search {
+  // 按钮外观
+  --docsearch-searchbox-background: transparent;
+  --docsearch-searchbox-focus-background: transparent;
+
+  .DocSearch-Button {
+    @apply m-0 shadow-none text-gray-400 dark:text-[#ebebeb]/60 dark:hover:text-white hover:text-gray-500 transition;
+
+    .DocSearch-Search-Icon {
+      width: 15px;
+      height: 15px;
+    }
+    .DocSearch-Button-Placeholder {
+      font-size: 14px;
+    }
+
+    .DocSearch-Search-Icon {
+      @apply text-gray-400 dark:text-[#ebebeb]/60 transition;
+    }
+
+    .DocSearch-Button-Keys {
+      @apply opacity-60 transition space-x-1 border border-gray-400 dark:border-[#ebebeb]/60 border-[1.5px] min-w-0 rounded px-1.5 box-content;
+      height: 22px;
+      line-height: 22px;
+
+      .DocSearch-Button-Key {
+        @apply text-gray-500 transition dark:text-[#ebebeb]/60;
+        font-size: 12px;
+        font-family: inherit;
+        background: none;
+        box-shadow: none;
+        width: auto;
+        height: 22px;
+        line-height: 22px;
+        padding: 0;
+        margin: 0;
+        top: 0;
+      }
+    }
+
+    &:hover {
+      //@apply bg-none;
+      background: none !important;
+      .DocSearch-Search-Icon {
+        @apply text-gray-500 dark:text-white;
+      }
+      .DocSearch-Button-Keys {
+        @apply opacity-100;
+      }
+    }
+  }
+}

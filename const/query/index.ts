@@ -2,6 +2,7 @@ import {
   metaTagsFragment,
   responsiveImageFragment,
 } from '@/const/query/fragment'
+import { AllPostBlocks } from '@/const/query/block'
 
 export const HomePage = `
   {
@@ -46,3 +47,24 @@ export const HomePage = `
 `
 
 export const TopicsPage = ``
+
+export const AlgoliaSyncQuery = (first: number, skip: number) => `
+  {
+    allPosts(orderBy: date_DESC, first: ${first}, skip: ${skip}) {
+      id
+      title
+      content {
+        value
+        ${AllPostBlocks}
+      }
+      slug
+      excerpt
+      date
+    }
+   meta: _allPostsMeta {
+      count
+   }
+  }
+  
+  ${responsiveImageFragment}
+`

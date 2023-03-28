@@ -39,7 +39,7 @@ const EditorView: React.FC<{
 
   const codeBlockList = Array.isArray(dataSource) ? dataSource : dataSource ? [dataSource] : []
 
-  console.log({ defaultActiveTab, codeBlockList })
+  // console.log({ defaultActiveTab, codeBlockList })
   const [currTab, setCurrTab] = useState((defaultActiveTab && defaultActiveTab <= codeBlockList.length) ? defaultActiveTab - 1 : 0)
   const [codeWrap, setCodeWrap] = useState(wrapLongLine)
   const [codeCopied, setCodeCopied] = useState(false)

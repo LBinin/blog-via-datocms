@@ -118,7 +118,7 @@ export async function getStaticProps({ params, preview = false }: any) {
 }
 
 export default function Post({ subscription, preview }: any) {
-  console.log({ subscription })
+  // console.log({ subscription })
   const { data: { site, post, morePosts } = {} } = useQuerySubscription<{
     site: any
     post: PostInfo
@@ -129,7 +129,7 @@ export default function Post({ subscription, preview }: any) {
 
   const [menuVisible, setMenuVisible] = useState(false)
 
-  console.log({ post, preview })
+  // console.log({ post, preview })
 
   return (
     <PostContext.Provider value={post ?? {}}>

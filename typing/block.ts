@@ -1,11 +1,9 @@
 import { ColorInfo, PictureInfo } from '@/typing'
-import { StructuredText } from 'datocms-structured-text-utils/dist/types/types'
+import { Record as StructuredTextGraphQlResponseRecord, StructuredText } from 'datocms-structured-text-utils/dist/types/types'
 import { MyBlock } from '@/const'
 
-interface Record {
+interface Record extends StructuredTextGraphQlResponseRecord {
   __typename: MyBlock | string
-  id: string
-  [prop: string]: unknown
 }
 
 // 图片块
