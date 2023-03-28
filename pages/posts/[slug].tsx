@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { renderMetaTags, useQuerySubscription } from 'react-datocms'
 import { request } from '@/lib/datocms'
-
 import PostHeader from '@/components/post/PostHeader'
 import PostContent from '@/components/post/PostContent'
 import PostToc from '@/components/post/PostToc'
@@ -10,11 +9,8 @@ import PostTocDrawer from '@/components/post/PostTocDrawer'
 import React, { useState } from 'react'
 import { PostContext } from '@/context/post'
 import { PostInfo } from '@/typing/post'
-import { AllPostBlocks } from '@/const/query/block'
-import {
-  metaTagsFragment,
-  responsiveImageFragment,
-} from '@/const/query/fragment'
+import { SinglePostQuery } from '@/const/query'
+import Header from '@/components/post/Header'
 
 export async function getStaticPaths() {
   const data = await request({
@@ -29,72 +25,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params, preview = false }: any) {
   const graphqlRequest = {
-    query: `
-      query PostBySlug($slug: String) {
-        site: _site {
-          favicon: faviconMetaTags {
-            ...metaTagsFragment
-          }
-        }
-        post(filter: {slug: {eq: $slug}}) {
-          seo: _seoMetaTags {
-            ...metaTagsFragment
-          }
-          title
-          slug
-          content {
-            value
-            ${AllPostBlocks}
-          }
-          date
-          ogImage: coverImage{
-            url(imgixParams: {fm: jpg, fit: crop, w: 2000, h: 1000 })
-          }
-          coverImage {
-            responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 2000, h: 1100 }) {
-              ...responsiveImageFragment
-            }
-          }
-          theme {
-            hex
-            alpha
-          }
-          author {
-            name
-            picture {
-              responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100}) {
-                ...responsiveImageFragment
-              }
-            }
-          }
-          wip
-        }
-
-        morePosts: allPosts(orderBy: date_DESC, first: 2, filter: {slug: {neq: $slug}}) {
-          title
-          slug
-          excerpt
-          date
-          coverImage {
-            responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 2000, h: 1000 }) {
-              ...responsiveImageFragment
-            }
-          }
-          author {
-            name
-            picture {
-              responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100, sat: -100}) {
-                ...responsiveImageFragment
-              }
-            }
-          }
-        }
-      }
-
-      ${responsiveImageFragment}
-      ${metaTagsFragment}
-    `,
     preview,
+    query: SinglePostQuery,
     variables: {
       slug: params.slug,
     },
@@ -118,7 +50,6 @@ export async function getStaticProps({ params, preview = false }: any) {
 }
 
 export default function Post({ subscription, preview }: any) {
-  // console.log({ subscription })
   const { data: { site, post, morePosts } = {} } = useQuerySubscription<{
     site: any
     post: PostInfo
@@ -133,6 +64,8 @@ export default function Post({ subscription, preview }: any) {
 
   return (
     <PostContext.Provider value={post ?? {}}>
+      <Header preview={preview} />
+
       <PostLayout preview={preview} onMenuOpen={() => setMenuVisible(i => !i)}>
         {metaTags && <Head>{renderMetaTags(metaTags)}</Head>}
 

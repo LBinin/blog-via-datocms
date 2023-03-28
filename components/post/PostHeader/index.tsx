@@ -15,7 +15,7 @@ const PostHeader: React.FC = _ => {
     <>
       {/* 文章头图 */}
       <Image
-        className="block ring-1 ring-stone-200 dark:ring-midnight-200 md:rounded-lg"
+        className="block md:rounded-lg shadow-me"
         data={{
           ...coverImage?.responsiveImage!,
           alt: `Cover Image for ${title}`,
@@ -41,19 +41,15 @@ const PostHeader: React.FC = _ => {
           <div className="flex items-center space-x-2">
             <Avatar
               avatarClass="w-6 md:w-10 h-6 md:h-10"
-              nameClass="text-xs md:text-base"
+              nameClass="text-xs md:text-base !ml-3"
               name={author?.name}
               picture={author?.picture.responsiveImage}
-            />
-            <Date
-              className="text-xs text-zinc-400 md:hidden md:text-base"
-              time={date}
             />
           </div>
 
           <div className="text-xs text-zinc-400 md:text-base">
-            <Date className="hidden md:inline" time={date} />
-            <span className="mx-1 hidden select-none md:inline">・</span>
+            <Date time={date} />
+            <span className="mx-1 select-none">・</span>
             <span>{timeString}</span>
           </div>
         </div>

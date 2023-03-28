@@ -46,7 +46,7 @@ export default function Index(props: any) {
       <Head>{renderMetaTags(metaTags)}</Head>
 
       <main>
-        <Header />
+        <Header preview={subscription.preview}/>
         <div className="mx-auto mb-24 max-w-3xl">
           {/*<Intro />*/}
           <Introduction />
