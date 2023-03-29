@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import classnames from 'classnames'
 import styles from './index.module.scss'
 import { useDebounceEffect } from 'ahooks'
@@ -18,6 +18,7 @@ const PostToc: React.FC<{
 }> = props => {
   const { dataSource } = props
 
+  const urlChangeFlag = useRef(false)
   // 获取当前所处标题
   const activeHeading = useActiveHeading(dataSource)
 
@@ -25,8 +26,15 @@ const PostToc: React.FC<{
   // https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/plugin-active-header-links/clientRootMixin.js
   useDebounceEffect(() => {
     const { href } = window.location
-    // 修改 Hash
     const url = new URL(href)
+
+    // 避免刚进入页面时且带着 hashTag，因为 activeHeading 为 null，导致重置了 url
+    if (url.hash && !activeHeading && !urlChangeFlag.current) {
+      urlChangeFlag.current = true
+      return
+    }
+
+    // 修改 Hash
     url.hash = activeHeading ? activeHeading : ''
     const newUrl = url.href
 
