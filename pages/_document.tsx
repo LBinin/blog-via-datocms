@@ -1,6 +1,5 @@
 import React from 'react'
 import { Html, Head, Main, NextScript } from 'next/document'
-import { STORE_THEME_KEY } from '@/context/theme'
 
 const Document: React.FC = () => {
   return (
