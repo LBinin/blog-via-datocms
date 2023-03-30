@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import Header from '@/components/post/Header'
 import Footer from '@/components/post/Footer'
 import useDocument from '@/hooks/useDocument'
-import ThemeButton from '@/components/base/ThemeButton'
+import { useScroll } from 'ahooks'
 
 const PostLayout: React.FC<{
   preview?: boolean
-  onMenuOpen?(): void
 }> = props => {
-  const { preview, onMenuOpen, children } = props
+  const { preview, children } = props
 
   const [showEmptyParagraph, setShowEmptyParagraph] = useState(false)
   const doc = useDocument()
+  const scroll = useScroll(doc)
 
   const handleBackTop = () => {
     scrollTo({ top: 0 })
   }
+
+  const isScrollToTop = (scroll?.top ?? 0) <= 60;
 
   useEffect(() => {
     if (!doc || !preview) {
@@ -43,10 +44,11 @@ const PostLayout: React.FC<{
         <button
           title="Back To Top"
           onClick={handleBackTop}
-          className="rounded-full bg-zinc-200 !bg-opacity-50 p-2 text-zinc-500 backdrop-blur backdrop-filter transition-all hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 md:bg-transparent"
+          style={{ opacity: isScrollToTop ? 0 : 1, pointerEvents: isScrollToTop ? 'none' : 'unset' }}
+          className="rounded-full bg-zinc-200 !bg-opacity-50 p-2 text-zinc-500 backdrop-blur backdrop-filter transition-all md:hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-200 md:dark:hover:bg-zinc-700 md:bg-transparent"
         >
           <svg
-            className="h-6 w-6"
+            className="h-5 w-5 md:h-6 md:w-6"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -55,29 +57,6 @@ const PostLayout: React.FC<{
               fillRule="evenodd"
               d="M4.293 15.707a1 1 0 010-1.414l5-5a1 1 0 011.414 0l5 5a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414 0zm0-6a1 1 0 010-1.414l5-5a1 1 0 011.414 0l5 5a1 1 0 01-1.414 1.414L10 5.414 5.707 9.707a1 1 0 01-1.414 0z"
               clipRule="evenodd"
-            />
-          </svg>
-        </button>
-
-        <ThemeButton />
-
-        <button
-          title="Open TOC"
-          onClick={onMenuOpen}
-          className="block rounded-full bg-zinc-200 !bg-opacity-50 p-2 text-zinc-500 backdrop-blur backdrop-filter transition-all hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 md:bg-transparent xl:hidden"
-        >
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
         </button>

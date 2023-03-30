@@ -17,30 +17,27 @@ const ThemeButton: React.FC = props => {
     <button
       title="Change Theme"
       onClick={handleToggleTheme}
-      className="relative box-content h-6 w-6 cursor-pointer overflow-hidden rounded-full bg-zinc-200 !bg-opacity-50 p-2 text-zinc-500 backdrop-blur backdrop-filter transition-all hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 md:bg-transparent"
+      className="relative box-content h-4 w-4 md:h-6 md:w-6 cursor-pointer overflow-hidden rounded p-2 text-gray-400 dark:text-[#ebebeb]/60 transition-all md:hover:bg-zinc-200 md:dark:hover:bg-zinc-700"
     >
-      {/*<input type="checkbox" defaultChecked={theme === 'dark'} className="peer appearance-none"/>*/}
-      {/* Start Icon */}
       <svg
         className={classnames(
-          'absolute left-2 top-2 h-6 w-6 p-0.5 transition-all duration-300 ease-in-out',
+          'absolute left-1.5 top-1.5 md:left-2 md:top-2 h-5 w-5 md:h-6 md:w-6 p-0.5 transition-all duration-300 ease-in-out',
           { 'translate-y-full': isDarkTheme, 'opacity-0': isDarkTheme }
         )}
         fill="currentColor"
-        viewBox="0 0 20 20"
+        stroke="currentColor"
+        strokeWidth="1"
+        viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
       >
-        <path
-          fillRule="evenodd"
-          d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z"
-          clipRule="evenodd"
-        />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path>
       </svg>
 
       {/* Sun Icon */}
       <svg
         className={classnames(
-          'absolute left-2 top-2 h-6 w-6 -translate-y-full opacity-0 transition-all duration-300 ease-in-out',
+          'absolute left-1.5 top-1.5 md:left-2 md:top-2 h-5 w-5 md:h-6 md:w-6 -translate-y-full opacity-0 transition-all duration-300 ease-in-out',
           { 'translate-y-0': isDarkTheme, 'opacity-100': isDarkTheme }
         )}
         fill="none"

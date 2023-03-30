@@ -64,9 +64,27 @@ export default function Post({ subscription, preview }: any) {
 
   return (
     <PostContext.Provider value={post ?? {}}>
-      <Header preview={preview} />
+      <Header preview={preview}>
+        <button
+          title="Open TOC"
+          onClick={() => setMenuVisible(i => !i)}
+          className="block rounded p-2 text-zinc-500 transition-all md:hover:bg-zinc-200 dark:text-zinc-200 md:dark:hover:bg-zinc-700 xl:hidden"
+        >
+          <svg
+            className="h-5 w-5 md:h-6 md:w-6 text-gray-400 dark:text-[#ebebeb]/60"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"></path>
+          </svg>
+        </button>
+      </Header>
 
-      <PostLayout preview={preview} onMenuOpen={() => setMenuVisible(i => !i)}>
+      <PostLayout preview={preview}>
         {metaTags && <Head>{renderMetaTags(metaTags)}</Head>}
 
         <div className="mx-auto mb-24 max-w-3xl md:mt-14">

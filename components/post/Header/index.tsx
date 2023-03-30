@@ -9,7 +9,7 @@ import cx from 'classnames'
 const Header: React.FC<{
   preview?: boolean
 }> = props => {
-  const { preview } = props
+  const { preview, children } = props
 
   const titleRef = useRef<HTMLAnchorElement>(null)
 
@@ -22,11 +22,16 @@ const Header: React.FC<{
   )
 
   return (
-    <header className="firefox:bg-opacity-90 sticky top-0 z-30 h-[70px] border-b border-gray-200 bg-white !bg-opacity-50 backdrop-blur backdrop-filter dark:border-midnight-200 dark:bg-midnight-100">
-      <div className="mx-5 flex h-full items-center md:mx-auto md:px-7">
+    <header className="firefox:bg-opacity-90 sticky top-0 z-30 h-[45px] md:h-[60px] border-b border-gray-200 bg-white !bg-opacity-80 backdrop-blur backdrop-filter dark:border-midnight-200 dark:bg-midnight-100">
+      <div className="mx-3 md:mx-4 flex h-full items-center md:mx-auto">
         <Link href="/">
-          <a ref={titleRef} className={cx('flex items-center hover:opacity-80 transition', styles.logo)}>
-
+          <a
+            ref={titleRef}
+            className={cx(
+              'flex items-center transition hover:opacity-80 h-[25px] md:h-[38px] w-[90px] md:w-[135px]',
+              styles.logo
+            )}
+          >
             {/* 下方是所有 Logo 的过去展示，以后可以回顾 */}
 
             {/*<div className="bg-midnight-200 py-1 px-2 rounded relative">*/}
@@ -57,10 +62,12 @@ const Header: React.FC<{
           </a>
         )}
 
-        <div className="ml-auto flex space-x-2 items-center">
-          <GlobalSearch/>
+        <div className="ml-auto flex items-center space-x-0.5 md:space-x-2">
+          <GlobalSearch />
 
           <ThemeButton />
+
+          {children}
         </div>
       </div>
     </header>
