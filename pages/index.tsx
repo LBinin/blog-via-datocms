@@ -5,12 +5,12 @@ import PostCard from '@/components/post/PostCard'
 import HeroPostCard from '@/components/post/HeroPostCard'
 import Introduction from '@/components/home/Introduction'
 import { PostInfo } from '@/typing/post'
-import { HomePage } from '@/const/query'
+import { AllPostQuery } from '@/const/query'
 import Header from '@/components/post/Header'
 import React from 'react'
 
 export async function getStaticProps({ preview }: any) {
-  const graphqlRequest = { query: HomePage, preview }
+  const graphqlRequest = { query: AllPostQuery, preview }
 
   return {
     props: {
