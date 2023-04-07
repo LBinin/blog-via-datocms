@@ -23,7 +23,7 @@ const Header: React.FC<{
 
   return (
     <header className="firefox:bg-opacity-90 sticky top-0 z-30 h-[45px] md:h-[60px] border-b border-gray-200 bg-white !bg-opacity-80 backdrop-blur backdrop-filter dark:border-midnight-200 dark:bg-midnight-100">
-      <div className="mx-3 md:mx-4 flex h-full items-center md:mx-auto">
+      <div className="px-3 md:px-4 flex h-full items-center md:mx-auto">
         <Link href="/">
           <a
             ref={titleRef}
