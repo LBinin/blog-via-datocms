@@ -59,10 +59,12 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="border-t border-accent-2 bg-stone-100 dark:border-[#404040] dark:bg-midnight-200">
-      <div className="container mx-auto flex flex-col items-center pt-10 pb-20">
-        <h3 className="mb-10 mt-10 w-full text-center font-['Fira_Code'] text-2xl font-bold leading-tight tracking-tighter sm:text-3xl md:text-4xl lg:text-6xl">
-          Hi there, it's Bigno.
-        </h3>
+      <div className="container mx-auto flex flex-col items-center md:pt-10 md:pb-20 pb-8">
+        <div style={{ fontFamily: "'Fira Code', monospace"}} className="font-bold text-center">
+          <h3 className="mb-5 mt-10 w-full text-2xl leading-tight tracking-tighter sm:text-3xl md:text-4xl lg:text-6xl">
+            Hi there, it's Bigno.
+          </h3>
+        </div>
 
         <div className={cls} ref={handRef}>
           <div className="surprised">❗️</div>
