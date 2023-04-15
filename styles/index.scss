@@ -32,4 +32,17 @@ html {
       display: block;
     }
   }
+
+  .custom-underline {
+    &:after {
+      content: "";
+      @apply bg-no-repeat block absolute;
+      background-image: url("../images/underline-1.svg"); // http://www.firefox.com.cn/
+      background-size: 100% 100%;
+      height: 0.3em;
+      left: -0.2em;
+      top: calc(100% - 0.15em);
+      width: calc(100% + 0.4em);
+    }
+  }
 }

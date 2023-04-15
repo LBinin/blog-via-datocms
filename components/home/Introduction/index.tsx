@@ -5,7 +5,7 @@ const Introduction: React.FC = () => {
     <div className="px-6 pt-12 pb-10 md:px-0 md:pt-20">
       <h1 className="text-[3.8em] font-bold leading-tight tracking-tighter md:text-7xl">
         Bigno.
-        <span className="pl-8 opacity-10" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>//</span>
+        <span className="pl-8 opacity-10 select-none" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>//</span>
         <span className="ml-6 inline-block origin-[70%_70%] animate-[waving_2.5s_infinite] select-none">
           👋
         </span>

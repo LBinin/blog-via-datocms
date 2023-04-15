@@ -4,6 +4,7 @@ import { request } from '@/lib/datocms'
 import { useQuerySubscription } from 'react-datocms'
 import PostCard from '@/components/post/PostCard'
 import Header from '@/components/post/Header'
+import Underline from '@/components/base/Underline'
 
 export async function getStaticPaths() {
   const data = await request({
@@ -68,10 +69,12 @@ const Topic: React.FC = (props: any) => {
   return (
     <div>
       <Header />
-      <div className="mx-auto w-[800px]">
-        <div className="mt-10 flex items-center space-x-4">
-          <p className="text-5xl font-bold">{data.category.name}</p>
-          <div className="px-3 py-0.5 font-bold text-2xl rounded-r-lg rounded-tl-lg bg-black dark:bg-zinc-50 text-zinc-50 dark:text-black">{data.count}</div>
+      <div className="mx-auto mb-24 max-w-3xl">
+        <div className="mt-10 md:mt-14 md:mb-16 flex items-center space-x-4 mx-8 md:mx-0">
+          <p className="text-3xl md:text-5xl font-bold">
+            <Underline>{data.category.name}</Underline>
+          </p>
+          <div className="px-3 md:py-0.5 font-bold text-lg md:text-2xl rounded-r-lg rounded-tl-lg bg-black dark:bg-zinc-50 text-zinc-50 dark:text-black">{data.count}</div>
         </div>
 
         {data?.posts?.map((post: any) => (
