@@ -23,7 +23,7 @@ const HeroPostCard: React.FC<{
         {/* 文章标题 */}
         <div className="relative z-[2] col-start-1 row-start-4 mx-3 my-3 flex items-center transition group-hover:opacity-50 md:row-start-2 md:my-0">
           {post.wip && (
-            <div className="mr-3 inline-block flex h-full items-center bg-[#E54D42] px-2 py-0.5 text-2xl font-bold text-white">
+            <div className="mr-3 inline-block flex h-full items-center bg-theme-red px-2 py-0.5 text-2xl font-bold text-white">
               WIP
             </div>
           )}
@@ -46,8 +46,8 @@ const HeroPostCard: React.FC<{
         <div className="z-[2] col-start-1 mx-3 mt-3 text-[0px] transition group-hover:opacity-50 md:row-start-3">
           <div className="inline-flex items-center space-x-3 bg-white px-2 py-1.5">
             <Avatar
-              avatarClass="w-5 h-5 border border-1 border-[#E54D42]"
-              nameClass="text-xs"
+              avatarClass="w-6 h-6 border border-2 border-theme-red"
+              nameClass="text-sm"
               name={post.author?.name}
               picture={post.author?.picture.responsiveImage}
             />

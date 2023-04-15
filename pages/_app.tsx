@@ -17,13 +17,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     const handleRouteChange = (path: string) => {
-      if (!path?.startsWith('/posts/')) {
+      if (!path?.startsWith?.('/posts/')) {
         document.documentElement.classList.remove('smooth-scroll')
       }
     }
 
     const handleRouteChanged = (path: string) => {
-      if (path?.startsWith('/posts/')) {
+      if (path?.startsWith?.('/posts/')) {
         document.documentElement.classList.add('smooth-scroll')
       }
     }

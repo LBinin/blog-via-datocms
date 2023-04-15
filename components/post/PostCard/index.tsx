@@ -23,7 +23,7 @@ const PostCard: React.FC<{
       >
         <div className="relative relative w-full shrink-0 md:w-[45%]">
           {post.wip && (
-            <div className="absolute top-3 left-3 z-10 rounded bg-[#E54D42] px-1.5 py-0.5 text-sm font-bold text-white">
+            <div className="absolute top-3 left-3 z-10 rounded bg-theme-red px-1.5 py-0.5 text-sm font-bold text-white">
               WIP
             </div>
           )}
@@ -65,7 +65,7 @@ const PostCard: React.FC<{
           {/* 头像和日期 */}
           <div className="mt-5 flex items-center justify-between">
             <Avatar
-              avatarClass="w-5 h-5 border border-1 border-[#E54D42]"
+              avatarClass="w-6 h-6 border border-2 border-theme-red"
               nameClass="text-sm"
               name={post.author?.name}
               picture={post.author?.picture.responsiveImage}

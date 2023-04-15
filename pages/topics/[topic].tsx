@@ -1,8 +1,9 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 import { AllPostGroupByCategory, TopicPostQuery } from '@/const/query'
 import { request } from '@/lib/datocms'
 import { useQuerySubscription } from 'react-datocms'
+import PostCard from '@/components/post/PostCard'
+import Header from '@/components/post/Header'
 
 export async function getStaticPaths() {
   const data = await request({
@@ -21,12 +22,10 @@ export async function getStaticProps({ params, preview }: any) {
     variables: {
       topic: params.topic,
     },
-    preview
+    preview,
   }
 
   const topicResult = await request(topicRequest)
-
-  console.log({ topicResult })
 
   const postRequest = {
     preview,
@@ -40,7 +39,7 @@ export async function getStaticProps({ params, preview }: any) {
   const data = {
     category: topicResult?.category,
     count: allPost?._allPostsMeta.count,
-    posts: allPost?.allPosts
+    posts: allPost?.allPosts,
   }
 
   return {
@@ -48,15 +47,15 @@ export async function getStaticProps({ params, preview }: any) {
       params,
       subscription: preview
         ? {
-          // ...postRequest,
-          initialData: data,
-          token: process.env.NEXT_EXAMPLE_CMS_DATOCMS_API_TOKEN,
-          environment: process.env.NEXT_DATOCMS_ENVIRONMENT || null,
-        }
+            // ...postRequest,
+            initialData: data,
+            token: process.env.NEXT_EXAMPLE_CMS_DATOCMS_API_TOKEN,
+            environment: process.env.NEXT_DATOCMS_ENVIRONMENT || null,
+          }
         : {
-          enabled: false,
-          initialData: data,
-        },
+            enabled: false,
+            initialData: data,
+          },
     },
   }
 }
@@ -64,14 +63,23 @@ export async function getStaticProps({ params, preview }: any) {
 const Topic: React.FC = (props: any) => {
   const { subscription } = props
 
-  const router = useRouter()
+  const { data } = useQuerySubscription(subscription)
 
-  const {
-    data,
-  } = useQuerySubscription(subscription)
-  const { topic } = router.query
-  console.log({ data, props })
-  return <div>Topic {topic}</div>
+  return (
+    <div>
+      <Header />
+      <div className="mx-auto w-[800px]">
+        <div className="mt-10 flex items-center space-x-4">
+          <p className="text-5xl font-bold">{data.category.name}</p>
+          <div className="px-3 py-0.5 font-bold text-2xl rounded-r-lg rounded-tl-lg bg-black dark:bg-zinc-50 text-zinc-50 dark:text-black">{data.count}</div>
+        </div>
+
+        {data?.posts?.map((post: any) => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default Topic

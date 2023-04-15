@@ -14,7 +14,7 @@ const TopicLink: React.FC<{
 
   const content = (
     <>
-      <span className="mr-0.5 text-[#E54D42]">#</span>
+      <span className="mr-0.5 text-theme-red">#</span>
       {name}
     </>
   )
@@ -25,7 +25,7 @@ const TopicLink: React.FC<{
 
   return (
     <Link href={`/topics/${slug}`}>
-      <a className="hover:text-gray-700">{content}</a>
+      <a className="hover:text-gray-700 dark:hover:text-stone-300">{content}</a>
     </Link>
   )
 }

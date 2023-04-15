@@ -104,10 +104,10 @@ query TopicCountBySlug($topic: String) {
 
 export const AllPostGroupByCategory = `
 query AllPostUnderTopic($topic: [ItemId]) {
-  _allPostsMeta(filter: {category: {eq: $topic}}) {
+  _allPostsMeta(filter: {category: {anyIn: $topic}}) {
     count
   }
-  allPosts(filter: {category: {eq: $topic}}) ${AllPostAttr}
+  allPosts(filter: {category: {anyIn: $topic}}) ${AllPostAttr}
 }
 ${responsiveImageFragment}
 `

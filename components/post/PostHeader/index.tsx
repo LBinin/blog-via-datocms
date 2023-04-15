@@ -27,7 +27,7 @@ const PostHeader: React.FC = _ => {
         <h1 className="mb-8 text-2xl font-bold leading-normal md:mb-10 md:text-4xl">
           {wip && (
             <div
-              className="mr-2 inline-block select-none rounded bg-[#E54D42] px-2 py-0.5 align-[16%] text-xl text-white"
+              className="mr-2 inline-block select-none rounded bg-theme-red px-2 py-0.5 align-[16%] text-xl text-white"
               title="Work In Progress"
             >
               WIP

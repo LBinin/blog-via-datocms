@@ -4,7 +4,7 @@ import Heading from '@/components/block/Heading'
 import ImageBlock from '@/components/block/ImageBlock'
 import { renderNodeRule, StructuredText } from 'react-datocms'
 import { isCode, isHeading, isLink } from 'datocms-structured-text-utils'
-import { IMAGE_CLASSNAME } from '@/const'
+import { BLOG_THEME_COLOR_PRIMARY, IMAGE_CLASSNAME } from '@/const'
 
 import LightGallery from 'lightgallery/react'
 import lgZoom from 'lightgallery/plugins/zoom'
@@ -28,7 +28,7 @@ const PostContent: React.FC<{
   return (
     <div
       className={`prose prose-bigno max-w-full px-5 font-normal dark:prose-invert md:px-10 ${styles.postContent}`}
-      style={{ '--post-content-theme': theme ?? '#e54d42' } as any}
+      style={{ '--post-content-theme': theme || BLOG_THEME_COLOR_PRIMARY } as any}
     >
       <LightGallery
         plugins={[lgZoom, lgRotate, lgFullscreen]}
