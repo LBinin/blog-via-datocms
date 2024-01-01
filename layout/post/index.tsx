@@ -32,7 +32,8 @@ const PostLayout: React.FC<{
   }, [showEmptyParagraph, doc, preview])
 
   return (
-    <div className="overflow-auto">
+    // float-left 是为了触发 BFC
+    <div className="float-left w-full">
 
       <div className="absolute inset-x-0 top-0 hidden h-[420px] bg-stone-100 dark:bg-midnight-200 md:block" />
 
