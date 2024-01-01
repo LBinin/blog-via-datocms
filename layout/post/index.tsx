@@ -32,9 +32,9 @@ const PostLayout: React.FC<{
   }, [showEmptyParagraph, doc, preview])
 
   return (
-    <div className="min-h-screen">
+    <div className="overflow-auto">
 
-      <div className="absolute inset-x-0 top-0 hidden h-[420px] bg-stone-200 dark:bg-midnight-200 md:block" />
+      <div className="absolute inset-x-0 top-0 hidden h-[420px] bg-stone-100 dark:bg-midnight-200 md:block" />
 
       {/* 文章主题 */}
       {children}

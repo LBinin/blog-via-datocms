@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image } from 'react-datocms'
 import { IMAGE_CLASSNAME } from '@/const'
-import type { ImageBlockRecord } from '@/typing/block'
+import type { ImageBlockRecord } from '@/components/block/types'
 
 const ImageBlock: React.FC<{
   record?: ImageBlockRecord

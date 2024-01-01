@@ -5,7 +5,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { TableBlockRecord } from '@/typing/block'
+import { TableBlockRecord } from '@/components/block/types'
 
 const TableBlock: React.FC<{
   record: TableBlockRecord

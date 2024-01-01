@@ -1,10 +1,11 @@
 import { getNodeValue } from '@/util'
 import React, { useMemo } from 'react'
-import { CodeBlockRecord } from '@/typing/block'
+import { CodeBlockRecord } from '@/components/block/types'
 import { isCode, isHeading } from 'datocms-structured-text-utils'
 import EditorView, { CodeViewBlock } from '@/components/base/EditorView'
 import { Code } from 'datocms-structured-text-utils/dist/types/types'
 import { StructuredTextRenderContext } from '@/typing/post'
+import BlockSummary from '@/components/base/BlockSummary'
 
 const CodeBlock: React.FC<{
   record: CodeBlockRecord | StructuredTextRenderContext<Code>
@@ -70,9 +71,7 @@ const CodeBlock: React.FC<{
       />
 
       {!isSimpleMode && record?.caption && (
-        <div className="py-4 text-center text-sm opacity-60">
-          {record.caption}
-        </div>
+        <BlockSummary title={record.caption}/>
       )}
     </div>
   )

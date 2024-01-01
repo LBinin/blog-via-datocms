@@ -2,8 +2,8 @@ import {
   metaTagsFragment,
   responsiveImageFragment,
 } from '@/const/query/fragment'
-import { AllPostBlocks } from '@/const/query/block'
 import { AllPostAttr } from '@/const/query/attribute'
+import { AllPostBlocks } from '@/components/block/const'
 
 export const AllPostQuery = `
   {

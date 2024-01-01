@@ -4,8 +4,9 @@ import {
   CodeBlockRecord,
   ImageBlockRecord,
   TableBlockRecord,
-} from '@/typing/block'
-import { MyBlock } from '@/const'
+} from '@/components/block/types'
+
+import { MyBlock } from '@/components/block/const'
 
 export function isCodeBlock(record: Record): record is CodeBlockRecord {
   return record.__typename === MyBlock.Code
@@ -21,4 +22,8 @@ export function isImageBlock(record: Record): record is ImageBlockRecord {
 
 export function isTableBlock(record: Record): record is TableBlockRecord {
   return record.__typename === MyBlock.Table
+}
+
+export function isCodeSandboxBlock(record: Record): record is TableBlockRecord {
+  return record.__typename === MyBlock.CodeSandboxBlock
 }

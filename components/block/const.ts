@@ -1,4 +1,4 @@
-// Block
+// Block GraphQL fragments
 export const ImageBlock = `
   ...on ImageBlockRecord {
     id
@@ -46,6 +46,15 @@ export const TableBlocks = `
   }
 `
 
+export const CodeSandboxBlocks = `
+  ... on CodesandboxBlockRecord {
+    id
+    url
+    title
+    height
+  }
+`
+
 export const AllPostBlocks = `
   blocks {
     __typename
@@ -53,5 +62,15 @@ export const AllPostBlocks = `
     ${CodeBlock}
     ${CalloutBlock}
     ${TableBlocks}
+    ${CodeSandboxBlocks}
   }
 `
+
+// 记得修改上面 AllPostBlocks
+export enum MyBlock {
+  Image = 'ImageBlockRecord',
+  Code = 'CodeBlockRecord',
+  Callout = 'CalloutBlockRecord',
+  Table = 'TableBlockRecord',
+  CodeSandboxBlock = 'CodesandboxBlockRecord',
+}

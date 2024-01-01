@@ -1,6 +1,6 @@
 import { render as structuredTextToPlainText } from 'datocms-structured-text-to-plain-text'
 import { isBlockquote, isLink, isList } from 'datocms-structured-text-utils'
-import { isCalloutBlock, isCodeBlock, isImageBlock, isTableBlock } from '@/util/block'
+import { isCalloutBlock, isCodeBlock, isImageBlock, isTableBlock } from '@/components/block/utils'
 import { renderNodeRule } from 'react-datocms'
 import { getNodeValue } from '@/util/index'
 import { StructuredTextContent } from '@/typing/post'

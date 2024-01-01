@@ -16,7 +16,8 @@ import Anchor from '@/components/block/Anchor'
 import CodeBlock from '@/components/block/CodeBlock'
 import TableBlock from '@/components/block/TableBlock'
 import CalloutBlock from '@/components/block/CalloutBlock'
-import { isCalloutBlock, isCodeBlock, isImageBlock, isTableBlock } from '@/util/block'
+import { isCalloutBlock, isCodeBlock, isCodeSandboxBlock, isImageBlock, isTableBlock } from '@/components/block/utils'
+import CodeSandboxBlock from '@/components/block/CodeSandboxBlock'
 
 const PostContent: React.FC<{
   theme?: string // 主题色
@@ -39,7 +40,7 @@ const PostContent: React.FC<{
         <StructuredText
           data={post.content}
           customNodeRules={[
-            // !!! 修改的话别忘了改 covertStructuredTextToPlainText (不然 algolia 识别不了)
+            // !!! 修改的话别忘了改 convertStructuredTextToPlainText (不然 algolia 识别不了)
             // 标题节点
             renderNodeRule(isHeading, ctx => (
               <Heading key={ctx.key} ctx={ctx} />
@@ -52,7 +53,7 @@ const PostContent: React.FC<{
             renderNodeRule(isLink, ctx => <Anchor key={ctx.key} ctx={ctx} />),
           ]}
           renderBlock={({ record }) => {
-            // !!! 修改的话别忘了改 covertStructuredTextToPlainText (不然 algolia 识别不了)
+            // !!! 修改的话别忘了改 convertStructuredTextToPlainText (不然 algolia 识别不了)
             // 图像块
             if (isImageBlock(record)) {
               return <ImageBlock record={record} />
@@ -69,6 +70,10 @@ const PostContent: React.FC<{
 
             if (isTableBlock(record)) {
               return <TableBlock record={record} />
+            }
+
+            if (isCodeSandboxBlock(record)) {
+              return <CodeSandboxBlock record={record}/>
             }
 
             console.log('unknown index.ts:', record)

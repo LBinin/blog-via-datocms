@@ -1,6 +1,7 @@
 import { ColorInfo, PictureInfo } from '@/typing'
 import { Record as StructuredTextGraphQlResponseRecord, StructuredText } from 'datocms-structured-text-utils/dist/types/types'
-import { MyBlock } from '@/const'
+
+import { MyBlock } from '@/components/block/const'
 
 interface Record extends StructuredTextGraphQlResponseRecord {
   __typename: MyBlock | string
@@ -39,4 +40,10 @@ export interface CodeBlockRecord extends Record {
   // 默认激活 Tab
   defaultActiveTab?: number
   caption?: string
+}
+
+export interface CodeSandboxBlockRecord extends Record {
+  url?: string
+  height?: number
+  title?: string
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { StructuredText } from 'react-datocms'
-import { CalloutBlockRecord } from '@/typing/block'
+import { CalloutBlockRecord } from '@/components/block/types'
 import cx from 'classnames'
 
 const CalloutBlock: React.FC<{
