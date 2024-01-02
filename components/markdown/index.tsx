@@ -49,16 +49,16 @@ md.use(function (md) {
       <EditorView
         simpleMode={true}
         dataSource={{
-          codeNode: { code, language: lang, type: 'code', highlight: lines },
+          codeNode: { code, language: lang ?? token.info, type: 'code', highlight: lines },
         }}
         theme={env.theme}
       />
     )
   }
 
+  // 自定义标题块
   md.renderer.rules.heading_open = function (tokens, idx, options, env, slf) {
     const token = tokens[idx];
-    console.log({ token })
     if (token.nesting === 1) {
       // 开始标签
       return `<${token.tag}><span ${token.attrs?.map(i => i.join('=')).join(' ')}>`;
