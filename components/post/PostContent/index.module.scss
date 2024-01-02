@@ -48,9 +48,15 @@
   h1, h2, h3, h4, h5, h6 {
     @apply pt-2;
 
-    // 定位偏移
     & > span {
-      padding-top: 100px;
+      padding-top: 70px;
+    }
+
+    // 定位偏移
+    @screen md {
+      & > span {
+        padding-top: 100px;
+      }
     }
 
     &:after {

@@ -4,6 +4,7 @@ import MarkdownItAnchor from 'markdown-it-anchor'
 import EditorView from '@/components/base/EditorView'
 import ReactDOM from 'react-dom/server'
 import { ThemeContext } from '@/context/theme'
+import { getNodeValue } from '@/util'
 
 /**
  * 解析如 html{1,2,3,4-10} 这样的字符串，返回语言和高亮行号
@@ -69,7 +70,7 @@ md.use(function (md) {
 }).use(MarkdownItAnchor, {
   level: [1, 2, 3, 4, 5, 6],
   slugify: function (s) {
-    return String(s).trim().toLowerCase().replace(/\s+/g, '-')
+    return getNodeValue({ type: 'heading', level: 1, children: [{ type: 'span', value: s }] })
   }
 })
 

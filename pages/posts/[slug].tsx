@@ -100,7 +100,7 @@ export default function Post({ subscription, preview }: any) {
             <PostToc dataSource={tocDatasource} />
 
             <PostTocDrawer
-              dataSource={post?.content?.value?.document?.children}
+              dataSource={tocDatasource}
               visible={menuVisible}
               onClose={() => setMenuVisible(false)}
             />
