@@ -55,6 +55,13 @@ export const CodeSandboxBlocks = `
   }
 `
 
+export const MarkdownBlocks = `
+  ... on MarkdownBlockRecord {
+    id
+    content
+  }
+`
+
 export const AllPostBlocks = `
   blocks {
     __typename
@@ -63,6 +70,7 @@ export const AllPostBlocks = `
     ${CalloutBlock}
     ${TableBlocks}
     ${CodeSandboxBlocks}
+    ${MarkdownBlocks}
   }
 `
 
@@ -73,4 +81,5 @@ export enum MyBlock {
   Callout = 'CalloutBlockRecord',
   Table = 'TableBlockRecord',
   CodeSandboxBlock = 'CodesandboxBlockRecord',
+  MarkdownBlock = 'MarkdownBlockRecord',
 }

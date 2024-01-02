@@ -64,6 +64,8 @@ query PostBySlug($slug: String) {
       }
     }
     wip
+    isReprint
+    referenceLink
   }
 
   morePosts: allPosts(orderBy: date_DESC, first: 2, filter: {slug: {neq: $slug}}) {

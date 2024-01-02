@@ -11,6 +11,7 @@ import { PostContext } from '@/context/post'
 import { PostInfo } from '@/typing/post'
 import { SinglePostQuery } from '@/const/query'
 import Header from '@/components/post/Header'
+import useTocDatasource from '@/components/base/TocList/hooks/useTocDatasource'
 
 export async function getStaticPaths() {
   const data = await request({
@@ -56,11 +57,14 @@ export default function Post({ subscription, preview }: any) {
     morePosts: any
   }>(subscription)
 
-  const metaTags = post?.seo?.concat(site.favicon)
+  // 处理转载文章的 title seo
+  const metaTags = post?.seo?.map(item => (item.tag === 'title' && post.isReprint) ? { ...item, content: '「转」' + item.content} : item)?.concat(site.favicon)
 
   const [menuVisible, setMenuVisible] = useState(false)
 
   // console.log({ post, preview })
+
+  const tocDatasource = useTocDatasource(post)
 
   return (
     <PostContext.Provider value={post ?? {}}>
@@ -87,13 +91,13 @@ export default function Post({ subscription, preview }: any) {
       <PostLayout preview={preview}>
         {metaTags && <Head>{renderMetaTags(metaTags)}</Head>}
 
-        <div className="mx-auto mb-24 max-w-3xl md:mt-14">
+        <div className="mx-auto mb-24 max-w-3xl">
           <PostHeader />
 
           <article className="relative">
             <PostContent theme={post?.theme?.hex} />
             {/*<PostBody content={post.content} />*/}
-            <PostToc dataSource={post?.content?.value?.document?.children} />
+            <PostToc dataSource={tocDatasource} />
 
             <PostTocDrawer
               dataSource={post?.content?.value?.document?.children}

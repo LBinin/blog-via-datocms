@@ -25,7 +25,7 @@ export function getNodeValue(node?: Node | Node[], slug: boolean = true) {
  */
 export function getDOMOffset(selector: string) {
   // 根据 ID 获取对应的 DOM
-  const dom = document.querySelector(selector)
+  const dom = document.getElementById(selector)
   // 获取距离顶部的高度（参考 jQuery.fn.offset）
   const box = dom?.getBoundingClientRect() ?? { top: 0, left: 0 }
   const win = document.defaultView

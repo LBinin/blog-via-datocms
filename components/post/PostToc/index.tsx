@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import styles from './index.module.scss'
 import { useDebounceEffect } from 'ahooks'
 import TocList from '@/components/base/TocList'
-import useActiveHeading from '@/hooks/useActiveHeading'
+import useActiveHeading from '@/components/base/TocList/hooks/useActiveHeading'
 import { Heading, Node } from 'datocms-structured-text-utils/dist/types/types'
 
 interface TOCLevelItem {

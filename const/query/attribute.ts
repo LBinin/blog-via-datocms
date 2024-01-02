@@ -22,5 +22,7 @@ export const AllPostAttr = `
     }
   }
   wip
+  isReprint
+  referenceLink
 }
 `

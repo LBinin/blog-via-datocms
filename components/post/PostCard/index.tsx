@@ -22,11 +22,8 @@ const PostCard: React.FC<{
         className="group mx-5 my-10 flex flex-col items-stretch overflow-hidden rounded-md border transition duration-300 hover:shadow-xl dark:border-[#3c3c3d] md:mx-0 md:flex-row"
       >
         <div className="relative relative w-full shrink-0 md:w-[45%]">
-          {post.wip && (
-            <div className="absolute top-3 left-3 z-10 rounded bg-theme-red px-1.5 py-0.5 text-sm font-bold text-white">
-              WIP
-            </div>
-          )}
+          {post.wip && <div className="absolute top-3 left-3 z-10 rounded bg-theme-red px-1.5 py-0.5 text-sm font-bold text-white">WIP</div>}
+          {post.isReprint && <div className="absolute top-3 left-3 z-10 rounded px-1.5 py-0.5 text-sm font-bold bg-midnight-200 text-white dark:ring-2 dark:ring-accent-7">转</div>}
           <Image
             className="!max-w-full transition duration-300 md:h-full md:group-hover:scale-110"
             objectFit="cover"

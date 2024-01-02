@@ -22,11 +22,8 @@ const HeroPostCard: React.FC<{
       >
         {/* 文章标题 */}
         <div className="relative z-[2] col-start-1 row-start-4 mx-3 my-3 flex items-center transition group-hover:opacity-50 md:row-start-2 md:my-0">
-          {post.wip && (
-            <div className="mr-3 inline-block flex h-full items-center bg-theme-red px-2 py-0.5 text-2xl font-bold text-white">
-              WIP
-            </div>
-          )}
+          {post.wip && <div className="mr-3 inline-block flex h-full items-center bg-theme-red px-2 py-0.5 text-2xl font-bold text-white">WIP</div>}
+          {post.isReprint && <div className="mr-3 inline-block flex h-full items-center px-2 py-0.5 text-2xl font-bold bg-midnight-200 text-white dark:ring-2 dark:ring-accent-7">转</div>}
 
           <MarkedText
             className="inline-block bg-white px-2 py-1 text-2xl font-bold tracking-wide text-gray-700"

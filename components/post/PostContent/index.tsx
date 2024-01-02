@@ -16,8 +16,9 @@ import Anchor from '@/components/block/Anchor'
 import CodeBlock from '@/components/block/CodeBlock'
 import TableBlock from '@/components/block/TableBlock'
 import CalloutBlock from '@/components/block/CalloutBlock'
-import { isCalloutBlock, isCodeBlock, isCodeSandboxBlock, isImageBlock, isTableBlock } from '@/components/block/utils'
 import CodeSandboxBlock from '@/components/block/CodeSandboxBlock'
+import MarkdownBlock from '@/components/block/MarkdownBlock'
+import { isCalloutBlock, isCodeBlock, isCodeSandboxBlock, isImageBlock, isMarkdownBlock, isTableBlock } from '@/components/block/types'
 
 const PostContent: React.FC<{
   theme?: string // 主题色
@@ -74,6 +75,10 @@ const PostContent: React.FC<{
 
             if (isCodeSandboxBlock(record)) {
               return <CodeSandboxBlock record={record}/>
+            }
+
+            if (isMarkdownBlock(record)) {
+              return <MarkdownBlock record={record}/>
             }
 
             console.log('unknown index.ts:', record)

@@ -1,11 +1,11 @@
 import { render as structuredTextToPlainText } from 'datocms-structured-text-to-plain-text'
 import { isBlockquote, isLink, isList } from 'datocms-structured-text-utils'
-import { isCalloutBlock, isCodeBlock, isImageBlock, isTableBlock } from '@/components/block/utils'
 import { renderNodeRule } from 'react-datocms'
 import { getNodeValue } from '@/util/index'
 import { StructuredTextContent } from '@/typing/post'
 import { Record as StructuredTextGraphQlResponseRecord } from 'datocms-structured-text-utils/dist/types/types'
 import { Node } from 'datocms-structured-text-utils/src/types'
+import { isCalloutBlock, isCodeBlock, isImageBlock, isTableBlock } from '@/components/block/types'
 
 /**
  * Covert Structured text (DatoCMS content structure object) to plain text (for algolia temporarily)

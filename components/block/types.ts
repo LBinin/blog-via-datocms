@@ -1,5 +1,8 @@
 import { ColorInfo, PictureInfo } from '@/typing'
-import { Record as StructuredTextGraphQlResponseRecord, StructuredText } from 'datocms-structured-text-utils/dist/types/types'
+import {
+  Record as StructuredTextGraphQlResponseRecord,
+  StructuredText,
+} from 'datocms-structured-text-utils/dist/types/types'
 
 import { MyBlock } from '@/components/block/const'
 
@@ -46,4 +49,32 @@ export interface CodeSandboxBlockRecord extends Record {
   url?: string
   height?: number
   title?: string
+}
+
+export interface MarkdownRecord extends Record {
+  content?: string
+}
+
+export function isCodeBlock(record?: Record): record is CodeBlockRecord {
+  return record?.__typename === MyBlock.Code
+}
+
+export function isCalloutBlock(record?: Record): record is CalloutBlockRecord {
+  return record?.__typename === MyBlock.Callout
+}
+
+export function isImageBlock(record?: Record): record is ImageBlockRecord {
+  return record?.__typename === MyBlock.Image
+}
+
+export function isTableBlock(record?: Record): record is TableBlockRecord {
+  return record?.__typename === MyBlock.Table
+}
+
+export function isCodeSandboxBlock(record?: Record): record is CodeSandboxBlockRecord {
+  return record?.__typename === MyBlock.CodeSandboxBlock
+}
+
+export function isMarkdownBlock(record?: Record): record is MarkdownRecord {
+  return record?.__typename === MyBlock.MarkdownBlock
 }

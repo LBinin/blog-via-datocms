@@ -26,9 +26,7 @@ const useActiveHeading = (dataSource?: Node[]) => {
     if (!headingNodes?.length) {
       return
     }
-    const firstNodeOffsetTop = getDOMOffset(
-      `#${getNodeValue(headingNodes[0])}`,
-    ).top
+    const firstNodeOffsetTop = getDOMOffset(getNodeValue(headingNodes[0])).top
 
     if (
       scroll?.top === undefined ||
@@ -43,7 +41,7 @@ const useActiveHeading = (dataSource?: Node[]) => {
       const slug = getNodeValue(node)
       return {
         slug,
-        ...getDOMOffset(`#${slug}`),
+        ...getDOMOffset(slug),
       }
     })
 

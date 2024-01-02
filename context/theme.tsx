@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react'
 
-export const ThemeContext = React.createContext({ theme: 'light', toggleTheme: () => {} })
+export const ThemeContext = React.createContext<{
+  theme: ThemeType
+  toggleTheme: () => void
+}>({ theme: 'light', toggleTheme: () => {} })
 
 export const STORE_THEME_KEY = 'THEME'
+export type ThemeType = 'light' | 'dark'
 
 export const ThemeContextProvider: React.FC = props => {
   const { children } = props
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState<ThemeType>('light')
 
   useEffect(() => {
-    const storeTheme = localStorage.getItem(STORE_THEME_KEY)
+    const storeTheme = localStorage.getItem(STORE_THEME_KEY) as ThemeType
     if (storeTheme) { setTheme(storeTheme) }
   }, [])
 

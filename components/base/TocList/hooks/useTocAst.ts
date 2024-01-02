@@ -10,7 +10,7 @@ import { Heading, Node } from 'datocms-structured-text-utils/dist/types/types'
 const useTocAst = (dataSource?: Node[]) => {
   const headingNodes = useMemo(() => dataSource?.filter(node => isHeading(node)) as Heading[], [dataSource])
 
-  const tree = u('root', headingNodes.map(node => u('heading', { depth: node.level }, node.children)))
+  const tree = u('root', headingNodes?.map(node => u('heading', { depth: node.level }, node.children)))
   const table = toc(tree as any, { ordered: false })
 
   return table.map

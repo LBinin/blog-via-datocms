@@ -1,12 +1,7 @@
 import { StructuredText as StructuredTextGraphQlResponse } from 'datocms-structured-text-utils/dist/types/types'
 import { getNodeValue } from '@/util/index'
-import {
-  isCalloutBlock,
-  isCodeBlock,
-  isImageBlock,
-  isTableBlock,
-} from '@/components/block/utils'
 import { isCode } from 'datocms-structured-text-utils'
+import { isCalloutBlock, isCodeBlock, isImageBlock, isMarkdownBlock, isTableBlock } from '@/components/block/types'
 
 /**
  * 图片的读取时间第一张 12 秒，第二张 11 秒，依次减少 1 秒，第十章后每张最少 3 秒。
@@ -108,7 +103,7 @@ export function countPostContent(content?: StructuredTextGraphQlResponse) {
   // 文章内的 plain text
   const originTextCount = getNodeValue(content.value.document, false)
 
-  // 自定义 Block 的文字内恶龙
+  // 自定义 Block 的文字内容
   const blockTextCount = content.blocks?.map(block => {
     if (isCodeBlock(block)) {
       return getNodeValue(block.multiTabCodeBlock?.value.document, false)
@@ -124,6 +119,10 @@ export function countPostContent(content?: StructuredTextGraphQlResponse) {
         block.content?.columns.join(''),
         block.content?.data && Object.values(block.content?.data).join(''),
       ]
+    }
+    if (isMarkdownBlock(block) && block.content) {
+      // TODO: 完善 MD 的阅读时间（图片、链接）
+      return block.content
     }
 
     return ''

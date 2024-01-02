@@ -24,6 +24,10 @@ export type PostInfo = {
   slug?: string
   // 是否 WIP
   wip?: boolean
+  // 是否转载
+  isReprint?: boolean
+  // 参考链接
+  referenceLink?: string
   // 文章内容
   content?: StructuredText
   // 文章对应话题

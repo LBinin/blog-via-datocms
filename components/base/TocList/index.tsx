@@ -1,9 +1,9 @@
 import React from 'react'
 import { getNodeValue } from '@/util'
 import { List, ListContent } from 'mdast'
-import useTocAst from '@/hooks/useTocAst'
+import useTocAst from '@/components/base/TocList/hooks/useTocAst'
 import { StructuredText } from 'react-datocms'
-import useActiveHeading from '@/hooks/useActiveHeading'
+import useActiveHeading from '@/components/base/TocList/hooks/useActiveHeading'
 import { Node } from 'datocms-structured-text-utils/dist/types/types'
 
 const getListItemValue = (listItem: ListContent) => {

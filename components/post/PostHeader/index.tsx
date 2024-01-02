@@ -6,7 +6,16 @@ import { PostContext } from '@/context/post'
 import useReadingTime from '@/hooks/useReadingTime'
 
 const PostHeader: React.FC = _ => {
-  const { title, date, author, coverImage, wip, content } =
+  const {
+    title,
+    date,
+    author,
+    coverImage,
+    wip,
+    content,
+    isReprint,
+    referenceLink,
+  } =
     useContext(PostContext)
 
   const { timeString } = useReadingTime(content)
@@ -25,14 +34,8 @@ const PostHeader: React.FC = _ => {
       <div className="mt-8 mb-14 px-5 md:mt-14 md:mb-20 md:px-10">
         {/* 文章标题 */}
         <h1 className="mb-8 text-2xl font-bold leading-normal md:mb-10 md:text-4xl">
-          {wip && (
-            <div
-              className="mr-2 inline-block select-none rounded bg-theme-red px-2 py-0.5 align-[16%] text-xl text-white"
-              title="Work In Progress"
-            >
-              WIP
-            </div>
-          )}
+          {wip && <div className="mr-3 inline-block select-none rounded bg-theme-red px-2 py-0.5 align-[12%] text-2xl text-white" title="Work In Progress">WIP</div>}
+          {isReprint && <div className="mr-3 inline-block select-none rounded px-2 py-0.5 align-[12%] text-2xl bg-midnight-200 text-white dark:ring-2 dark:ring-accent-7" title="转载自其他作者">转</div>}
           {title}
         </h1>
 
@@ -71,6 +74,12 @@ const PostHeader: React.FC = _ => {
               ></path>
             </svg>
             该文章编写中，最终发表内容可能存在出入。
+          </div>
+        )}
+
+        {referenceLink && (
+          <div className="mt-10 -mb-5 rounded py-2 px-3 font-bold bg-midnight-200 text-white dark:ring-2 dark:ring-accent-7 break-all">
+            <span>🔗 原文链接：</span>{<a href={referenceLink} title={referenceLink}>{new URL(referenceLink).origin}/...</a>}
           </div>
         )}
       </div>

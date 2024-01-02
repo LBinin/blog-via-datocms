@@ -3,7 +3,7 @@
  */
 import React, { useContext, useEffect, useState } from 'react'
 import classnames from 'classnames'
-import { ThemeContext } from '@/context/theme'
+import { ThemeContext, ThemeType } from '@/context/theme'
 import CodeView from '@/components/base/CodeView'
 import { Code } from 'datocms-structured-text-utils'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
@@ -34,6 +34,7 @@ const EditorView: React.FC<{
   simpleMode?: boolean;
   wrapLongLine?: boolean;
   defaultActiveTab?: number;
+  theme?: ThemeType;
 }> = props => {
   const { dataSource, simpleMode, lineNumber, wrapLongLine, defaultActiveTab } = props
 
@@ -43,7 +44,8 @@ const EditorView: React.FC<{
   const [currTab, setCurrTab] = useState((defaultActiveTab && defaultActiveTab <= codeBlockList.length) ? defaultActiveTab - 1 : 0)
   const [codeWrap, setCodeWrap] = useState(wrapLongLine)
   const [codeCopied, setCodeCopied] = useState(false)
-  const { theme } = useContext(ThemeContext)
+  const { theme: systemTheme } = useContext(ThemeContext)
+  const theme = props.theme ?? systemTheme
 
   if (!dataSource) {
     return null
