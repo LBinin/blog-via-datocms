@@ -17,7 +17,7 @@ function parseLangAndLines(input: string) {
   const numberMatches = matches?.[2].match(/\d+/g) // 获取括号内的内容，并使用正则表达式匹配所有数字或数字范围
 
   numberMatches?.forEach(match => {
-    numberSet.add(parseInt(match, 10)) // 将匹配到的数字转换成整数，并添加到集合中
+    numberSet.add(parseInt(match, 10) - 1) // 将匹配到的数字转换成整数，并添加到集合中
   })
 
   return {
