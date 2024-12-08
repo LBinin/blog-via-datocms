@@ -12,6 +12,7 @@ export const AllPostAttr = `
   category {
     name
     slug
+    id
   }
   author {
     name

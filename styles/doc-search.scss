@@ -10,7 +10,7 @@
 
 // 搜索结果页
 .DocSearch.DocSearch-Container {
-  @apply fixed;
+  @apply fixed drop-shadow ;
 
   .DocSearch-NoResults {
     .DocSearch-Screen-Icon {

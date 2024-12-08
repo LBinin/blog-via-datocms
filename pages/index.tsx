@@ -39,7 +39,7 @@ export default function Index(props: any) {
   const morePosts = allPosts.slice(1)
   const metaTags = blog.seo.concat(site.favicon)
 
-  console.log({ props, allPosts, site, blog })
+  console.log({ props, subscription, allPosts, site, blog })
 
   return (
     <div className="min-h-screen">

@@ -24,6 +24,7 @@ export interface ColorInfo {
 export interface TopicInfo {
   name: string
   slug: string
+  id?: string
 }
 
 // Algolia

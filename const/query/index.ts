@@ -93,6 +93,15 @@ ${responsiveImageFragment}
 ${metaTagsFragment}
 `
 
+export const AllTopicsQuery = `
+query AllTopics {
+  allCategories {
+    name
+    slug
+  }
+}
+`
+
 // @params - topic: topic slug
 export const TopicPostQuery = `
 query TopicCountBySlug($topic: String) {
